@@ -148,6 +148,26 @@
           <note from="Developer" annotates="general" priority="2">%1=Customer</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TFB Report Pack Mgmt - Method SendOneCustomerPriceList - NamedType TextMsg</note>
         </trans-unit>
+        <trans-unit id="Report 445737995 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Blanket Sales Contract</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Blanket Sales Contract - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 445737995 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Blanket Sales Contract - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 445737995 - Control 2578066365 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. of Copies</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Blanket Sales Contract - Control NoOfCopies - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 445737995 - Control 1992870141 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Design</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Blanket Sales Contract - Control ForNavOpenDesigner - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 2319083187 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Brokerage Invoice</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -273,66 +293,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report TFB Inbound Shipment - Control ForNavOpenDesigner - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Report 375353700 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Warehouse Shipment v2</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Warehouse Shipment v3 - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 375353700 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Options</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Warehouse Shipment v3 - Control Options - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 375353700 - Control 1992870141 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies that a download file will enable designing</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Warehouse Shipment v3 - Control ForNavOpenDesigner - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Report 375353700 - Control 1992870141 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Design</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Warehouse Shipment v3 - Control ForNavOpenDesigner - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 3448828929 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Send Customer Price Lists</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 3448828929 - Control 2017544334 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Special Message</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - Control MessageTopic - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 3448828929 - Control 2017544334 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies the message to be included in the price list email</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - Control MessageTopic - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Report 3448828929 - Control 3358374643 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Effective Date</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - Control EffectiveDate - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 3448828929 - Control 3358374643 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source> Enter a date for which you want the price list to be effective</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - Control EffectiveDate - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Report 3448828929 - Control 1637095154 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Price History Duration</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - Control Duration - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Report 3448828929 - Control 1637095154 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source> Enter a date formulae represents how far back you want to explore dates. Default is -1Y if nothing is entered</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - Control Duration - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="Report 3448828929 - NamedType 1881095303" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Sending Customer Price Lists:\#1#########2##################</source>
-          <note from="Developer" annotates="general" priority="2">%1=Customer No,%2=Customer Name</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - NamedType Text001Msg</note>
-        </trans-unit>
         <trans-unit id="Report 12049385 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Standard Price List</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -377,6 +337,66 @@
           <source>https://tfbdata001.blob.core.windows.net/pubresources/bookmarkicon1.png</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report TFB Price List - Method GetBookmarkHTML - NamedType BookMarkTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 3448828929 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send Customer Price Lists</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3448828929 - Control 2017544334 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Special Message</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - Control MessageTopic - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3448828929 - Control 2017544334 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the message to be included in the price list email</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - Control MessageTopic - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 3448828929 - Control 3358374643 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Effective Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - Control EffectiveDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3448828929 - Control 3358374643 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> Enter a date for which you want the price list to be effective</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - Control EffectiveDate - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 3448828929 - Control 1637095154 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price History Duration</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - Control Duration - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3448828929 - Control 1637095154 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> Enter a date formulae represents how far back you want to explore dates. Default is -1Y if nothing is entered</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - Control Duration - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 3448828929 - NamedType 1881095303" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sending Customer Price Lists:\#1#########2##################</source>
+          <note from="Developer" annotates="general" priority="2">%1=Customer No,%2=Customer Name</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - NamedType Text001Msg</note>
+        </trans-unit>
+        <trans-unit id="Report 375353700 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Warehouse Shipment v2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Warehouse Shipment v3 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 375353700 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Warehouse Shipment v3 - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 375353700 - Control 1992870141 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies that a download file will enable designing</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Warehouse Shipment v3 - Control ForNavOpenDesigner - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Report 375353700 - Control 1992870141 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Design</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Warehouse Shipment v3 - Control ForNavOpenDesigner - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 1403490440 - Action 1784956293 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2901867346">
           <source>Send Price List</source>
