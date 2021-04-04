@@ -227,7 +227,7 @@ Report 53120 "TFB Price List"
     begin
         BookmarkHTMLResource := GetBookmarkHTML();
         ;
-        ReportsForNavInit;
+        ReportsForNavInit();
     end;
 
     trigger OnPostReport()
@@ -240,13 +240,13 @@ Report 53120 "TFB Price List"
     trigger OnPreReport()
     begin
         ;
-        ReportsForNavPre;
+        ReportsForNavPre();
 
     end;
 
     var
 
-        PricingCU: CodeUnit "TFB Pricing Calculations";
+        PricingCalculations: CodeUnit "TFB Pricing Calculations";
         SalesPriceCU: CodeUnit "Sales Price Calc. Mgt.";
 
         _PriceHistory: DateFormula;
@@ -315,13 +315,14 @@ Report 53120 "TFB Price List"
         Exit(HtmlBuilder.ToText());
     end;
 
+
+
     local procedure GetPricing(CustNo: Code[20]; CustomerPriceGroup: Code[10]; ItemVar: Record Item): Boolean
     var
 
-        SalesPrice: Record "Sales Price" temporary;
-        Price: CodeUnit "Price Calculation - V16";
-        PriceCalcSetup: Record "Price Calculation Setup";
-        OldSalesPrice: Record "Sales Price" temporary;
+        TempSalesPrice: Record "Sales Price" temporary;
+        TempOldSalesPrice: Record "Sales Price" temporary;
+
         SearchDate: Date;
         OldStartDate: Date;
         CutOffDate: Date;
@@ -343,22 +344,23 @@ Report 53120 "TFB Price List"
         If format(_PriceHistory) = '' then
             Evaluate(_PriceHistory, '-1Y');
 
-        SalesPriceCU.FindSalesPrice(SalesPrice, CustNo, '', CustomerPriceGroup, '', ItemVar."No.", '', ItemVar."Base Unit of Measure", '', SearchDate, false);
 
-        If not SalesPrice.IsEmpty() then begin
-            KgPrice := PricingCU.CalcPerKgFromUnit(SalesPrice."Unit Price", ItemVar."Net Weight");
-            UnitPrice := SalesPrice."Unit Price";
-            OldStartDate := CalcDate('<-2D>', SalesPrice."Starting Date");
+        SalesPriceCU.FindSalesPrice(TempSalesPrice, CustNo, '', CustomerPriceGroup, '', ItemVar."No.", '', ItemVar."Base Unit of Measure", '', SearchDate, false);
+
+        If not TempSalesPrice.IsEmpty() then begin
+            KgPrice := PricingCalculations.CalcPerKgFromUnit(TempSalesPrice."Unit Price", ItemVar."Net Weight");
+            UnitPrice := TempSalesPrice."Unit Price";
+            OldStartDate := CalcDate('<-2D>', TempSalesPrice."Starting Date");
             CutOffDate := CalcDate(_PriceHistory, Today());
             If OldStartDate > CutOffDate then
-                SalesPriceCU.FindSalesPrice(OldSalesPrice, CustNo, '', CustomerPriceGroup, '', ItemVar."No.", '', ItemVar."Base Unit of Measure", '', OldStartDate, false);
+                SalesPriceCU.FindSalesPrice(TempOldSalesPrice, CustNo, '', CustomerPriceGroup, '', ItemVar."No.", '', ItemVar."Base Unit of Measure", '', OldStartDate, false);
 
-            If not OldSalesPrice.IsEmpty() then begin
-                OldKgPrice := PricingCU.CalcPerKgFromUnit(OldSalesPrice."Unit Price", ItemVar."Net Weight");
-                OldUnitPrice := OldSalesPrice."Unit Price";
+            If not TempOldSalesPrice.IsEmpty() then begin
+                OldKgPrice := PricingCalculations.CalcPerKgFromUnit(TempOldSalesPrice."Unit Price", ItemVar."Net Weight");
+                OldUnitPrice := TempOldSalesPrice."Unit Price";
                 If OldKgPrice <> KgPrice then begin
-                    PriceChangeDate := StrSubstNo('Last changed %1 days ago', _EffectiveDate - SalesPrice."Starting Date");
-                    DaysSincePriceChange := _EffectiveDate - SalesPrice."Starting Date";
+                    PriceChangeDate := StrSubstNo('Last changed %1 days ago', _EffectiveDate - TempSalesPrice."Starting Date");
+                    DaysSincePriceChange := _EffectiveDate - TempSalesPrice."Starting Date";
                 end
 
                 else
@@ -396,6 +398,7 @@ Report 53120 "TFB Price List"
 
         EstETA := '';
         Availability := '';
+        NextQtyRemaining := 0;
         If ItemVar."Safety Stock Quantity" = 0 then
             SafetyStock := 200 else
             SafetyStock := ItemVar."Safety Stock Quantity";
@@ -459,22 +462,22 @@ Report 53120 "TFB Price List"
     local procedure GetBookmarkStatus(ItemNo: Code[20]; CustNo: Code[20]): Boolean
 
     var
-        ItemLedger: Record "Item Ledger Entry";
+        ItemLedgerEntry: Record "Item Ledger Entry";
         DateFormula: DateFormula;
 
     begin
 
-        Clear(ItemLedger);
+        Clear(ItemLedgerEntry);
         Evaluate(DateFormula, '-6M');
-        ItemLedger.SetRange("Item No.", ItemNo);
-        ItemLedger.SetRange("Source Type", ItemLedger."Source Type"::Customer);
-        ItemLedger.SetRange("Source No.", CustNo);
-        ItemLedger.SetRange("Document Type", ItemLedger."Document Type"::"Sales Shipment");
-        ItemLedger.SetFilter(Quantity, '<>0');
-        ItemLedger.SetFilter("Posting Date", '>%1', CalcDate(DateFormula, Today()));
-        ItemLedger.CalcSums(Quantity);
+        ItemLedgerEntry.SetRange("Item No.", ItemNo);
+        ItemLedgerEntry.SetRange("Source Type", ItemLedgerEntry."Source Type"::Customer);
+        ItemLedgerEntry.SetRange("Source No.", CustNo);
+        ItemLedgerEntry.SetRange("Document Type", ItemLedgerEntry."Document Type"::"Sales Shipment");
+        ItemLedgerEntry.SetFilter(Quantity, '<>0');
+        ItemLedgerEntry.SetFilter("Posting Date", '>%1', CalcDate(DateFormula, Today()));
+        ItemLedgerEntry.CalcSums(Quantity);
 
-        If ABS(ItemLedger.Quantity) > 20 then
+        If ABS(ItemLedgerEntry.Quantity) > 20 then
             Exit(True)
         else
             Exit(false);
@@ -485,34 +488,34 @@ Report 53120 "TFB Price List"
     local procedure GetFavouriteStatus(ItemNo: Code[20]; CustNo: Code[20]): Boolean
 
     var
-        ItemFavourite: Record "TFB Cust. Fav. Item";
+        TFBCustFavItem: Record "TFB Cust. Fav. Item";
 
 
     begin
 
-        Exit(ItemFavourite.Get(CustNo, 'DEFAULT', ItemNo));
+        Exit(TFBCustFavItem.Get(CustNo, 'DEFAULT', ItemNo));
 
     end;
 
     local procedure GetLastDispatchDate(ItemNo: Code[20]; CustNo: Code[20]): Date
 
     var
-        ItemLedger: Record "Item Ledger Entry";
+        ItemLedgerEntry: Record "Item Ledger Entry";
 
 
     begin
 
-        Clear(ItemLedger);
+        Clear(ItemLedgerEntry);
 
-        ItemLedger.SetRange("Item No.", ItemNo);
-        ItemLedger.SetRange("Source Type", ItemLedger."Source Type"::Customer);
-        ItemLedger.SetRange("Source No.", CustNo);
-        ItemLedger.SetRange("Document Type", ItemLedger."Document Type"::"Sales Shipment");
-        ItemLedger.SetFilter(Quantity, '<>0');
-        ItemLedger.SetCurrentKey("Posting Date");
-        ItemLedger.SetAscending("Posting Date", false);
-        If ItemLedger.FindFirst() then
-            Exit(ItemLedger."Posting Date");
+        ItemLedgerEntry.SetRange("Item No.", ItemNo);
+        ItemLedgerEntry.SetRange("Source Type", ItemLedgerEntry."Source Type"::Customer);
+        ItemLedgerEntry.SetRange("Source No.", CustNo);
+        ItemLedgerEntry.SetRange("Document Type", ItemLedgerEntry."Document Type"::"Sales Shipment");
+        ItemLedgerEntry.SetFilter(Quantity, '<>0');
+        ItemLedgerEntry.SetCurrentKey("Posting Date");
+        ItemLedgerEntry.SetAscending("Posting Date", false);
+        If ItemLedgerEntry.FindFirst() then
+            Exit(ItemLedgerEntry."Posting Date");
 
 
     end;
@@ -521,28 +524,28 @@ Report 53120 "TFB Price List"
 
     var
 
-        UoM: Record "Unit of Measure";
+        UnitOfMeasure: Record "Unit of Measure";
 
 
     begin
 
-        If UoM.Get(ItemVar."Base Unit of Measure") then
-            Exit(Format(Item."Net Weight") + 'kg net ' + UoM.Description);
+        If UnitOfMeasure.Get(ItemVar."Base Unit of Measure") then
+            Exit(Format(Item."Net Weight") + 'kg net ' + UnitOfMeasure.Description);
     end;
 
     local procedure GetPerPallet(var ItemVar: Record Item): Integer
 
     var
 
-        iUoM: Record "Item Unit of Measure";
+        ItemUnitOfMeasure: Record "Item Unit of Measure";
 
     begin
 
-        iUoM.SetRange("Item No.", ItemVar."No.");
-        iUoM.SetRange(Code, 'PALLET');
+        ItemUnitOfMeasure.SetRange("Item No.", ItemVar."No.");
+        ItemUnitOfMeasure.SetRange(Code, 'PALLET');
 
-        If iUOM.FindFirst() then
-            Exit(iUoM."Qty. per Unit of Measure");
+        If ItemUnitOfMeasure.FindFirst() then
+            Exit(ItemUnitOfMeasure."Qty. per Unit of Measure");
     end;
 
     local procedure GetAQISFactors(var ItemVar: Record Item): Text
@@ -564,11 +567,11 @@ Report 53120 "TFB Price List"
         exit(ReturnText.ToText()); // Added an exit to reset the global var when function cannot find a result
     end;
 
-    local procedure GetDateOfNextOrderOrTransfer(ItemNo: Code[20]; var "Remaining Qty. (Base)": Decimal; var "Avail. Date": Date): Boolean
+    local procedure GetDateOfNextOrderOrTransfer(ItemNo: Code[20]; "Remaining Qty. (Base)": Decimal; var NextDate: Date): Boolean
 
     var
         TransferLine: Record "Transfer Line";
-        OrderLine: Record "Purchase Line";
+        PurchaseLine: Record "Purchase Line";
 
         TransferSupplyFound: Boolean;
         OrderSupplyFound: Boolean;
@@ -587,31 +590,31 @@ Report 53120 "TFB Price List"
             TransferLine.CalcFields("Reserved Qty. Shipped (Base)");
             "Remaining Qty. (Base)" := TransferLine."Qty. Shipped (Base)" - TransferLine."Reserved Qty. Shipped (Base)";
             If "Remaining Qty. (Base)" > 0 then begin
-                "Avail. Date" := TransferLine."Receipt Date";
+                NextDate := TransferLine."Receipt Date";
                 TransferSupplyFound := true;
             end;
         end;
 
 
         //Check for a local purchase order coming to the warehouse
-        OrderLine.SetRange("Document Type", Orderline."Document Type"::Order);
-        OrderLine.SetRange("No.", ItemNo);
-        OrderLine.SetRange("Drop Shipment", false);
-        OrderLine.SetFilter("Outstanding Qty. (Base)", '>0');
-        OrderLine.SetCurrentKey("Expected Receipt Date");
+        PurchaseLine.SetRange("Document Type", PurchaseLine."Document Type"::Order);
+        PurchaseLine.SetRange("No.", ItemNo);
+        PurchaseLine.SetRange("Drop Shipment", false);
+        PurchaseLine.SetFilter("Outstanding Qty. (Base)", '>0');
+        PurchaseLine.SetCurrentKey("Expected Receipt Date");
 
-        If OrderLine.FindSet(false, false) then
+        If PurchaseLine.FindSet(false, false) then
             repeat
-                If (not TransferSupplyFound) or (TransferSupplyFound and (OrderLine."Expected Receipt Date" < TransferLine."Receipt Date")) then begin
-                    OrderLine.CalcFields("Reserved Qty. (Base)");
-                    "Remaining Qty. (Base)" := OrderLine."Quantity (Base)" - OrderLine."Reserved Qty. (Base)";
+                If (not TransferSupplyFound) or (TransferSupplyFound and (PurchaseLine."Expected Receipt Date" < TransferLine."Receipt Date")) then begin
+                    PurchaseLine.CalcFields("Reserved Qty. (Base)");
+                    "Remaining Qty. (Base)" := PurchaseLine."Quantity (Base)" - PurchaseLine."Reserved Qty. (Base)";
                     If "Remaining Qty. (Base)" > 0 then begin
-                        "Avail. Date" := OrderLine."Expected Receipt Date";
+                        NextDate := PurchaseLine."Expected Receipt Date";
                         OrderSupplyFound := true;
                     end;
                 end;
             // process record  
-            until ((OrderLine.Next() = 0) or (OrderSupplyFound = true));
+            until ((PurchaseLine.Next() = 0) or (OrderSupplyFound = true));
 
         If TransferSupplyFound or OrderSupplyFound then Exit(true) else Exit(False);
 
@@ -620,13 +623,12 @@ Report 53120 "TFB Price List"
 
     // --> Reports ForNAV Autogenerated code - do not delete or modify
     var
+        ReportForNav: Codeunit "ForNAV Report Management";
         ReportForNavInitialized: Boolean;
-        ReportForNavShowOutput: Boolean;
-        ReportForNavTotalsCausedBy: Integer;
+
         ReportForNavOpenDesigner: Boolean;
         [InDataSet]
         ReportForNavAllowDesign: Boolean;
-        ReportForNav: Codeunit "ForNAV Report Management";
 
     local procedure ReportsForNavInit()
     var
@@ -641,19 +643,11 @@ Report 53120 "TFB Price List"
         if ReportForNav.LaunchDesigner(ReportForNavOpenDesigner) then CurrReport.Quit();
     end;
 
-    local procedure ReportForNavSetTotalsCausedBy(value: Integer)
-    begin
-        ReportForNavTotalsCausedBy := value;
-    end;
 
-    local procedure ReportForNavSetShowOutput(value: Boolean)
-    begin
-        ReportForNavShowOutput := value;
-    end;
 
     local procedure ReportForNavInit(jsonObject: JsonObject)
     begin
-        ReportForNav.Init(jsonObject, CurrReport.ObjectId);
+        ReportForNav.Init(jsonObject, CurrReport.ObjectId());
     end;
 
     local procedure ReportForNavWriteDataItem(dataItemId: Text; rec: Variant): Text

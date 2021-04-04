@@ -104,7 +104,7 @@ Report 53030 "TFB Customer Stock Status"
                         ToolTip = 'Specifies that local designer file will be downloaded';
                         trigger OnValidate()
                         begin
-                            ReportForNav.LaunchDesigner(ReportForNavOpenDesigner);
+                            ForNAVReportManagement.LaunchDesigner(ReportForNavOpenDesigner);
                             CurrReport.RequestOptionsPage.Close();
                         end;
 
@@ -180,24 +180,14 @@ Report 53030 "TFB Customer Stock Status"
 
     end;
 
-    local procedure GetBookmarkHTML(): Text
-
-    var
-        HtmlBuilder: TextBuilder;
-        BookMarkTxt: Label 'https://tfbdata001.blob.core.windows.net/pubresources/bookmarkicon1.png';
-
-    begin
-        HtmlBuilder.Append('<!DOCTYPE html><html><body><img src="%1" height="12" width="12" alt="Bookmark"></body></html>');
-        HtmlBuilder.Replace('%1', BookMarkTxt);
-        Exit(HtmlBuilder.ToText());
-    end;
+ 
 
     local procedure GetAvailability(var ItemVar: Record Item; var _Status: enum "TFB Availability Status"; var _InStockQty: Decimal; var _NextAvailDate: Date; var _NextQtyRemaining: Decimal; var _DropShip: Boolean): Boolean
     var
 
-        ItemLedger: Record "Item Ledger Entry";
+        ItemLedgerEntry: Record "Item Ledger Entry";
         PurchasingCode: Record Purchasing;
-        ResEntry: Record "Reservation Entry";
+        ReservationEntry: Record "Reservation Entry";
         QtyReserved: Decimal;
 
 
@@ -234,21 +224,21 @@ Report 53030 "TFB Customer Stock Status"
                     _Status := _Status::Okay;
             end
         else begin
-            Clear(ItemLedger);
-            ItemLedger.SetRange("Item No.", ItemVar."No.");
-            ItemLedger.SetFilter("Entry Type", '%1|%2|%3|%4', ItemLedger."Entry Type"::Purchase, ItemLedger."Entry Type"::"Positive Adjmt.", ItemLedger."Entry Type"::Transfer, ItemLedger."Entry Type"::"Assembly Output");
-            ItemLedger.SetRange(Open, true);
+            Clear(ItemLedgerEntry);
+            ItemLedgerEntry.SetRange("Item No.", ItemVar."No.");
+            ItemLedgerEntry.SetFilter("Entry Type", '%1|%2|%3|%4', ItemLedgerEntry."Entry Type"::Purchase, ItemLedgerEntry."Entry Type"::"Positive Adjmt.", ItemLedgerEntry."Entry Type"::Transfer, ItemLedgerEntry."Entry Type"::"Assembly Output");
+            ItemLedgerEntry.SetRange(Open, true);
 
 
-            If ItemLedger.CalcSums("Remaining Quantity") then begin
+            If ItemLedgerEntry.CalcSums("Remaining Quantity") then begin
 
-                ResEntry.SetRange("Source Type", 32);
-                ResEntry.SetRange("Item No.", ItemVar."No.");
-                ResEntry.SetRange("Reservation Status", ResEntry."Reservation Status"::Reservation);
-                ResEntry.SetRange(Positive, true);
-                ResEntry.CalcSums("Qty. to Handle (Base)");
-                QtyReserved := ResEntry."Qty. to Handle (Base)";
-                _InStockQty := ItemLedger."Remaining Quantity" - QtyReserved;
+                ReservationEntry.SetRange("Source Type", 32);
+                ReservationEntry.SetRange("Item No.", ItemVar."No.");
+                ReservationEntry.SetRange("Reservation Status", ReservationEntry."Reservation Status"::Reservation);
+                ReservationEntry.SetRange(Positive, true);
+                ReservationEntry.CalcSums("Qty. to Handle (Base)");
+                QtyReserved := ReservationEntry."Qty. to Handle (Base)";
+                _InStockQty := ItemLedgerEntry."Remaining Quantity" - QtyReserved;
                 If _InStockQty > 0 then
                     _Status := _Status::Okay
                 else
@@ -261,83 +251,43 @@ Report 53030 "TFB Customer Stock Status"
         end;
     end;
 
-    local procedure GetBookmarkStatus(ItemNo: Code[20]; CustNo: Code[20]): Boolean
-
-    var
-        ItemLedger: Record "Item Ledger Entry";
-        DateFormula: DateFormula;
-
-    begin
-
-        Clear(ItemLedger);
-        Evaluate(DateFormula, '-6M');
-        ItemLedger.SetRange("Item No.", ItemNo);
-        ItemLedger.SetRange("Source Type", ItemLedger."Source Type"::Customer);
-        ItemLedger.SetRange("Source No.", CustNo);
-        ItemLedger.SetRange("Document Type", ItemLedger."Document Type"::"Sales Shipment");
-        ItemLedger.SetFilter(Quantity, '<>0');
-        ItemLedger.CalcSums(Quantity);
-
-        If ABS(ItemLedger.Quantity) > 0 then
-            Exit(True)
-        else
-            Exit(false);
-
-
-    end;
+  
 
     local procedure GetUnitType(var ItemVar: Record Item): Text
 
     var
 
-        UoM: Record "Unit of Measure";
+        UnitOfMeasure: Record "Unit of Measure";
 
 
     begin
 
-        If UoM.Get(ItemVar."Base Unit of Measure") then
-            Exit(Format(Item."Net Weight") + 'kg net ' + UoM.Description);
+        If UnitOfMeasure.Get(ItemVar."Base Unit of Measure") then
+            Exit(Format(Item."Net Weight") + 'kg net ' + UnitOfMeasure.Description);
     end;
 
     local procedure GetPerPallet(var ItemVar: Record Item): Integer
 
     var
 
-        iUoM: Record "Item Unit of Measure";
+        ItemUnitOfMeasure: Record "Item Unit of Measure";
 
     begin
 
-        iUoM.SetRange("Item No.", ItemVar."No.");
-        iUoM.SetRange(Code, 'PALLET');
+        ItemUnitOfMeasure.SetRange("Item No.", ItemVar."No.");
+        ItemUnitOfMeasure.SetRange(Code, 'PALLET');
 
-        If iUOM.FindFirst() then
-            Exit(iUoM."Qty. per Unit of Measure");
+        If ItemUnitOfMeasure.FindFirst() then
+            Exit(ItemUnitOfMeasure."Qty. per Unit of Measure");
     end;
 
-    local procedure GetAQISFactors(var ItemVar: Record Item): Text
-    var
+  
 
-        ReturnText: TextBuilder;
-    begin
-
-
-        If ItemVar."TFB Fumigation" then
-            ReturnText.Append('F');
-
-        If ItemVar."TFB Inspection" then
-            if ReturnText.Length() > 0 then
-                ReturnText.Append(',I')
-            else
-                ReturnText.Append('I');
-
-        exit(ReturnText.ToText()); // Added an exit to reset the global var when function cannot find a result
-    end;
-
-    local procedure GetDateOfNextOrderOrTransfer(ItemNo: Code[20]; var "Remaining Qty. (Base)": Decimal; var "Avail. Date": Date): Boolean
+    local procedure GetDateOfNextOrderOrTransfer(ItemNo: Code[20]; "Remaining Qty. (Base)": Decimal; "Avail. Date": Date): Boolean
 
     var
         TransferLine: Record "Transfer Line";
-        OrderLine: Record "Purchase Line";
+        PurchaseLine: Record "Purchase Line";
 
         TransferSupplyFound: Boolean;
         OrderSupplyFound: Boolean;
@@ -363,24 +313,24 @@ Report 53030 "TFB Customer Stock Status"
 
 
         //Check for a local purchase order coming to the warehouse
-        OrderLine.SetRange("Document Type", Orderline."Document Type"::Order);
-        OrderLine.SetRange("No.", ItemNo);
-        OrderLine.SetRange("Drop Shipment", false);
-        OrderLine.SetFilter("Outstanding Qty. (Base)", '>0');
-        OrderLine.SetCurrentKey("Expected Receipt Date");
+        PurchaseLine.SetRange("Document Type", PurchaseLine."Document Type"::Order);
+        PurchaseLine.SetRange("No.", ItemNo);
+        PurchaseLine.SetRange("Drop Shipment", false);
+        PurchaseLine.SetFilter("Outstanding Qty. (Base)", '>0');
+        PurchaseLine.SetCurrentKey("Expected Receipt Date");
 
-        If OrderLine.FindSet(false, false) then
+        If PurchaseLine.FindSet(false, false) then
             repeat
-                If (not TransferSupplyFound) or (TransferSupplyFound and (OrderLine."Expected Receipt Date" < TransferLine."Receipt Date")) then begin
-                    OrderLine.CalcFields("Reserved Qty. (Base)");
-                    "Remaining Qty. (Base)" := OrderLine."Quantity (Base)" - OrderLine."Reserved Qty. (Base)";
+                If (not TransferSupplyFound) or (TransferSupplyFound and (PurchaseLine."Expected Receipt Date" < TransferLine."Receipt Date")) then begin
+                    PurchaseLine.CalcFields("Reserved Qty. (Base)");
+                    "Remaining Qty. (Base)" := PurchaseLine."Quantity (Base)" - PurchaseLine."Reserved Qty. (Base)";
                     If "Remaining Qty. (Base)" > 0 then begin
-                        "Avail. Date" := OrderLine."Expected Receipt Date";
+                        "Avail. Date" := PurchaseLine."Expected Receipt Date";
                         OrderSupplyFound := true;
                     end;
                 end;
             // process record  
-            until ((OrderLine.Next() = 0) or (OrderSupplyFound = true));
+            until ((PurchaseLine.Next() = 0) or (OrderSupplyFound = true));
 
         If TransferSupplyFound or OrderSupplyFound then Exit(true) else Exit(False);
 
@@ -389,11 +339,9 @@ Report 53030 "TFB Customer Stock Status"
 
     // --> Reports ForNAV Autogenerated code - do not delete or modify
     var
-        ReportForNav: Codeunit "ForNAV Report Management";
+        ForNAVReportManagement: Codeunit "ForNAV Report Management";
         ReportForNavInitialized: Boolean;
-        ReportForNavShowOutput: Boolean;
-        ReportForNavTotalsCausedBy: Boolean;
-        ReportForNavOpenDesigner: Boolean;
+               ReportForNavOpenDesigner: Boolean;
         [InDataSet]
         ReportForNavAllowDesign: Boolean;
 
@@ -402,30 +350,21 @@ Report 53030 "TFB Customer Stock Status"
         id: Integer;
     begin
         Evaluate(id, CopyStr(CurrReport.ObjectId(false), StrPos(CurrReport.ObjectId(false), ' ') + 1));
-        ReportForNav.OnInit(id, ReportForNavAllowDesign);
+        ForNAVReportManagement.OnInit(id, ReportForNavAllowDesign);
     end;
 
     local procedure ReportsForNavPre()
     begin
-        if ReportForNav.LaunchDesigner(ReportForNavOpenDesigner) then CurrReport.Quit();
+        if ForNAVReportManagement.LaunchDesigner(ReportForNavOpenDesigner) then CurrReport.Quit();
     end;
 
-    local procedure ReportForNavSetTotalsCausedBy(value: Boolean)
-    begin
-        ReportForNavTotalsCausedBy := value;
-    end;
-
-    local procedure ReportForNavSetShowOutput(value: Boolean)
-    begin
-        ReportForNavShowOutput := value;
-    end;
-
+   
     local procedure ReportForNavInit(jsonObject: JsonObject)
     begin
-        ReportForNav.Init(jsonObject, CurrReport.ObjectId());
+        ForNAVReportManagement.Init(jsonObject, CurrReport.ObjectId());
     end;
 
-    local procedure ReportForNavWriteDataItem(dataItemId: Text; rec: Variant): Text
+    local procedure ReportForNavWriteDataItem(dataItemId: Text; Variant: Variant): Text
     var
         values: Text;
         jsonObject: JsonObject;
@@ -438,7 +377,7 @@ Report 53030 "TFB Customer Stock Status"
 
         case (dataItemId) of
         end;
-        ReportForNav.AddDataItemValues(jsonObject, dataItemId, rec);
+        ForNAVReportManagement.AddDataItemValues(jsonObject, dataItemId, Variant);
         jsonObject.WriteTo(values);
         exit(values);
     end;

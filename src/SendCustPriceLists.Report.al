@@ -15,7 +15,7 @@ report 53000 "TFB Send Cust. Price Lists"
             trigger OnPreDataItem()
 
             var
-                PriceReport: Report "TFB Price List";
+               
                 Builder: CodeUnit "Report Xml Parameters Builder";
 
             begin
@@ -25,8 +25,8 @@ report 53000 "TFB Send Cust. Price Lists"
                 ParametersXML := Builder."Get Report Page Structure As Xml"(Report::"TFB Price List");
 
                 //Update 
-                "Update Field Value"(ParametersXml, '_EffectiveDate', format(_EffectiveDate, 0, '<Year4>-<Month,2>-<Day,2>'));
-                "Update Field Value"(ParametersXml, '_PriceHistory', format(_Duration));
+                UpdateFieldValue(ParametersXml, '_EffectiveDate', format(_EffectiveDate, 0, '<Year4>-<Month,2>-<Day,2>'));
+                UpdateFieldValue(ParametersXml, '_PriceHistory', format(_Duration));
                 ParametersXML.WriteTo(ParametersString);
                 HTMLTemplate := ReportPackCU.GetPriceListHTMLTemplate(MessageTopicVar);
 
@@ -117,7 +117,7 @@ report 53000 "TFB Send Cust. Price Lists"
         ParametersString: Text;
         ParametersXML: XmlDocument;
 
-    local procedure "Update Field Value"(var Document: XmlDocument; "Field Name": Text; "Field Value": Text)
+    local procedure UpdateFieldValue(var Document: XmlDocument; "Field Name": Text; "Field Value": Text)
     var
         Node: XmlNode;
     begin

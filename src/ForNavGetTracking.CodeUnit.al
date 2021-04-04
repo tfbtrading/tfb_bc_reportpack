@@ -5,27 +5,27 @@ codeunit 53000 "ForNAV Get Tracking"
     // Unauthorized reverse engineering, distribution or copying of this file, parts hereof, or derived work, via any medium is strictly prohibited without written permission from ForNAV ApS.
     // This source code is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
-    procedure GetTrackingSpecification(var TrackingSpecification: Record "Tracking Specification"; RecRef: RecordRef)
+    procedure GetTrackingSpecification(var TrackingSpecification: Record "Tracking Specification"; RecordRef: RecordRef)
     begin
-        case RecRef.Number() of
+        case RecordRef.Number() of
             Database::"Sales Line",
             Database::"Purchase Line":
                 begin
-                    GetReservationEntries(TrackingSpecification, RecRef);
-                    GetItemLedgerEntries(TrackingSpecification, RecRef);
+                    GetReservationEntries(TrackingSpecification, RecordRef);
+                    GetItemLedgerEntries(TrackingSpecification, RecordRef);
                 end;
             Database::"Sales Invoice Line",
             Database::"Purch. Inv. Line",
             Database::"Sales Shipment Line",
             Database::"Purch. Rcpt. Line":
-                GetItemLedgerEntries(TrackingSpecification, RecRef);
+                GetItemLedgerEntries(TrackingSpecification, RecordRef);
         end;
     end;
 
-    local procedure GetReservationEntries(var TrackingSpecification: Record "Tracking Specification"; RecRef: RecordRef)
+    local procedure GetReservationEntries(var TrackingSpecification: Record "Tracking Specification"; RecordRef: RecordRef)
     var
         ReservationEntry: Record "Reservation Entry";
-        FldRef: FieldRef;
+        FieldRef: FieldRef;
         NewLotNo: Boolean;
         PendingInsert: Boolean;
         TotalQtyBase: Decimal;
@@ -34,13 +34,14 @@ codeunit 53000 "ForNAV Get Tracking"
 
 
     begin
-        FldRef := RecRef.Field(3); // Document No
-        ReservationEntry.SetRange("Source ID", FldRef.Value());
-        FldRef := RecRef.Field(4); // Line No
-        ReservationEntry.SetRange("Source Ref. No.", FldRef.Value());
-        FldRef := RecRef.Field(6); // No.
-        ReservationEntry.SetRange("Item No.", FldRef.Value());
-        ReservationEntry.SetRange("Source Type", RecRef.Number());
+        LastLotNo := '';
+        FieldRef := RecordRef.Field(3); // Document No
+        ReservationEntry.SetRange("Source ID", FieldRef.Value());
+        FieldRef := RecordRef.Field(4); // Line No
+        ReservationEntry.SetRange("Source Ref. No.", FieldRef.Value());
+        FieldRef := RecordRef.Field(6); // No.
+        ReservationEntry.SetRange("Item No.", FieldRef.Value());
+        ReservationEntry.SetRange("Source Type", RecordRef.Number());
         ReservationEntry.SetFilter("Item Tracking", '> %1', ReservationEntry."Item Tracking"::None);
         if ReservationEntry.FindSet() then
             repeat
@@ -85,47 +86,47 @@ codeunit 53000 "ForNAV Get Tracking"
             TrackingSpecification.Insert();
     end;
 
-    local procedure GetItemLedgerEntries(var TrackingSpecification: Record "Tracking Specification"; RecRef: RecordRef)
+    local procedure GetItemLedgerEntries(var TrackingSpecification: Record "Tracking Specification"; RecordRef: RecordRef)
     var
         ItemLedgerEntry: Record "Item Ledger Entry";
         SalesShipmentLine: Record "Sales Shipment Line";
         PurchRcptLine: Record "Purch. Rcpt. Line";
         ValueEntry: Record "Value Entry";
-        ShippingRef: RecordRef;
-        FldRef: FieldRef;
-        ShippingFldRef: FieldRef;
+        ShippingRecordRef: RecordRef;
+        FieldRef: FieldRef;
+        ShippingFieldRef: FieldRef;
     begin
-        case RecRef.Number() of
+        case RecordRef.Number() of
             Database::"Sales Line",
             Database::"Sales Invoice Line":
-                ShippingRef.GetTable(SalesShipmentLine);
+                ShippingRecordRef.GetTable(SalesShipmentLine);
             Database::"Purchase Line",
             Database::"Purch. Inv. Line":
-                ShippingRef.GetTable(PurchRcptLine);
+                ShippingRecordRef.GetTable(PurchRcptLine);
         end;
 
-        case RecRef.Number() of
+        case RecordRef.Number() of
             Database::"Sales Line",
             Database::"Purchase Line":
                 begin
-                    ShippingFldRef := ShippingRef.Field(65);
-                    FldRef := RecRef.Field(3); // Document No
-                    ShippingFldRef.SetRange(FldRef.Value());
-                    ShippingFldRef := ShippingRef.Field(66);
-                    FldRef := RecRef.Field(4); // Line No
-                    ShippingFldRef.SetRange(FldRef.Value());
-                    if not ShippingRef.FindSet() then
+                    ShippingFieldRef := ShippingRecordRef.Field(65);
+                    FieldRef := RecordRef.Field(3); // Document No
+                    ShippingFieldRef.SetRange(FieldRef.Value());
+                    ShippingFieldRef := ShippingRecordRef.Field(66);
+                    FieldRef := RecordRef.Field(4); // Line No
+                    ShippingFieldRef.SetRange(FieldRef.Value());
+                    if not ShippingRecordRef.FindSet() then
                         exit;
                 end;
             Database::"Sales Invoice Line",
             Database::"Purch. Inv. Line":
                 begin
                     ValueEntry.SetCurrentKey("Document No.");
-                    FldRef := RecRef.Field(3); // Document No
-                    ValueEntry.SetRange("Document No.", FldRef.Value());
+                    FieldRef := RecordRef.Field(3); // Document No
+                    ValueEntry.SetRange("Document No.", FieldRef.Value());
                     ValueEntry.SetRange("Document Type", ValueEntry."Document Type"::"Purchase Invoice");
-                    FldRef := RecRef.Field(4); // Line No
-                    ValueEntry.SetRange("Document Line No.", FldRef.Value());
+                    FieldRef := RecordRef.Field(4); // Line No
+                    ValueEntry.SetRange("Document Line No.", FieldRef.Value());
                     if ValueEntry.FindSet() then
                         repeat
                             if ItemLedgerEntry.Get(ValueEntry."Item Ledger Entry No.") then begin
@@ -142,20 +143,20 @@ codeunit 53000 "ForNAV Get Tracking"
             Database::"Sales Shipment Line",
             Database::"Purch. Rcpt. Line":
                 begin
-                    ShippingRef := RecRef;
-                    ShippingRef.SetRecFilter();
+                    ShippingRecordRef := RecordRef;
+                    ShippingRecordRef.SetRecFilter();
                 end;
             else
                 exit;
         end;
 
-        ShippingRef.SetRecFilter();
-        if ShippingRef.FindSet() then
+        ShippingRecordRef.SetRecFilter();
+        if ShippingRecordRef.FindSet() then
             repeat
-                FldRef := ShippingRef.Field(3); // Document No
-                ItemLedgerEntry.SetRange("Document No.", FldRef.Value());
-                FldRef := ShippingRef.Field(4); // Line No
-                ItemLedgerEntry.SetRange("Document Line No.", FldRef.Value());
+                FieldRef := ShippingRecordRef.Field(3); // Document No
+                ItemLedgerEntry.SetRange("Document No.", FieldRef.Value());
+                FieldRef := ShippingRecordRef.Field(4); // Line No
+                ItemLedgerEntry.SetRange("Document Line No.", FieldRef.Value());
                 ItemLedgerEntry.SetFilter("Item Tracking", '> %1', ItemLedgerEntry."Item Tracking"::None);
                 if ItemLedgerEntry.FindSet() then
                     repeat
@@ -167,6 +168,6 @@ codeunit 53000 "ForNAV Get Tracking"
                         TrackingSpecification."Quantity (Base)" := abs(ItemLedgerEntry.Quantity);
                         TrackingSpecification.Insert();
                     until ItemLedgerEntry.Next() = 0;
-            until ShippingRef.Next() = 0;
+            until ShippingRecordRef.Next() = 0;
     end;
 }

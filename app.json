@@ -10,8 +10,8 @@
   "help": "",
   "url": "",
   "logo": "./TFB-Trading-_icon.jpg",
-  "suppressWarnings": ["AL0254"],
-  "features":["TranslationFile"],
+  "suppressWarnings": ["AL0254","AA0217","AA0072","AW0006","AA0210"],
+  "features":["TranslationFile"], 
   "dependencies": [
  
 {

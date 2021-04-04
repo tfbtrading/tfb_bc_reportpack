@@ -7,30 +7,29 @@ codeunit 53030 "TFB Report Pack Mgmt"
 
     var
 
-        PriceListRpt: Report "TFB Price List";
-        Builder: CodeUnit "Report Xml Parameters Builder";
-        Window: Dialog;
+        ReportXmlParametersBuilder: CodeUnit "Report Xml Parameters Builder";
+        Dialog: Dialog;
         TextMsg: Label 'Sending Customer Price List:\#1############################', Comment = '%1=Customer';
         Result: Boolean;
         ParametersString: Text;
-        ParametersString2: Text;
+      
         ParametersXML: XmlDocument;
 
     begin
 
-        Window.Open(TextMsg);
-        Window.Update(1, STRSUBSTNO('%1 %2', CustNo, ''));
-        ParametersXML := Builder."Get Report Page Structure As Xml"(Report::"TFB Price List");
+        Dialog.Open(TextMsg);
+        Dialog.Update(1, STRSUBSTNO('%1 %2', CustNo, ''));
+        ParametersXML := ReportXmlParametersBuilder."Get Report Page Structure As Xml"(Report::"TFB Price List");
 
-        "Update Field Value"(ParametersXml, '_EffectiveDate', format(EffectiveDate, 0, '<Year4>-<Month,2>-<Day,2>'));
-        "Update Field Value"(ParametersXml, '_PriceHistory', format(Duration));
+        UpdateFieldValue(ParametersXml, '_EffectiveDate', format(EffectiveDate, 0, '<Year4>-<Month,2>-<Day,2>'));
+        UpdateFieldValue(ParametersXml, '_PriceHistory', format(Duration));
         ParametersXML.WriteTo(ParametersString);
 
         Result := SendCustomerPriceListEmail(CustNo, GetPriceListHTMLTemplate(SetTopic), ParametersString, EffectiveDate, Duration, true);
         Exit(Result);
     end;
 
-    local procedure "Update Field Value"(var Document: XmlDocument; "Field Name": Text; "Field Value": Text)
+    local procedure UpdateFieldValue(var Document: XmlDocument; "Field Name": Text; "Field Value": Text)
     var
         Node: XmlNode;
     begin
@@ -44,22 +43,22 @@ codeunit 53030 "TFB Report Pack Mgmt"
 
 
 
-        CompanyInfo: Record "Company Information";
+        CompanyInformation: Record "Company Information";
         Customer: Record Customer;
         PrimaryContact: Record Contact;
         CompanyContact: Record Contact;
         OtherContacts: Record Contact;
-        Responsibility: Record "Contact Job Responsibility";
-        SalesSetup: Record "Sales & Receivables Setup";
-        PriceList: Report "TFB Price List";
+        ContactJobResponsibility: Record "Contact Job Responsibility";
+        SalesReceivablesSetup: Record "Sales & Receivables Setup";
+        TFBPriceList: Report "TFB Price List";
 
         TempBlobCU: Codeunit "Temp Blob";
         Email: CodeUnit Email;
         EmailMessage: CodeUnit "Email Message";
         EmailRecordRef: RecordRef;
         EmailFieldRef: FieldRef;
-        IStream: InStream;
-        OStream: OutStream;
+        InStream: InStream;
+        OutStream: OutStream;
         FileNameBuilder: TextBuilder;
         SubjectNameBuilder: TextBuilder;
         HTMLBuilder: TextBuilder;
@@ -69,7 +68,7 @@ codeunit 53030 "TFB Report Pack Mgmt"
 
     begin
 
-        CompanyInfo.Get();
+        CompanyInformation.Get();
 
 
         If not Customer.Get(CustNo) then
@@ -93,13 +92,13 @@ codeunit 53030 "TFB Report Pack Mgmt"
         //Iterate through other contacts with the same company contact to check for their purchasing responsibilities
         if OtherContacts.FindSet() then begin
 
-            SalesSetup.Get();
+            SalesReceivablesSetup.Get();
             repeat
-                If SalesSetup."TFB PL Def. Job Resp. Rec." <> '' then begin
-                    Responsibility.SetRange("Job Responsibility Code", SalesSetup."TFB PL Def. Job Resp. Rec.");
-                    Responsibility.SetRange("Contact No.", OtherContacts."No.");
+                If SalesReceivablesSetup."TFB PL Def. Job Resp. Rec." <> '' then begin
+                    ContactJobResponsibility.SetRange("Job Responsibility Code", SalesReceivablesSetup."TFB PL Def. Job Resp. Rec.");
+                    ContactJobResponsibility.SetRange("Contact No.", OtherContacts."No.");
 
-                    If not Responsibility.IsEmpty() then
+                    If not ContactJobResponsibility.IsEmpty() then
 
                         //Contact has purchasing responsibility
                         If not Recipients.Contains(OtherContacts."E-Mail") then
@@ -127,13 +126,13 @@ codeunit 53030 "TFB Report Pack Mgmt"
         FileNameBuilder.Append('.pdf');
         FileNameBuilder.Replace('/', '-');
 
-        TempBlobCU.CreateOutStream(OStream);
-        TempBlobCU.CreateInStream(IStream);
+        TempBlobCU.CreateOutStream(OutStream);
+        TempBlobCU.CreateInStream(InStream);
 
-        PriceList.SetTableView(Customer);
-        PriceList.SetEffectiveDate(EffectiveDate);
-        PriceList.SetDuration(Duration);
-        PriceList.SaveAs(XmlParameters, ReportFormat::Pdf, OStream, EmailRecordRef);
+        TFBPriceList.SetTableView(Customer);
+        TFBPriceList.SetEffectiveDate(EffectiveDate);
+        TFBPriceList.SetDuration(Duration);
+        TFBPriceList.SaveAs(XmlParameters, ReportFormat::Pdf, OutStream, EmailRecordRef);
 
 
 
@@ -142,7 +141,7 @@ codeunit 53030 "TFB Report Pack Mgmt"
         GeneratePriceListContent(Customer."No.", HTMLBuilder);
         EmailMessage.Create(Recipients, SubjectNameBuilder.ToText(), HTMLBuilder.ToText(), true);
 
-        EmailMessage.AddAttachment(FileNameBuilder.ToText(1, 250), 'Application/pdf', IStream);
+        EmailMessage.AddAttachment(CopyStr(FileNameBuilder.ToText(), 1, 250), 'Application/pdf', InStream);
         If Prompt then
             Email.OpenInEditorModally(EmailMessage, EmailScenEnum::PriceList)
         else
@@ -154,9 +153,7 @@ codeunit 53030 "TFB Report Pack Mgmt"
     local procedure GeneratePriceListContent(CustNo: Code[20]; var HTMLBuilder: TextBuilder): Text
 
     var
-        TempCust: Code[20];
         Customer: Record Customer;
-
 
     begin
 
