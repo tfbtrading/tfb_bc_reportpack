@@ -41,7 +41,7 @@ Report 53001 "TFB Non-Conformance Report"
 					Caption = 'Options';
 					field(ForNavOpenDesigner; ReportForNavOpenDesigner)
 					{
-						ApplicationArea = Basic,Suite;
+						ApplicationArea = Basic;
 						Caption = 'Design';
 						Visible = ReportForNavAllowDesign;
 						ToolTip = 'Specifies whether report can be designed';
@@ -73,6 +73,8 @@ Report 53001 "TFB Non-Conformance Report"
 
 	trigger OnPostReport()
 	begin
+
+
 
 	end;
 
