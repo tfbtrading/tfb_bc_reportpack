@@ -303,6 +303,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report TFB Inbound Shipment - Control ForNavOpenDesigner - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 3370446539 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Non-Conformance Report</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Non-Conformance Report - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 3370446539 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Options</source>
           <note from="Developer" annotates="general" priority="2"></note>
