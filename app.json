@@ -4,7 +4,7 @@
   "publisher": "TFB Trading",
   "brief": "Contains additional reports not directly tied to other code logic",
   "description": "",
-  "version": "17.0.4.10",
+  "version": "17.0.4.12",
   "privacyStatement": "",
   "EULA": "",
   "help": "",
@@ -24,7 +24,7 @@
     {"id": "e4b4c5c6-109a-4977-8893-f1502da124f5",
     "name": "TFB Core Extension",
     "publisher": "TFB Trading",
-    "version": "17.0.1.1"},
+    "version": "17.0.9.1"},
       {
       "id": "6f0293d3-86fc-4ff8-9632-54a580be6546",
       "name": "ForNAV Core",
@@ -37,7 +37,12 @@
       "publisher": "ForNav",
       "version": "5.3.0.1"
   
-    }],
+    }
+    , {"id": "a3fda467-960f-48fd-ad2c-e388f5b1ce78",
+      "name": "TFB Non Conformance Requests",
+      "publisher": "TFB Trading",
+      "version": "17.0.0.0"}
+  ],
   "screenshots": [],
   "platform": "17.0.0.0",
   "application": "17.1.0.0",

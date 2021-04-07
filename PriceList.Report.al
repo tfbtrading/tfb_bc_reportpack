@@ -315,6 +315,70 @@ Report 53120 "TFB Price List"
         Exit(HtmlBuilder.ToText());
     end;
 
+    local procedure GetSalesListPricing(CustNo: Code[20]; CustomerPriceGroup: Code[20]; Item: Record Item): Boolean
+
+    var
+        PriceAsset: Record "Price Asset";
+        PriceListLine: Record "Price List Line";
+        PriceCalculationBuffer: Record "Price Calculation Buffer";
+
+        SearchDate: Date;
+        OldStartDate: Date;
+        CutOffDate: Date;
+    begin
+
+        KgPrice := 0;
+        UnitPrice := 0;
+        OldKgPrice := 0;
+        OldUnitPrice := 0;
+        PriceChangeDate := '';
+        DaysSincePriceChange := 0;
+
+        If _EffectiveDate = 0D then
+            SearchDate := Today()
+        else
+            SearchDate := _EffectiveDate;
+
+        If format(_PriceHistory) = '' then
+            Evaluate(_PriceHistory, '-1Y');
+
+
+        AsPriceAsset(Item."No.", PriceAsset);
+        FilterPriceListLine(CustomerPriceGroup, PriceAsset, PriceListLine, SearchDate, '');
+
+        If PriceListLine.FindLast() then begin
+
+        end;
+    end;
+
+    local procedure FilterPriceListLine(CustomerPriceGroup: Code[20]; PriceAsset: Record "Price Asset"; var PriceListLine: Record "Price List Line"; EffectiveDate: Date; CurrencyCode: Code[10])
+
+    begin
+        PriceListLine.SetRange("Asset Type", PriceAsset."Asset Type");
+        PriceListLine.SetRange("Asset No.", PriceAsset."Asset No.");
+        PriceListLine.SetFilter("Variant Code", '%1|%2', PriceAsset."Variant Code", '');
+        PriceListLine.SetRange(Status, PriceListLine.Status::Active);
+        PriceListLine.SetRange("Price Type", PriceListLine."Price Type"::Sale);
+        PriceListLine.SetRange("Amount Type", PriceListLine."Amount Type"::Price);
+        PriceListLine.SetRange("Source Type", PriceListLine."Source Type"::"Customer Price Group");
+        PriceListLine.SetRange("Source No.", CustomerPriceGroup);
+        PriceListLine.SetFilter("Amount Type", '%1|%2', PriceListLine."Amount Type"::Price, PriceListLine."Amount Type"::Any);
+        PriceListLine.SetFilter("Ending Date", '%1|>=%2', 0D, EffectiveDate);
+        PriceListLine.SetFilter("Currency Code", '%1|%2', CurrencyCode, '');
+        PriceListLine.SetRange("Starting Date", 0D, EffectiveDate);
+
+    end;
+
+
+    local procedure AsPriceAsset(ItemNo: Code[20]; var PriceAsset: Record "Price Asset")
+
+    begin
+        PriceAsset.Init();
+        PriceAsset."Asset Type" := PriceAsset."Asset Type"::Item;
+        PriceAsset."Asset No." := ItemNo;
+
+
+    end;
 
 
     local procedure GetPricing(CustNo: Code[20]; CustomerPriceGroup: Code[10]; ItemVar: Record Item): Boolean
