@@ -114,7 +114,7 @@ codeunit 53030 "TFB Report Pack Mgmt"
 
 
 
-        SubjectNameBuilder.Append('Updated price list from TFB Trading');
+        SubjectNameBuilder.Append(StrSubstNo('Updated price list from TFB Trading for %1', Customer.Name));
 
         //Get Record Reference for report
         EmailRecordRef.GetTable(Customer);
