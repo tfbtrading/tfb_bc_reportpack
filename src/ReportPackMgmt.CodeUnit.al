@@ -12,7 +12,7 @@ codeunit 53030 "TFB Report Pack Mgmt"
         TextMsg: Label 'Sending Customer Price List:\#1############################', Comment = '%1=Customer';
         Result: Boolean;
         ParametersString: Text;
-      
+
         ParametersXML: XmlDocument;
 
     begin
@@ -142,6 +142,7 @@ codeunit 53030 "TFB Report Pack Mgmt"
         EmailMessage.Create(Recipients, SubjectNameBuilder.ToText(), HTMLBuilder.ToText(), true);
 
         EmailMessage.AddAttachment(CopyStr(FileNameBuilder.ToText(), 1, 250), 'Application/pdf', InStream);
+        Email.AddRelation(EmailMessage, Database::Customer, Customer.SystemId, Enum::"Email Relation Type"::"Related Entity");
         If Prompt then
             Email.OpenInEditorModally(EmailMessage, EmailScenEnum::PriceList)
         else
