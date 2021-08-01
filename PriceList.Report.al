@@ -77,6 +77,12 @@ Report 53120 "TFB Price List"
                 {
                     IncludeCaption = false;
                 }
+                column(QtyPendingDelivery; QtyPendingDelivery)
+                {
+                    IncludeCaption = false;
+
+                }
+
                 column(BookMarkedItem; BookMarkedItem)
                 {
                     IncludeCaption = false;
@@ -109,6 +115,7 @@ Report 53120 "TFB Price List"
                     GetSalesListPricing(Customer."No.", Customer."Customer Price Group", Item);
                     // GetPricing(Customer."No.", Customer."Customer Price Group", Item); Obselete Code
                     GetAvailability(Item);
+                    QtyPendingDelivery := GetQtyPendingDelivery(Item."No.", Customer."No.");
                     AQISFactors := Text.CopyStr(GetAQISFactors(Item), 1, 50);
                     UnitType := Text.CopyStr(GetUnitType(Item), 1, 50);
                     PerPallet := GetPerPallet(Item);
@@ -248,13 +255,13 @@ Report 53120 "TFB Price List"
     var
 
         PricingCalculations: CodeUnit "TFB Pricing Calculations";
-        SalesPriceCU: CodeUnit "Sales Price Calc. Mgt.";
 
         _PriceHistory: DateFormula;
         _EffectiveDate: Date;
         KgPrice: Decimal;
         OldKgPrice: Decimal;
         OldUnitPrice: Decimal;
+        QtyPendingDelivery: Decimal;
         FavouriteItem: Boolean;
 
         PriceChangeDate: Text[100];
@@ -405,68 +412,6 @@ Report 53120 "TFB Price List"
 
     end;
 
-
-    local procedure GetPricing(CustNo: Code[20]; CustomerPriceGroup: Code[10]; ItemVar: Record Item): Boolean
-    var
-
-        TempSalesPrice: Record "Sales Price" temporary;
-        TempOldSalesPrice: Record "Sales Price" temporary;
-
-        SearchDate: Date;
-        OldStartDate: Date;
-        CutOffDate: Date;
-
-
-    begin
-        KgPrice := 0;
-        UnitPrice := 0;
-        OldKgPrice := 0;
-        OldUnitPrice := 0;
-        PriceChangeDate := '';
-        DaysSincePriceChange := 0;
-
-        If _EffectiveDate = 0D then
-            SearchDate := Today()
-        else
-            SearchDate := _EffectiveDate;
-
-        If format(_PriceHistory) = '' then
-            Evaluate(_PriceHistory, '-1Y');
-
-
-        SalesPriceCU.FindSalesPrice(TempSalesPrice, CustNo, '', CustomerPriceGroup, '', ItemVar."No.", '', ItemVar."Base Unit of Measure", '', SearchDate, false);
-
-        If not TempSalesPrice.IsEmpty() then begin
-            KgPrice := PricingCalculations.CalcPerKgFromUnit(TempSalesPrice."Unit Price", ItemVar."Net Weight");
-            UnitPrice := TempSalesPrice."Unit Price";
-            OldStartDate := CalcDate('<-2D>', TempSalesPrice."Starting Date");
-            CutOffDate := CalcDate(_PriceHistory, Today());
-            If OldStartDate > CutOffDate then
-                SalesPriceCU.FindSalesPrice(TempOldSalesPrice, CustNo, '', CustomerPriceGroup, '', ItemVar."No.", '', ItemVar."Base Unit of Measure", '', OldStartDate, false);
-
-            If not TempOldSalesPrice.IsEmpty() then begin
-                OldKgPrice := PricingCalculations.CalcPerKgFromUnit(TempOldSalesPrice."Unit Price", ItemVar."Net Weight");
-                OldUnitPrice := TempOldSalesPrice."Unit Price";
-                If OldKgPrice <> KgPrice then begin
-                    PriceChangeDate := StrSubstNo('Last changed %1 days ago', _EffectiveDate - TempSalesPrice."Starting Date");
-                    DaysSincePriceChange := _EffectiveDate - TempSalesPrice."Starting Date";
-                end
-                else
-                    PriceChangeDate := '';
-            end
-            else begin
-                OldKgPrice := KgPrice;
-                OldUnitPrice := UnitPrice;
-            end;
-
-            exit(true);
-        end
-        else
-            exit(false);
-
-
-    end;
-
     local procedure GetAvailability(var ItemVar: Record Item): Boolean
     var
 
@@ -606,6 +551,21 @@ Report 53120 "TFB Price List"
             Exit(ItemLedgerEntry."Posting Date");
 
 
+    end;
+
+    local procedure GetQtyPendingDelivery(ItemNo: Code[20]; CustNo: Code[20]): Decimal
+
+    var
+        SalesLine: Record "Sales Line";
+
+    begin
+
+        SalesLine.SetRange("Document Type", SalesLine."Document Type"::Order);
+        SalesLine.SetFilter("Outstanding Qty. (Base)", '>0');
+        SalesLine.SetRange("Sell-to Customer No.", CustNo);
+        SalesLine.SetRange("No.", ItemNo);
+        SalesLine.CalcSums("Outstanding Qty. (Base)");
+        Exit(SalesLine."Outstanding Qty. (Base)");
     end;
 
     local procedure GetUnitType(var ItemVar: Record Item): Text
