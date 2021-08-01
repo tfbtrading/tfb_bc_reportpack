@@ -9,6 +9,7 @@ codeunit 53000 "ForNAV Get Tracking"
     begin
         case RecordRef.Number() of
             Database::"Sales Line",
+            Database::"Transfer Line",
             Database::"Purchase Line":
                 begin
                     GetReservationEntries(TrackingSpecification, RecordRef);

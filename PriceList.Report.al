@@ -106,7 +106,8 @@ Report 53120 "TFB Price List"
 
                 trigger OnAfterGetRecord();
                 begin
-                    GetPricing(Customer."No.", Customer."Customer Price Group", Item);
+                    GetSalesListPricing(Customer."No.", Customer."Customer Price Group", Item);
+                    // GetPricing(Customer."No.", Customer."Customer Price Group", Item); Obselete Code
                     GetAvailability(Item);
                     AQISFactors := Text.CopyStr(GetAQISFactors(Item), 1, 50);
                     UnitType := Text.CopyStr(GetUnitType(Item), 1, 50);
@@ -320,7 +321,7 @@ Report 53120 "TFB Price List"
     var
         PriceAsset: Record "Price Asset";
         PriceListLine: Record "Price List Line";
-        PriceCalculationBuffer: Record "Price Calculation Buffer";
+        OldPriceListLine: Record "Price List Line";
 
         SearchDate: Date;
         OldStartDate: Date;
@@ -347,8 +348,31 @@ Report 53120 "TFB Price List"
         FilterPriceListLine(CustomerPriceGroup, PriceAsset, PriceListLine, SearchDate, '');
 
         If PriceListLine.FindLast() then begin
+            UnitPrice := PriceListLine."Unit Price";
+            KgPrice := PriceListLine.GetPriceAltPriceFromUnitPrice();
+
+            OldStartDate := CalcDate('<-2D>', PriceListLine."Starting Date");
+            CutOffDate := CalcDate(_PriceHistory, Today());
+            If OldStartDate > CutOffDate then
+                FilterPriceListLine(CustomerPriceGroup, PriceAsset, OldPriceListLine, OldStartDate, '');
+
+            If (OldStartDate > CutOffDate) and OldPriceListLine.FindLast() then begin
+
+                OldUnitPrice := OldPriceListLine."Unit Price";
+                OldKgPrice := OldPriceListLine.GetPriceAltPriceFromUnitPrice();
+
+                If OldKgPrice <> KgPrice then begin
+                    PriceChangeDate := StrSubstNo('Last changed %1 days ago', _EffectiveDate - PriceListLine."Starting Date");
+                    DaysSincePriceChange := _EffectiveDate - PriceListLine."Starting Date";
+                end;
+            end
+            else begin
+                OldKgPrice := KgPrice;
+                OldUnitPrice := UnitPrice;
+            end;
 
         end;
+
     end;
 
     local procedure FilterPriceListLine(CustomerPriceGroup: Code[20]; PriceAsset: Record "Price Asset"; var PriceListLine: Record "Price List Line"; EffectiveDate: Date; CurrencyCode: Code[10])
@@ -359,13 +383,14 @@ Report 53120 "TFB Price List"
         PriceListLine.SetFilter("Variant Code", '%1|%2', PriceAsset."Variant Code", '');
         PriceListLine.SetRange(Status, PriceListLine.Status::Active);
         PriceListLine.SetRange("Price Type", PriceListLine."Price Type"::Sale);
-        PriceListLine.SetRange("Amount Type", PriceListLine."Amount Type"::Price);
         PriceListLine.SetRange("Source Type", PriceListLine."Source Type"::"Customer Price Group");
         PriceListLine.SetRange("Source No.", CustomerPriceGroup);
         PriceListLine.SetFilter("Amount Type", '%1|%2', PriceListLine."Amount Type"::Price, PriceListLine."Amount Type"::Any);
+        PriceListLine.SetRange("Starting Date", 0D, EffectiveDate);
         PriceListLine.SetFilter("Ending Date", '%1|>=%2', 0D, EffectiveDate);
         PriceListLine.SetFilter("Currency Code", '%1|%2', CurrencyCode, '');
-        PriceListLine.SetRange("Starting Date", 0D, EffectiveDate);
+
+
 
     end;
 
@@ -426,7 +451,6 @@ Report 53120 "TFB Price List"
                     PriceChangeDate := StrSubstNo('Last changed %1 days ago', _EffectiveDate - TempSalesPrice."Starting Date");
                     DaysSincePriceChange := _EffectiveDate - TempSalesPrice."Starting Date";
                 end
-
                 else
                     PriceChangeDate := '';
             end
