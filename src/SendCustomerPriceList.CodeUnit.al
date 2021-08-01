@@ -3,12 +3,12 @@ codeunit 53002 "TFB Send Customer Price Lists"
     trigger OnRun()
     begin
 
-        Customer.SetRange("TFB Price List Recipient", true);
-        Customer.SetFilter("E-Mail", '<>%1', '');
+
         //XMLParameters := PriceReport.RunRequestPage();
         ParametersXML := Builder."Get Report Page Structure As Xml"(Report::"TFB Price List");
 
         //Update 
+
 
         If (Customer.Count > 0) and MultipleSelect then
             If not Confirm('There are %1 records selected for the send price list action. Continue?', true, Customer.Count()) then exit;
@@ -25,8 +25,10 @@ codeunit 53002 "TFB Send Customer Price Lists"
         Window.HideSubsequentDialogs := true;
         Window.Open(Text001Msg);
         AvgTimeText := '';
-
-
+        If (Customer.Count > 0) and MultipleSelect then begin
+            Customer.SetRange("TFB Price List Recipient", true);
+            Customer.SetFilter("E-Mail", '<>%1', '');
+        end;
         If Customer.FindSet(false, false) then
             repeat
                 Window.Update(1, StrSubstNo('%1 %2 %3', Customer."No.", Customer.Name, AvgTimeText));
@@ -58,7 +60,9 @@ codeunit 53002 "TFB Send Customer Price Lists"
     procedure SelectCustomers(_Customers: Record Customer)
 
     begin
-        Customer.CopyFilters(_Customers);
+        Customer.Copy(_Customers);
+        Customer.MarkedOnly(true);
+
     end;
 
     local procedure UpdateFieldValue(var Document: XmlDocument; "Field Name": Text; "Field Value": Text)
