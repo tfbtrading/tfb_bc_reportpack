@@ -148,6 +148,46 @@
           <note from="Developer" annotates="general" priority="2">%1=Customer</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TFB Report Pack Mgmt - Method SendOneCustomerPriceList - NamedType TextMsg</note>
         </trans-unit>
+        <trans-unit id="Codeunit 929933808 - NamedType 1881095303" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sending Customer Price Lists:\#1#########2##################</source>
+          <note from="Developer" annotates="general" priority="2">%1=Customer No,%2=Customer Name</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TFB Send Customer Price Lists - NamedType Text001Msg</note>
+        </trans-unit>
+        <trans-unit id="Page 2625396433 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price List Parameters</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB Price List Dialog - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2625396433 - Control 1637095154 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> Enter a date formulae represents how far back you want to explore dates. Default is -1Y if nothing is entered</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB Price List Dialog - Control Duration - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2625396433 - Control 1637095154 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price History Duration</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB Price List Dialog - Control Duration - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2625396433 - Control 3358374643 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source> Enter a date for which you want the price list to be effective</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB Price List Dialog - Control EffectiveDate - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2625396433 - Control 3358374643 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Effective Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB Price List Dialog - Control EffectiveDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2625396433 - Control 2017544334 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the message to be included in the price list email</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB Price List Dialog - Control MessageTopic - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 2625396433 - Control 2017544334 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Special Message</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB Price List Dialog - Control MessageTopic - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 445737995 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Blanket Sales Contract</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -427,6 +467,16 @@
           <source>Design</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report TFB Warehouse Shipment v3 - Control ForNavOpenDesigner - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1403490440 - Action 2703326551 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2901867346">
+          <source>Sends a full price list to all customers</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension TFB RP Customer List - Action TFBAllPriceLists - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1403490440 - Action 2703326551 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2901867346">
+          <source>Send All Price Lists</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension TFB RP Customer List - Action TFBAllPriceLists - Property Caption</note>
         </trans-unit>
         <trans-unit id="PageExtension 1403490440 - Action 1784956293 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 2901867346">
           <source>Sends a full price list to a specific customer</source>

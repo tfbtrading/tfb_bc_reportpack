@@ -43,6 +43,34 @@ pageextension 53020 "TFB RP Customer List" extends "Customer List"
                     ReportPackCU.SendOneCustomerPriceList(Rec."No.", 'Price List - as of today', DateSel, Duration);
                 end;
             }
+
+            action(TFBAllPriceLists)
+            {
+                Caption = 'Send All Price Lists';
+                Image = Price;
+                ApplicationArea = All;
+
+                ToolTip = 'Sends a full price list to all customers';
+
+
+                trigger OnAction()
+
+                var
+                    Customer: Record Customer;
+                    SendCustomerPriceLists: CodeUnit "TFB Send Customer Price Lists";
+
+                begin
+
+                    CurrPage.SetSelectionFilter(Customer);
+                    If Customer.Count() > 1 then begin
+                        SendCustomerPriceLists.Setup(true);
+                        SendCustomerPriceLists.SelectCustomers(Customer);
+                    end
+                    else
+                        SendCustomerPriceLists.Setup(false);
+                    SendCustomerPriceLists.Run();
+                end;
+            }
         }
     }
 }

@@ -4,6 +4,9 @@ Report 53120 "TFB Price List"
     UsageCategory = Lists;
     ApplicationArea = All;
     WordLayout = '.\Layouts\TFB Price List.docx';
+    DataAccessIntent = ReadOnly;
+    EnableExternalImages = true;
+
     DefaultLayout = Word;
 
     dataset

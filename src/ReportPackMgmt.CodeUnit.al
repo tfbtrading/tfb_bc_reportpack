@@ -127,26 +127,27 @@ codeunit 53030 "TFB Report Pack Mgmt"
         FileNameBuilder.Replace('/', '-');
 
         TempBlobCU.CreateOutStream(OutStream);
-        TempBlobCU.CreateInStream(InStream);
+
 
         TFBPriceList.SetTableView(Customer);
         TFBPriceList.SetEffectiveDate(EffectiveDate);
         TFBPriceList.SetDuration(Duration);
-        TFBPriceList.SaveAs(XmlParameters, ReportFormat::Pdf, OutStream, EmailRecordRef);
+        If not TFBPriceList.SaveAs(XmlParameters, ReportFormat::Pdf, OutStream, EmailRecordRef) then exit;
 
 
-
+        TempBlobCU.CreateInStream(InStream);
 
         HTMLBuilder.Append(HTMLTemplate);
         GeneratePriceListContent(Customer."No.", HTMLBuilder);
         EmailMessage.Create(Recipients, SubjectNameBuilder.ToText(), HTMLBuilder.ToText(), true);
 
         EmailMessage.AddAttachment(CopyStr(FileNameBuilder.ToText(), 1, 250), 'Application/pdf', InStream);
+
         Email.AddRelation(EmailMessage, Database::Customer, Customer.SystemId, Enum::"Email Relation Type"::"Related Entity");
         If Prompt then
             Email.OpenInEditorModally(EmailMessage, EmailScenEnum::PriceList)
         else
-            Email.Enqueue(EmailMessage, EmailScenEnum::PriceList);
+            Email.Send(EmailMessage, EmailScenEnum::PriceList);
         Exit(true)
 
     end;

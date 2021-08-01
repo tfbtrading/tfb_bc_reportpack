@@ -4,7 +4,7 @@
   "publisher": "TFB Trading",
   "brief": "Contains additional reports not directly tied to other code logic",
   "description": "",
-  "version": "18.0.2.1",
+  "version": "18.0.2.6",
   "privacyStatement": "",
   "EULA": "",
   "help": "",
@@ -50,7 +50,7 @@
     "from": 53000,
     "to": 53200
   }],
-  "runtime": "7.0",
+  "runtime": "7.2",
   "target": "Cloud",
   "showMyCode": true,
   "supportedLocales": ["en-AU"]
