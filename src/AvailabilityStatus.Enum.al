@@ -1,6 +1,7 @@
 enum 53000 "TFB Availability Status"
 {
     Extensible = true;
+    Caption = 'Availability Status';
 
     value(0; Okay)
     {
