@@ -180,6 +180,14 @@ table 53120 "TFB Price List Item Buffer"
         {
 
         }
+        field(53150; MultiItemPalletOption; Enum "TFB Multi-item Pallet Option")
+        {
+
+        }
+        field(53160; QtyPerLayer; Integer)
+        {
+
+        }
     }
 
     keys
@@ -224,6 +232,9 @@ table 53120 "TFB Price List Item Buffer"
                 Rec."Base Unit of Measure" := Item."Base Unit of Measure";
                 Rec."Unit of Measure ID" := Item."Unit of Measure Id";
                 Rec."Vendor No." := Item."Vendor No.";
+                Rec.MultiItemPalletOption := Item."TFB Multi-item Pallet Option";
+                Rec.QtyPerLayer := Item."TFB No. Of Bags Per Layer";
+
                 If Vendor.Get(Item."Vendor No.") then
                     Rec."Vendor Id" := Vendor.SystemId;
 

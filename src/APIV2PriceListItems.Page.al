@@ -120,6 +120,14 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
                     Caption = 'Base Unit Of Measure Code';
                 }
+                field(multiItemPalletOption; Rec.MultiItemPalletOption)
+                {
+                    Caption = 'Multi-Item pallet option';
+                }
+                field(qtyPerPalletLayer; Rec.QtyPerLayer)
+                {
+                    Caption = 'Qty per pallet layer';
+                }
                 field(vendorNo; Rec."Vendor No.")
                 {
                     Caption = 'Vendor No.';
@@ -133,6 +141,7 @@ page 53002 "TFB APIV2 - Price List Items"
                     Caption = 'Last Modified Date';
                     Editable = false;
                 }
+
                 part(baseUnitOfMeasure; "APIV2 - Units of Measure")
                 {
                     Caption = 'Unit Of Measure';
@@ -156,6 +165,13 @@ page 53002 "TFB APIV2 - Price List Items"
                     EntityName = 'picture';
                     EntitySetName = 'pictures';
                     SubPageLink = Id = Field(ItemID), "Parent Type" = const(2);
+                }
+                part(marketSegmentInfo; "TFB APIV2 - Item Market Seg.")
+                {
+                    Caption = 'Price List Item Categories';
+                    EntityName = 'itemMarketSegment';
+                    EntitySetName = 'itemMarketSegments';
+                    SubPageLink = "Item ID" = Field(ItemID);
                 }
 
             }

@@ -1,0 +1,73 @@
+page 53003 "TFB APIV2 - Item Market Seg."
+{
+    APIVersion = 'v2.0';
+    EntityCaption = 'Item Market Segment';
+    EntitySetCaption = 'Item Market Segments';
+    DelayedInsert = true;
+    EntityName = 'itemMarketSegment';
+    EntitySetName = 'itemMarketSegments';
+    ODataKeyFields = "Market Segment ID";
+
+    PageType = API;
+    SourceTable = "TFB Market Segment Buffer";
+    SourceTableTemporary = true;
+
+    Extensible = false;
+    InsertAllowed = false;
+    ModifyAllowed = false;
+    DeleteAllowed = false;
+    APIPublisher = 'tfb';
+    APIGroup = 'inreach';
+    layout
+    {
+        area(Content)
+        {
+            repeater(GroupName)
+            {
+
+                field(marketSegmentID; Rec."Market Segment ID")
+                {
+                    Caption = 'Market Segment Id';
+                }
+                field(title; Rec.Title)
+                {
+                    Caption = 'Title';
+                }
+                field(description; Rec.Description)
+                {
+                    Caption = 'Description';
+                }
+
+            }
+        }
+    }
+
+    trigger OnFindRecord(Which: Text): Boolean
+    var
+        RelatedIdFilter: Text;
+        FilterView: Text;
+    begin
+        RelatedIdFilter := Rec.GetFilter("Item ID");
+     
+        if RelatedIdFilter = '' then begin
+            Rec.FilterGroup(4);
+            RelatedIdFilter := Rec.GetFilter("Item ID");
+            Rec.FilterGroup(0);
+            if (RelatedIdFilter = '') then
+                Error(FiltersNotSpecifiedErrorLbl);
+        end;
+        if RecordsLoaded then
+            exit(true);
+        FilterView := Rec.GetView();
+        Rec.LoadDataFromFilters(RelatedIdFilter);
+        Rec.SetView(FilterView);
+        if not Rec.FindFirst() then
+            exit(false);
+        RecordsLoaded := true;
+        exit(true);
+    end;
+
+    var
+        RecordsLoaded: Boolean;
+        FiltersNotSpecifiedErrorLbl: Label 'id type not specified.';
+}
