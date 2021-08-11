@@ -84,6 +84,7 @@ table 53120 "TFB Price List Item Buffer"
             Caption = 'Country/Region of Origin Code';
             TableRelation = "Country/Region";
         }
+
         field(54; Blocked; Boolean)
         {
             Caption = 'Blocked';
@@ -132,6 +133,11 @@ table 53120 "TFB Price List Item Buffer"
         {
 
         }
+        field(53057; LastPricePaid; Decimal)
+        {
+
+        }
+
         field(53060; Availability; Text[100])
         {
         }
@@ -164,6 +170,7 @@ table 53120 "TFB Price List Item Buffer"
 
         }
 
+
         field(53110; BookMarkedItem; Boolean)
         {
 
@@ -177,6 +184,22 @@ table 53120 "TFB Price List Item Buffer"
 
         }
         field(53140; FavouritedItem; Boolean)
+        {
+
+        }
+        field(53150; DeliverySLA; Text[256])
+        {
+
+        }
+        field(53160; ConfidenceDateRange; Integer)
+        {
+
+        }
+        field(53170; TrackingAvailable; Boolean)
+        {
+
+        }
+        field(53180; GenericItemID; GUID)
         {
 
         }
@@ -224,8 +247,17 @@ table 53120 "TFB Price List Item Buffer"
                 Rec."Base Unit of Measure" := Item."Base Unit of Measure";
                 Rec."Unit of Measure ID" := Item."Unit of Measure Id";
                 Rec."Vendor No." := Item."Vendor No.";
-                If Vendor.Get(Item."Vendor No.") then
+                Rec.GenericItemID := Item."TFB Generic Item ID";
+                Rec.LastPricePaid := GetLastPricePaid(Item."No.", Customer."No.");
+                Rec."Country/Region of Origin Code" := Item."Country/Region of Origin Code";
+
+
+
+                If Vendor.Get(Item."Vendor No.") then begin
                     Rec."Vendor Id" := Vendor.SystemId;
+                    Rec.DeliverySLA := Vendor."TFB Delivery SLA";
+                end;
+
 
                 GetSalesListPricing(Customer."No.", Customer."Customer Price Group", Item);
                 GetAvailability(Item);
@@ -444,6 +476,30 @@ table 53120 "TFB Price List Item Buffer"
             Exit(ItemLedgerEntry."Posting Date");
 
 
+    end;
+
+    local procedure GetLastPricePaid(ItemNo: Code[20]; CustNo: Code[20]): Decimal
+
+    var
+        SalesLine: Record "Sales Line";
+        SalesInvoiceLine: Record "Sales Invoice Line";
+
+    begin
+        SalesLine.SetRange("Document Type", SalesLine."Document Type"::Order);
+        SalesLine.SetRange("No.", ItemNo);
+        SalesLine.SetRange("Sell-to Customer No.", CustNo);
+        SalesLine.SetCurrentKey("Document No.", "Line No.");
+
+        If SalesLine.FindLast() then
+            If not ((SalesLine."Outstanding Qty. (Base)" = 0) and (salesline."Qty. Shipped Not Invd. (Base)" = 0)) then
+                Exit(SalesLine."Unit Price");
+
+        SalesInvoiceLine.SetRange("No.", ItemNo);
+        SalesInvoiceLine.SetRange("Sell-to Customer No.", CustNo);
+        SalesLine.SetCurrentKey("Document No.", "Line No.");
+
+        If SalesInvoiceLine.FindLast() then
+            Exit(SalesInvoiceLine."Unit Price");
     end;
 
     local procedure GetQtyPendingDelivery(ItemNo: Code[20]; CustNo: Code[20]): Decimal

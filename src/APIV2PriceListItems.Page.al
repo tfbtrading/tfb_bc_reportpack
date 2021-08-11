@@ -86,6 +86,10 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
                     Caption = 'Old Kg Price';
                 }
+                field(lastPricePaid; Rec.LastPricePaid)
+                {
+                    Caption = 'Last Price Paid';
+                }
                 field(availabilityStatus; Rec.AvailabilityStatus)
                 {
                     Caption = 'Availability Status';
@@ -103,6 +107,8 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
                     Caption = 'Date Last Dispatched';
                 }
+
+
                 field(qtyOutstanding; Rec.QtyPendingDelivery)
                 {
                     Caption = 'Qty Outstanding';
@@ -127,6 +133,14 @@ page 53002 "TFB APIV2 - Price List Items"
                 field(vendorId; Rec."Vendor Id")
                 {
                     Caption = 'Vendor Id';
+                }
+                field(countryOfOriginISO2; Rec."Country/Region of Origin Code")
+                {
+
+                }
+                field(deliverySLA; Rec.DeliverySLA)
+                {
+
                 }
                 field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
