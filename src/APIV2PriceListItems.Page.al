@@ -86,9 +86,13 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
                     Caption = 'Old Kg Price';
                 }
-                field(lastPricePaid; Rec.LastPricePaid)
+                field(lastPaidKgPrice; Rec.LastPaidKgPrice)
                 {
-                    Caption = 'Last Price Paid';
+                    Caption = 'Last Paid Kg Price';
+                }
+                field(lastPaidUnitPrice; Rec.LastPaidUnitPrice)
+                {
+                    Caption = 'Last Paid Unit Price';
                 }
                 field(availabilityStatus; Rec.AvailabilityStatus)
                 {

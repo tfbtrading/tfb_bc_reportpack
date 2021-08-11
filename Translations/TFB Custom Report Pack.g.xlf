@@ -43,6 +43,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field BookmarkHTML - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 508677497 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ConfidenceDateRange</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field ConfidenceDateRange - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3950732950 - Field 1212385681 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Country/Region of Origin Code</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -68,6 +73,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field DaysSincePriceChange - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 2135510062 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>DeliverySLA</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field DeliverySLA - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3950732950 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Description</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -88,6 +98,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field flagHTML - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 1488604235 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>GenericItemID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field GenericItemID - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3950732950 - Field 1037119892 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Item Category Code</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -107,6 +122,16 @@
           <source>KgPrice</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field KgPrice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 2342107921 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>LastPaidKgPrice</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field LastPaidKgPrice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 2982248831 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>LastPaidUnitPrice</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field LastPaidUnitPrice - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3950732950 - Field 3088522385 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Net Weight</source>
@@ -157,6 +182,11 @@
           <source>Safety Stock Quantity</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field Safety Stock Quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 1720299954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>TrackingAvailable</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field TrackingAvailable - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3950732950 - Field 1878130204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Type</source>
@@ -422,6 +452,16 @@
           <source>Last Modified Date</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control lastModifiedDateTime - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1624067204 - Control 440516593 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Last Paid Kg Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control lastPaidKgPrice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1624067204 - Control 2661941727 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Last Paid Unit Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control lastPaidUnitPrice - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1624067204 - Control 764685697 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Net Weight</source>

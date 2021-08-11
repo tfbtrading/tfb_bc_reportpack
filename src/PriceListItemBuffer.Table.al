@@ -133,7 +133,11 @@ table 53120 "TFB Price List Item Buffer"
         {
 
         }
-        field(53057; LastPricePaid; Decimal)
+        field(53057; LastPaidKgPrice; Decimal)
+        {
+
+        }
+        field(53058; LastPaidUnitPrice; Decimal)
         {
 
         }
@@ -221,6 +225,7 @@ table 53120 "TFB Price List Item Buffer"
         Item: Record Item;
         Customer: Record Customer;
         Vendor: Record Vendor;
+        PriceCU: CodeUnit "TFB Pricing Calculations";
 
     begin
 
@@ -248,7 +253,9 @@ table 53120 "TFB Price List Item Buffer"
                 Rec."Unit of Measure ID" := Item."Unit of Measure Id";
                 Rec."Vendor No." := Item."Vendor No.";
                 Rec.GenericItemID := Item."TFB Generic Item ID";
-                Rec.LastPricePaid := GetLastPricePaid(Item."No.", Customer."No.");
+                Rec.LastPaidUnitPrice := GetLastPricePaid(Item."No.", Customer."No.");
+                Rec.LastPaidKgPrice := PriceCU.CalcPerKgFromUnit(Rec.LastPaidUnitPrice, Rec."Net Weight");
+
                 Rec."Country/Region of Origin Code" := Item."Country/Region of Origin Code";
 
 
