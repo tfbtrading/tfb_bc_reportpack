@@ -184,7 +184,7 @@ page 53002 "TFB APIV2 - Price List Items"
                     EntitySetName = 'pictures';
                     SubPageLink = Id = Field(ItemID), "Parent Type" = const(2);
                 }
-                part(marketSegmentInfo; "TFB APIV2 - Item Market Seg.")
+                part(itemMarketSegment; "TFB APIV2 - Item Market Seg.")
                 {
                     Caption = 'Price List Item Categories';
                     EntityName = 'itemMarketSegment';
