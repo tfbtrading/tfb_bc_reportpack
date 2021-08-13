@@ -121,7 +121,7 @@ table 53120 "TFB Price List Item Buffer"
         field(53040; OldUnitPrice; Decimal)
         {
         }
-        field(53050; PriceChangeDate; Text[100])
+        field(53050; PriceChangeDate; Date)
         {
 
         }
@@ -264,7 +264,7 @@ table 53120 "TFB Price List Item Buffer"
                 Rec.QtyPerLayer := Item."TFB No. Of Bags Per Layer";
 
                 If Vendor.Get(Item."Vendor No.") then
-                Rec.GenericItemID := Item."TFB Generic Item ID";
+                    Rec.GenericItemID := Item."TFB Generic Item ID";
                 Rec.LastPaidUnitPrice := GetLastPricePaid(Item."No.", Customer."No.");
                 Rec.LastPaidKgPrice := PriceCU.CalcPerKgFromUnit(Rec.LastPaidUnitPrice, Rec."Net Weight");
 
@@ -310,7 +310,7 @@ table 53120 "TFB Price List Item Buffer"
         UnitPrice := 0;
         OldKgPrice := 0;
         OldUnitPrice := 0;
-        PriceChangeDate := '';
+        PriceChangeDate := 0D;
         DaysSincePriceChange := 0;
 
 
@@ -336,7 +336,7 @@ table 53120 "TFB Price List Item Buffer"
                 OldKgPrice := OldPriceListLine.GetPriceAltPriceFromUnitPrice();
 
                 If OldKgPrice <> KgPrice then begin
-                    PriceChangeDate := StrSubstNo('Last changed %1 days ago', SearchDate - PriceListLine."Starting Date");
+                    PriceChangeDate := PriceListLine."Starting Date";
                     DaysSincePriceChange := SearchDate - PriceListLine."Starting Date";
                 end;
             end

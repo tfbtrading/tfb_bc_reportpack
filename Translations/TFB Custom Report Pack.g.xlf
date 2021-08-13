@@ -639,12 +639,12 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control vendorNo - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3813293234 - Property 3446740159" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Vendor</source>
+          <source>Trade Vendor</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Vendors - Property EntityCaption</note>
         </trans-unit>
         <trans-unit id="Page 3813293234 - Property 631549417" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Vendors</source>
+          <source>Trade Vendors</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Vendors - Property EntitySetCaption</note>
         </trans-unit>

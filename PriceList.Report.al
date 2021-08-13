@@ -138,7 +138,6 @@ Report 53120 "TFB Price List"
                         BookmarkedItems.UnitPrice := UnitPrice;
                         BookmarkedItems.OldKgPrice := OldKgPrice;
                         BookmarkedItems.OldUnitPrice := OldUnitPrice;
-                        BookmarkedItems.PriceChangeDate := PriceChangeDate;
                         BookmarkedItems.DaysSincePriceChange := DaysSincePriceChange;
                         BookmarkedItems.Availability := Availability;
                         BookmarkedItems.EstETA := EstETA;

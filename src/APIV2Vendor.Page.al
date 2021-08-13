@@ -1,12 +1,14 @@
 page 53005 "TFB APIV2 - Vendors"
 {
     APIVersion = 'v2.0';
-    EntityCaption = 'Vendor';
-    EntitySetCaption = 'Vendors';
+    EntityCaption = 'Trade Vendor';
+    EntitySetCaption = 'Trade Vendors';
     ChangeTrackingAllowed = true;
     DelayedInsert = true;
-    EntityName = 'vendor';
-    EntitySetName = 'vendors';
+    InsertAllowed = false;
+    ModifyAllowed = false;
+    EntityName = 'tradeVendor';
+    EntitySetName = 'tradeVendors';
     ODataKeyFields = SystemId;
     PageType = API;
     SourceTable = Vendor;
@@ -35,20 +37,14 @@ page 53005 "TFB APIV2 - Vendors"
                 {
                     Caption = 'Display Name';
 
-                    trigger OnValidate()
-                    begin
-                        RegisterFieldSet(Rec.FieldNo(Name));
-                    end;
+
                 }
 
                 field(countryISO2; Rec."Country/Region Code")
                 {
                     Caption = 'Country/Region Code';
 
-                    trigger OnValidate()
-                    begin
-                        RegisterFieldSet(Rec.FieldNo("Country/Region Code"));
-                    end;
+
                 }
 
                 field(lastModifiedDateTime; Rec.SystemModifiedAt)
@@ -72,52 +68,9 @@ page 53005 "TFB APIV2 - Vendors"
     {
     }
 
-    trigger OnAfterGetRecord()
-    begin
-        SetCalculatedFields();
-    end;
 
-    trigger OnInsertRecord(BelowxRec: Boolean): Boolean
-    var
-        Vendor: Record Vendor;
-        RecRef: RecordRef;
-    begin
-        Vendor.SetRange("No.", "No.");
-        if not Vendor.IsEmpty() then
-            Insert();
 
-        Insert(true);
 
-        RecRef.GetTable(Rec);
-        GraphMgtGeneralTools.ProcessNewRecordFromAPI(RecRef, TempFieldSet, CurrentDateTime());
-        RecRef.SetTable(Rec);
-
-        Modify(true);
-        SetCalculatedFields();
-        exit(false);
-    end;
-
-    trigger OnModifyRecord(): Boolean
-    var
-        Vendor: Record Vendor;
-    begin
-        Vendor.GetBySystemId(SystemId);
-
-        if "No." = Vendor."No." then
-            Modify(true)
-        else begin
-            Vendor.TransferFields(Rec, false);
-            Vendor.Rename("No.");
-            TransferFields(Vendor);
-        end;
-
-        SetCalculatedFields();
-    end;
-
-    trigger OnNewRecord(BelowxRec: Boolean)
-    begin
-        ClearCalculatedFields();
-    end;
 
     var
         Currency: Record Currency;
@@ -137,50 +90,6 @@ page 53005 "TFB APIV2 - Vendors"
         BlankGUID: Guid;
         BECountryCodeLbl: Label 'BE', Locked = true;
 
-    local procedure SetCalculatedFields()
-    var
-        EnterpriseNoFieldRef: FieldRef;
-    begin
-        CurrencyCodeTxt := GraphMgtGeneralTools.TranslateNAVCurrencyCodeToCurrencyCode(LCYCurrencyCode, "Currency Code");
 
-        if IsEnterpriseNumber(EnterpriseNoFieldRef) then begin
-            if (Rec."Country/Region Code" <> BECountryCodeLbl) and (Rec."Country/Region Code" <> '') then
-                TaxRegistrationNumber := Rec."VAT Registration No."
-            else
-                TaxRegistrationNumber := EnterpriseNoFieldRef.Value();
-        end else
-            TaxRegistrationNumber := Rec."VAT Registration No.";
-    end;
-
-    local procedure ClearCalculatedFields()
-    begin
-        Clear(SystemId);
-        Clear(IRS1099VendorCode);
-        Clear(TaxRegistrationNumber);
-        TempFieldSet.DeleteAll();
-    end;
-
-    local procedure RegisterFieldSet(FieldNo: Integer)
-    begin
-        if TempFieldSet.Get(Database::Vendor, FieldNo) then
-            exit;
-
-        TempFieldSet.Init();
-        TempFieldSet.TableNo := Database::Vendor;
-        TempFieldSet.Validate("No.", FieldNo);
-        TempFieldSet.Insert(true);
-    end;
-
-    procedure IsEnterpriseNumber(var EnterpriseNoFieldRef: FieldRef): Boolean
-    var
-        VendorRecordRef: RecordRef;
-    begin
-        VendorRecordRef.GetTable(Rec);
-        if VendorRecordRef.FieldExist(11310) then begin
-            EnterpriseNoFieldRef := VendorRecordRef.Field(11310);
-            exit((EnterpriseNoFieldRef.Type = FieldType::Text) and (EnterpriseNoFieldRef.Name = 'Enterprise No.'));
-        end else
-            exit(false);
-    end;
 }
 

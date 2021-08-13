@@ -36,6 +36,10 @@ page 53004 "TFB APIV2 - Market Segment"
                 {
                     Caption = 'Description';
                 }
+                field(imageCDN; ImageCDN)
+                {
+                    Caption = 'Image CDN';
+                }
 
                 field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
@@ -46,4 +50,25 @@ page 53004 "TFB APIV2 - Market Segment"
         }
     }
 
+    trigger OnOpenPage()
+
+    var
+
+    begin
+        SalesSetup.Get();
+    end;
+
+    trigger OnAfterGetRecord()
+    var
+
+    begin
+
+        ImageCDN := StrSubstNo(SalesSetup."TFB Image URL Pattern", ConvertStr(Rec.TableCaption + '_' + Rec.Title, ' ', '_'));
+
+    end;
+
+    var
+
+        SalesSetup: Record "Sales & Receivables Setup";
+        ImageCDN: Text;
 }
