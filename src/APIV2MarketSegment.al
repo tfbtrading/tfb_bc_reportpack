@@ -36,11 +36,8 @@ page 53004 "TFB APIV2 - Market Segment"
                 {
                     Caption = 'Description';
                 }
-                field(SystemCreatedAt; Rec.SystemCreatedAt)
-                {
 
-                }
-                field(SystemModifiedAt; Rec.SystemModifiedAt)
+                field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
 
                 }

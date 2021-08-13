@@ -33,9 +33,13 @@ page 53003 "TFB APIV2 - Item Market Seg."
                 {
                     Caption = 'Title';
                 }
-                field(description; Rec.Description)
+                part(marketSegment; "TFB APIV2 - Market Segment")
                 {
-                    Caption = 'Description';
+                    Caption = 'Market Segment';
+                    Multiplicity = ZeroOrOne;
+                    EntityName = 'marketSegment';
+                    EntitySetName = 'marketSegments';
+                    SubPageLink = SystemId = Field("Market Segment ID");
                 }
 
             }
@@ -48,7 +52,7 @@ page 53003 "TFB APIV2 - Item Market Seg."
         FilterView: Text;
     begin
         RelatedIdFilter := Rec.GetFilter("Item ID");
-     
+
         if RelatedIdFilter = '' then begin
             Rec.FilterGroup(4);
             RelatedIdFilter := Rec.GetFilter("Item ID");
