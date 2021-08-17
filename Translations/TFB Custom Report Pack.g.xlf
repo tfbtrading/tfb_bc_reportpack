@@ -158,6 +158,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field LastPaidUnitPrice - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 875757835 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>MarketingCopy</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field MarketingCopy - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3950732950 - Field 283511737 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>MultiItemPalletOption</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -453,6 +458,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Market Segment - Control id - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1588792970 - Control 1075445378 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Image CDN</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Market Segment - Control imageCDN - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1588792970 - Control 1656136372 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Title</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -557,6 +567,11 @@
           <source>Last Paid Unit Price</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control lastPaidUnitPrice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1624067204 - Control 70305259 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Marketing Copy</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control marketingCopy - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1624067204 - Control 1980071321 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Multi-Item pallet option</source>

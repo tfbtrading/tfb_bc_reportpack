@@ -40,6 +40,10 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
                     Caption = 'DisplayName';
                 }
+                field(marketingCopy; Rec.MarketingCopy)
+                {
+                    Caption = 'Marketing Copy';
+                }
                 field(netWeight; Rec."Net Weight")
                 {
                     Caption = 'Net Weight';

@@ -215,6 +215,10 @@ table 53120 "TFB Price List Item Buffer"
         {
 
         }
+        field(53210; "MarketingCopy"; Text[2048])
+        {
+
+        }
     }
 
     keys
@@ -277,7 +281,7 @@ table 53120 "TFB Price List Item Buffer"
                     Rec.DeliverySLA := Vendor."TFB Delivery SLA";
                 end;
 
-
+                Rec.MarketingCopy := GetMarketingCopy(Item);
                 GetSalesListPricing(Customer."No.", Customer."Customer Price Group", Item);
                 GetAvailability(Item);
                 FavouritedItem := GetFavouriteStatus(Item."No.", Customer."No.");
@@ -511,14 +515,14 @@ table 53120 "TFB Price List Item Buffer"
 
         If SalesLine.FindLast() then
             If not ((SalesLine."Outstanding Qty. (Base)" = 0) and (salesline."Qty. Shipped Not Invd. (Base)" = 0)) then
-                Exit(SalesLine."Unit Price");
+                Exit(SalesLine."Unit Price" / SalesLine."Qty. per Unit of Measure");
 
         SalesInvoiceLine.SetRange("No.", ItemNo);
         SalesInvoiceLine.SetRange("Sell-to Customer No.", CustNo);
         SalesLine.SetCurrentKey("Document No.", "Line No.");
 
         If SalesInvoiceLine.FindLast() then
-            Exit(SalesInvoiceLine."Unit Price");
+            Exit(SalesInvoiceLine."Unit Price" / SalesInvoiceLine."Qty. per Unit of Measure");
     end;
 
     local procedure GetQtyPendingDelivery(ItemNo: Code[20]; CustNo: Code[20]): Decimal
@@ -659,6 +663,19 @@ table 53120 "TFB Price List Item Buffer"
             until ((PurchaseLine.Next() = 0) or (OrderSupplyFound = true));
 
         If TransferSupplyFound or OrderSupplyFound then Exit(true) else Exit(False);
+
+
+    end;
+
+    local procedure GetMarketingCopy(Item: Record Item): Text[2048]
+
+    var
+        GenericItem: Record "TFB Generic Item";
+    begin
+
+        If GenericItem.GetBySystemId(Item."TFB Generic Item ID") then
+            Exit(GenericItem."Rich Description");
+
 
 
     end;
