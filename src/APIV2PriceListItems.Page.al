@@ -162,6 +162,10 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
 
                 }
+                field(specificationCDN; Rec.SpecificationCDN)
+                {
+
+                }
                 field(lastModifiedDateTime; Rec.SystemModifiedAt)
                 {
                     Caption = 'Last Modified Date';
@@ -236,9 +240,11 @@ page 53002 "TFB APIV2 - Price List Items"
     trigger OnAfterGetRecord()
     var
 
+
     begin
 
         ImageCDN := StrSubstNo(SalesSetup."TFB Image URL Pattern", Rec."No.");
+
 
     end;
 
@@ -250,8 +256,10 @@ page 53002 "TFB APIV2 - Price List Items"
 
     var
         RecordsLoaded: Boolean;
+        CommonCU: Codeunit "TFB Common Library";
 
         SalesSetup: Record "Sales & Receivables Setup";
         ImageCDN: Text;
+        SpecificationCDN: Text;
         FiltersNotSpecifiedErrorLbl: Label 'id type not specified.';
 }

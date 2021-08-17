@@ -219,6 +219,10 @@ table 53120 "TFB Price List Item Buffer"
         {
 
         }
+        field(53220; "SpecificationCDN"; Text[512])
+        {
+
+        }
     }
 
     keys
@@ -238,6 +242,7 @@ table 53120 "TFB Price List Item Buffer"
         Customer: Record Customer;
         Vendor: Record Vendor;
         PriceCU: CodeUnit "TFB Pricing Calculations";
+        CommonCU: CodeUnit "TFB Common Library";
 
     begin
 
@@ -273,7 +278,7 @@ table 53120 "TFB Price List Item Buffer"
                 Rec.LastPaidKgPrice := PriceCU.CalcPerKgFromUnit(Rec.LastPaidUnitPrice, Rec."Net Weight");
 
                 Rec."Country/Region of Origin Code" := Item."Country/Region of Origin Code";
-
+                Rec.SpecificationCDN := CommonCU.GetSpecificationURL(Item);
 
 
                 If Vendor.Get(Item."Vendor No.") then begin
