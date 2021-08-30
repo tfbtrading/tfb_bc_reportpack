@@ -223,6 +223,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field Safety Stock Quantity - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 1691391968 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>SpecificationCDN</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field SpecificationCDN - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3950732950 - Field 1720299954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>TrackingAvailable</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -517,6 +522,11 @@
           <source>Date Last Dispatched</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control dateLastDispatched - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1624067204 - Control 3555212328 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date of Last Price Change</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control dateOfLastPriceChange - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1624067204 - Control 460507951 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>DisplayName</source>

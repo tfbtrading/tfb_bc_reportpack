@@ -81,6 +81,10 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
                     Caption = 'No. Days since price changes';
                 }
+                field(dateOfLastPriceChange; Rec.PriceChangeDate)
+                {
+                    Caption = 'Date of Last Price Change';
+                }
 
                 field(oldUnitPrice; Rec.OldUnitPrice)
                 {
