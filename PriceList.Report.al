@@ -131,25 +131,25 @@ Report 53120 "TFB Price List"
                     else
                         BookmarkHTML := '';
 
-                    If BookMarkedItem then begin
-                        BookmarkedItems.Init();
-                        BookmarkedItems.TransferFields(Item, true);
-                        BookmarkedItems.KgPrice := KgPrice;
-                        BookmarkedItems.UnitPrice := UnitPrice;
-                        BookmarkedItems.OldKgPrice := OldKgPrice;
-                        BookmarkedItems.OldUnitPrice := OldUnitPrice;
-                        BookmarkedItems.DaysSincePriceChange := DaysSincePriceChange;
-                        BookmarkedItems.Availability := Availability;
-                        BookmarkedItems.EstETA := EstETA;
-                        BookmarkedItems.AQISFactors := AQISFactors;
-                        BookmarkedItems.UnitType := UnitType;
-                        BookmarkedItems.PerPallet := PerPallet;
-                        BookmarkedItems.BookMarkedItem := BookMarkedItem;
-                        BookmarkedItems.BookmarkHTML := BookmarkHTML;
-                        BookMarkedItems.FavouritedItem := FavouriteItem;
-                        BookMarkedItems.flagHTML := FlagHTML;
-                        BookmarkedItems.Insert();
-                    end;
+                    /*   If BookMarkedItem then begin
+                          BookmarkedItems.Init();
+                          BookmarkedItems.TransferFields(Item, true);
+                          BookmarkedItems.KgPrice := KgPrice;
+                          BookmarkedItems.UnitPrice := UnitPrice;
+                          BookmarkedItems.OldKgPrice := OldKgPrice;
+                          BookmarkedItems.OldUnitPrice := OldUnitPrice;
+                          BookmarkedItems.DaysSincePriceChange := DaysSincePriceChange;
+                          BookmarkedItems.Availability := Availability;
+                          BookmarkedItems.EstETA := EstETA;
+                          BookmarkedItems.AQISFactors := AQISFactors;
+                          BookmarkedItems.UnitType := UnitType;
+                          BookmarkedItems.PerPallet := PerPallet;
+                          BookmarkedItems.BookMarkedItem := BookMarkedItem;
+                          BookmarkedItems.BookmarkHTML := BookmarkHTML;
+                          BookMarkedItems.FavouritedItem := FavouriteItem;
+                          BookMarkedItems.flagHTML := FlagHTML;
+                          BookmarkedItems.Insert();
+                      end; */
 
                 end;
 
