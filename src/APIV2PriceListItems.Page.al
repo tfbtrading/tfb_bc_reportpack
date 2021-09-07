@@ -70,7 +70,6 @@ page 53002 "TFB APIV2 - Price List Items"
                 field(unitPrice; Rec.UnitPrice)
                 {
                     Caption = 'Unit Price';
-
                 }
 
                 field(kgPrice; Rec.KgPrice)
@@ -199,6 +198,13 @@ page 53002 "TFB APIV2 - Price List Items"
                     EntityName = 'picture';
                     EntitySetName = 'pictures';
                     SubPageLink = Id = Field(ItemID), "Parent Type" = const(2);
+                }
+                part(priceTrackingEntry; "TFB APIV2 - Price History")
+                {
+                    Caption = 'Price History';
+                    EntityName = 'priceTrackingEntry';
+                    EntitySetName = 'priceTrackingEntries';
+                    SubPageLink = "Item ID" = Field(ItemID), "Customer ID" = Field(CustomerID);
                 }
                 part(itemMarketSegment; "TFB APIV2 - Item Market Seg.")
                 {

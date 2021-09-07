@@ -28,6 +28,7 @@ table 53120 "TFB Price List Item Buffer"
         field(6; "Item Category ID"; GUID)
         {
             Caption = 'Item Category ID';
+            TableRelation = "Item Category".SystemId;
         }
 
         field(7; "Unit of Measure ID"; GUID)

@@ -28,6 +28,51 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Market Segment Buffer - Field Title - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 4229298625 - Field 2239210435 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price History Buffer - Field Customer ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4229298625 - Field 2725149570 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pricing Group Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price History Buffer - Field Customer Price Group - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4229298625 - Field 2126281932 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dated</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price History Buffer - Field Dated - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4229298625 - Field 808550004 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price History Buffer - Field Item ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4229298625 - Field 3320823955 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price History Buffer - Field Line No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4229298625 - Field 1344999242 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Per Kg</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price History Buffer - Field Price Per Kg - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4229298625 - Field 4089597761 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Source No</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price History Buffer - Field Price Source No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4229298625 - Field 730569223 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price History Buffer - Field Price Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4229298625 - Field 2937233469 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Per Unit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price History Buffer - Field Unit Price - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3950732950 - Field 2048063077 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Alternative Names</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -473,6 +518,51 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Market Segment - Control title - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 3448850802 - Property 3446740159" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Tracking Entry</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price History - Property EntityCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 3448850802 - Property 631549417" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Tracking Entries</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price History - Property EntitySetCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 3448850802 - NamedType 2396386738" size-unit="char" translate="yes" xml:space="preserve">
+          <source>id type not specified.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price History - NamedType FiltersNotSpecifiedErrorLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 3448850802 - Control 3999962618 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pricing Group Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price History - Control customerPriceGroup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3448850802 - Control 3974559649 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dated</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price History - Control effectiveFromOrOn - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3448850802 - Control 1875849762 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Per Kg</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price History - Control pricePerKg - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3448850802 - Control 922195539 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Source No</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price History - Control priceSourceNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3448850802 - Control 3378750023 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price History - Control priceType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3448850802 - Control 3421409717 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price Per Unit</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price History - Control unitPrice - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1624067204 - Property 3446740159" size-unit="char" translate="yes" xml:space="preserve">
           <source>Price List Item</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -622,6 +712,11 @@
           <source>Picture</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control picture - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1624067204 - Control 1607312458 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price History</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control priceTrackingEntry - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1624067204 - Control 2242609234 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Qty Outstanding</source>
@@ -1072,6 +1167,16 @@
           <source>Out of Stock</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum TFB Availability Status - EnumValue OutofStock - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3028527841 - EnumValue 4145758217 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Price List</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum TFB Price History Type - EnumValue PriceList - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 3028527841 - EnumValue 395510365 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Purchase</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum TFB Price History Type - EnumValue Purchase - Property Caption</note>
         </trans-unit>
         <trans-unit id="EnumExtension 1935470921 - EnumValue 4145758217 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Enum 2593693414">
           <source>Price List</source>
