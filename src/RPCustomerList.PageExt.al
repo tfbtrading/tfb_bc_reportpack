@@ -9,6 +9,39 @@ pageextension 53020 "TFB RP Customer List" extends "Customer List"
     {
         addafter(PaymentRegistration)
         {
+            action(TFBShowPriceHistory)
+            {
+                Caption = 'Show Price History';
+                Promoted = true;
+                PromotedCategory = Process;
+                Image = Price;
+                ApplicationArea = All;
+
+                ToolTip = 'Shows price history for a specific customer and item';
+
+                trigger OnAction()
+
+                var
+
+                    PriceHistoryBuffer: Record "TFB Price History Buffer";
+                    PriceHistory: Page "TFB Customer Price History";
+                    ItemList: Page "Item List";
+                    Item: Record Item;
+                    Item2: Record Item;
+                    ItemCode: text;
+
+
+                begin
+                    ItemList.LookupMode := true;
+                    If not (ItemList.RunModal() = Action::LookupOK) then exit;
+
+                    ItemList.GetRecord(Item);
+                    PriceHistoryBuffer.LoadDataFromFilters(Item.SystemId, Rec.SystemId);
+                    PriceHistory.SetRecord(PriceHistoryBuffer);
+                    PriceHistory.Run();
+                end;
+
+            }
             action(TFBSendPriceList)
             {
                 Caption = 'Send Price List';
