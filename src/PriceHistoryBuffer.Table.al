@@ -151,6 +151,7 @@ table 53150 "TFB Price History Buffer"
 
     var
         SalesInvoiceLine: Record "Sales Invoice Line";
+        SalesInvoiceHeader: record "Sales Invoice Header";
         SalesLine: Record "Sales Line";
         SalesHeader: Record "Sales Header";
         LineNo: Integer;
@@ -167,6 +168,10 @@ table 53150 "TFB Price History Buffer"
         If SalesInvoiceLine.FindSet(false, false) then
             repeat
 
+
+                SalesInvoiceHeader.SetLoadFields("No.", "Order No.", "Order Date");
+                SalesInvoiceHeader.Get(SalesInvoiceLine."Document No.");
+
                 Clear(Rec);
                 LineNo += 1;
                 Rec."Customer ID" := Customer.SystemId;
@@ -174,10 +179,10 @@ table 53150 "TFB Price History Buffer"
                 Rec."Price Type" := Rec."Price Type"::Purchase;
                 Rec."Line No." := LineNo;
                 Rec."Customer Price Group" := SalesInvoiceLine."Customer Price Group";
-                Rec.Dated := SalesInvoiceLine."Posting Date";
+                Rec.Dated := SalesInvoiceHeader."Order Date";
                 Rec."Unit Price" := SalesInvoiceLine."Unit Price" / SalesLine."Qty. per Unit of Measure";
                 Rec."Price Per Kg" := PricingCU.CalculatePriceUnitByUnitPrice(Item."No.", SalesInvoiceLine."Unit of Measure Code", Enum::"TFB Price Unit"::KG, SalesInvoiceLine."Unit Price");
-                Rec."Price Source No." := SalesInvoiceLine."Document No.";
+                Rec."Price Source No." := SalesInvoiceHeader."Order No.";
                 Rec.Insert();
             until SalesInvoiceLine.Next() = 0;
 
