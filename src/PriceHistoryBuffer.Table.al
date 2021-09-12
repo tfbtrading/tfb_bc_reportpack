@@ -92,7 +92,7 @@ table 53150 "TFB Price History Buffer"
         Evaluate(_PriceHistory, '-1Y');
 
         AsPriceAsset(Item."No.", PriceAsset);
-        FilterPriceListLine(Customer."Customer Price Group", PriceAsset, PriceListLine, SearchDate, _PriceHistory, Customer."Currency Code");
+        FilterPriceListLine(Customer."Customer Price Group", PriceAsset, PriceListLine, SearchDate, _PriceHistory, Customer."Currency Code", false);
         PriceListLine.SetCurrentKey("Starting Date");
         PriceListLine.SetAscending("Starting Date", true);
 
@@ -101,6 +101,7 @@ table 53150 "TFB Price History Buffer"
             repeat
                 Clear(Rec);
                 LineNo += 1;
+                Rec."Customer ID" := Customer.SystemId;
                 Rec."Item ID" := Item.SystemId;
                 Rec."Price Type" := Rec."Price Type"::PriceList;
                 Rec."Customer Price Group" := PriceListLine."Source No.";
@@ -111,11 +112,11 @@ table 53150 "TFB Price History Buffer"
                 Rec.Dated := PriceListLine."Starting Date";
                 Rec.Insert();
 
-            until PriceListLine.Next() = 0;
+            until PriceListLine.Next() = 0
 
     end;
 
-    local procedure FilterPriceListLine(CustomerPriceGroup: Code[20]; PriceAsset: Record "Price Asset"; var PriceListLine: Record "Price List Line"; EffectiveDate: Date; PriceHistory: DateFormula; CurrencyCode: Code[20])
+    local procedure FilterPriceListLine(CustomerPriceGroup: Code[20]; PriceAsset: Record "Price Asset"; var PriceListLine: Record "Price List Line"; EffectiveDate: Date; PriceHistory: DateFormula; CurrencyCode: Code[20]; OpeningPrice: Boolean)
     var
 
     begin
@@ -127,8 +128,9 @@ table 53150 "TFB Price History Buffer"
         PriceListLine.SetRange("Source Type", PriceListLine."Source Type"::"Customer Price Group");
         PriceListLine.SetRange("Source No.", CustomerPriceGroup);
         PriceListLine.SetFilter("Amount Type", '%1|%2', PriceListLine."Amount Type"::Price, PriceListLine."Amount Type"::Any);
-        PriceListLine.SetRange("Starting Date", CalcDate(PriceHistory, EffectiveDate), EffectiveDate);
-        PriceListLine.SetFilter("Ending Date", '%1|>=%2', 0D, EffectiveDate);
+        If not OpeningPrice then
+            PriceListLine.SetRange("Starting Date", CalcDate(PriceHistory, EffectiveDate), EffectiveDate);
+        PriceListLine.SetFilter("Ending Date", '%1|<=%2', 0D, EffectiveDate);
         PriceListLine.SetFilter("Currency Code", '%1|%2', CurrencyCode, '');
 
     end;
@@ -167,12 +169,13 @@ table 53150 "TFB Price History Buffer"
 
                 Clear(Rec);
                 LineNo += 1;
+                Rec."Customer ID" := Customer.SystemId;
                 Rec."Item ID" := Item.SystemId;
                 Rec."Price Type" := Rec."Price Type"::Purchase;
                 Rec."Line No." := LineNo;
                 Rec."Customer Price Group" := SalesInvoiceLine."Customer Price Group";
                 Rec.Dated := SalesInvoiceLine."Posting Date";
-                Rec."Unit Price" := SalesInvoiceLine."Unit Price";
+                Rec."Unit Price" := SalesInvoiceLine."Unit Price" / SalesLine."Qty. per Unit of Measure";
                 Rec."Price Per Kg" := PricingCU.CalculatePriceUnitByUnitPrice(Item."No.", SalesInvoiceLine."Unit of Measure Code", Enum::"TFB Price Unit"::KG, SalesInvoiceLine."Unit Price");
                 Rec."Price Source No." := SalesInvoiceLine."Document No.";
                 Rec.Insert();
@@ -192,12 +195,13 @@ table 53150 "TFB Price History Buffer"
                 SalesHeader.Get(SalesLine."Document Type", SalesLine."Document No.");
                 Clear(Rec);
                 LineNo += 1;
+                Rec."Customer ID" := Customer.SystemId;
                 Rec."Item ID" := Item.SystemId;
                 Rec."Line No." := LineNo;
                 Rec."Price Type" := Rec."Price Type"::Purchase;
                 Rec."Customer Price Group" := SalesLine."Customer Price Group";
                 Rec.Dated := SalesHeader."Order Date";
-                Rec."Unit Price" := SalesLine."Unit Price";
+                Rec."Unit Price" := SalesLine."Unit Price" / SalesLine."Qty. per Unit of Measure";
                 Rec."Price Per Kg" := PricingCU.CalculatePriceUnitByUnitPrice(Item."No.", SalesLine."Unit of Measure Code", Enum::"TFB Price Unit"::KG, SalesLine."Unit Price");
                 Rec."Price Source No." := SalesLine."Document No.";
                 Rec.Insert();

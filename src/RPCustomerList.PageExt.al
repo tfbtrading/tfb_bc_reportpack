@@ -34,11 +34,10 @@ pageextension 53020 "TFB RP Customer List" extends "Customer List"
                 begin
                     ItemList.LookupMode := true;
                     If not (ItemList.RunModal() = Action::LookupOK) then exit;
-
                     ItemList.GetRecord(Item);
                     PriceHistoryBuffer.LoadDataFromFilters(Item.SystemId, Rec.SystemId);
-                    PriceHistory.SetRecord(PriceHistoryBuffer);
-                    PriceHistory.Run();
+                    Page.Run(Page::"TFB Customer Price History", PriceHistoryBuffer);
+
                 end;
 
             }

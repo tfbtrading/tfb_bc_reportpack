@@ -6,7 +6,7 @@ page 53002 "TFB APIV2 - Price List Items"
     DelayedInsert = true;
     EntityName = 'priceListItem';
     EntitySetName = 'priceListItems';
-    ODataKeyFields = ItemID;
+    ODataKeyFields = ItemID, "No.", "Item Category ID", "Vendor Id";
 
     PageType = API;
     SourceTable = "TFB Price List Item Buffer";
