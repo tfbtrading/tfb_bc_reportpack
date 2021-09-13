@@ -157,7 +157,19 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
 
                 }
+                field(countryOfOriginName; CountryOfOriginName)
+                {
+
+                }
                 field(deliverySLA; Rec.DeliverySLA)
+                {
+
+                }
+                field(transportCompany; ShippingAgentName)
+                {
+
+                }
+                field(trackingAvailable; Rec.TrackingAvailable)
                 {
 
                 }
@@ -254,6 +266,16 @@ page 53002 "TFB APIV2 - Price List Items"
     begin
 
         ImageCDN := StrSubstNo(SalesSetup."TFB Image URL Pattern", Rec."No.");
+        If CountryRegion.Get(Rec."Country/Region of Origin Code") then
+            CountryOfOriginName := CountryRegion.Name
+        else
+            CountryOfOriginName := '';
+
+        If ShippingAgent.Get(Rec.AgentCode) then
+            ShippingAgentName := ShippingAgent.Name
+
+        else
+            ShippingAgentName := '';
 
 
     end;
@@ -265,6 +287,10 @@ page 53002 "TFB APIV2 - Price List Items"
     end;
 
     var
+        ShippingAgent: Record "Shipping Agent";
+
+        ShippingAgentName: Text;
+        CountryRegion: Record "Country/Region";
         RecordsLoaded: Boolean;
         CommonCU: Codeunit "TFB Common Library";
 
@@ -272,4 +298,6 @@ page 53002 "TFB APIV2 - Price List Items"
         ImageCDN: Text;
         SpecificationCDN: Text;
         FiltersNotSpecifiedErrorLbl: Label 'id type not specified.';
+
+        CountryOfOriginName: Text;
 }

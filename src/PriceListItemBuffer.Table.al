@@ -204,6 +204,14 @@ table 53120 "TFB Price List Item Buffer"
         {
 
         }
+        field(53202; AgentCode; Code[10])
+        {
+
+        }
+        field(53204; AgentServiceCode; Code[10])
+        {
+
+        }
         field(53190; ConfidenceDateRange; Integer)
         {
 
@@ -289,6 +297,7 @@ table 53120 "TFB Price List Item Buffer"
 
                 Rec.MarketingCopy := GetMarketingCopy(Item);
                 GetSalesListPricing(Customer."No.", Customer."Customer Price Group", Item);
+                GetTransportDetails(Item, Customer);
                 GetAvailability(Item);
                 FavouritedItem := GetFavouriteStatus(Item."No.", Customer."No.");
                 QtyPendingDelivery := GetQtyPendingDelivery(Item."No.", Customer."No.");
@@ -302,6 +311,24 @@ table 53120 "TFB Price List Item Buffer"
 
     end;
 
+    local procedure GetTransportDetails(Item: Record Item; Customer: Record Customer): Boolean
+
+    var
+        ShippingAgentServices: Record "Shipping Agent Services";
+        ShippingAgent: Record "Shipping Agent";
+        SalesCU: CodeUnit "TFB Sales Mgmt";
+
+    begin
+
+        ShippingAgentServices := SalesCU.GetShippingAgentDetailsForLocation(Customer."Location Code", Customer.County, Customer."Shipment Method Code");
+
+        Rec.AgentCode := ShippingAgentServices."Shipping Agent Code";
+        Rec.AgentServiceCode := ShippingAgentServices.Code;
+
+        If ShippingAgent.Get(Rec.AgentCode) then
+            Rec.TrackingAvailable := ShippingAgent."Internet Address" <> ''; //internet address assumed to be trackingis available
+
+    end;
 
     local procedure GetSalesListPricing(CustNo: Code[20]; CustomerPriceGroup: Code[20]; Item: Record Item): Boolean
 
