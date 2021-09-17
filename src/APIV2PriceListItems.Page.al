@@ -124,6 +124,20 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
                     Caption = 'Qty Outstanding';
                 }
+                field(nextDeliveryQtyOutstanding; Rec.QtyOnNextDelivery)
+                {
+                    Caption = 'Qty On Next Delivery';
+                }
+                field(nextDeliveryPlannedShipmentDate; Rec.DatePlannedForNextDelivery)
+                {
+                    Caption = 'Next Delivery Planned Shipment Date';
+                }
+                field(nextDeliverySalesOrderID; Rec.NextDeliveryID)
+                {
+                    Caption = 'Next Delivery Sales Order ID';
+                }
+
+
                 field(favourateItem; Rec.FavouritedItem)
                 {
                     Caption = 'Favourate Item';

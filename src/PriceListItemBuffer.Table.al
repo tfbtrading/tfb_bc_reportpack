@@ -170,11 +170,18 @@ table 53120 "TFB Price List Item Buffer"
         {
 
         }
-        field(53107; QtyPendingDelivery; Integer)
+        field(53107; QtyPendingDelivery; Decimal)
         {
 
         }
+        field(53108; QtyOnNextDelivery; Decimal)
+        {
 
+        }
+        field(53109; DatePlannedForNextDelivery; Date)
+        {
+
+        }
 
         field(53110; BookMarkedItem; Boolean)
         {
@@ -238,6 +245,15 @@ table 53120 "TFB Price List Item Buffer"
         {
 
         }
+        field(53250; "ReferenceForNextDelivery"; Text[100])
+        {
+
+        }
+        field(53260; "NextDeliveryID"; GUID)
+        {
+
+        }
+
     }
 
     keys
@@ -311,6 +327,7 @@ table 53120 "TFB Price List Item Buffer"
                 GetAvailability(Item);
                 FavouritedItem := GetFavouriteStatus(Item."No.", Customer."No.");
                 QtyPendingDelivery := GetQtyPendingDelivery(Item."No.", Customer."No.");
+                UpdateNextDeliveryDetails(Item."No.", Customer."No.");
                 PerPallet := GetPerPallet(Item);
                 DateLastDispatched := GetLastDispatchDate(Item."No.", Customer."No.");
                 BookMarkedItem := GetBookmarkStatus(Item."No.", Customer."No.");
@@ -608,6 +625,37 @@ table 53120 "TFB Price List Item Buffer"
         SalesLine.SetRange("No.", ItemNo);
         SalesLine.CalcSums("Outstanding Qty. (Base)");
         Exit(SalesLine."Outstanding Qty. (Base)");
+    end;
+
+    local procedure UpdateNextDeliveryDetails(ItemNo: Code[20]; CustNo: Code[20]): Decimal
+
+    var
+        SalesLine: Record "Sales Line";
+        SalesHeader: Record "Sales Header";
+
+    begin
+
+        SalesLine.SetRange("Document Type", SalesLine."Document Type"::Order);
+        SalesLine.SetFilter("Outstanding Qty. (Base)", '>0');
+        SalesLine.SetRange("Sell-to Customer No.", CustNo);
+        SalesLine.SetRange("No.", ItemNo);
+        SalesLine.SetCurrentKey("Planned Shipment Date");
+        SalesLine.SetAscending("Planned Shipment Date", true);
+
+        If not SalesLine.FindFirst() then exit;
+
+        SalesLine.CalcFields("TFB External Document No.");
+
+        Rec.QtyOnNextDelivery := SalesLine."Outstanding Qty. (Base)";
+        Rec.DatePlannedForNextDelivery := SalesLine."Planned Shipment Date";
+        Rec.ReferenceForNextDelivery := SalesLine."Document No.";
+        SalesHeader.SetLoadFields("External Document No.", SystemId);
+        SalesHeader.Get(SalesHeader."Document Type"::Order, SalesLine."Document No.");
+
+        Rec.NextDeliveryID := SalesHeader.SystemId;
+        If SalesHeader."External Document No." <> '' then
+            Rec.ReferenceForNextDelivery += '/ Your PO Ref ' + SalesHeader."External Document No.";
+
     end;
 
     local procedure GetUnitType(var Item: Record Item): Text
