@@ -165,6 +165,14 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
 
                 }
+                field(deliveryInNoDaysMin; Rec.DeliveryInNoDaysMin)
+                {
+
+                }
+                field(deliveryInNoDaysMax; Rec.DeliveryInNoDaysMax)
+                {
+
+                }
                 field(transportCompany; ShippingAgentName)
                 {
 

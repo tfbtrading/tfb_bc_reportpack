@@ -73,6 +73,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price History Buffer - Field Unit Price - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 3179132072 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>AgentCode</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field AgentCode - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 3243782427 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>AgentServiceCode</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field AgentServiceCode - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3950732950 - Field 2048063077 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Alternative Names</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -113,11 +123,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field BookmarkHTML - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 3950732950 - Field 508677497 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>ConfidenceDateRange</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field ConfidenceDateRange - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Table 3950732950 - Field 1212385681 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Country/Region of Origin Code</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -142,6 +147,16 @@
           <source>DaysSincePriceChange</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field DaysSincePriceChange - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 3143478931 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>DeliveryInNoDaysMax</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field DeliveryInNoDaysMax - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 3971583161 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>DeliveryInNoDaysMin</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field DeliveryInNoDaysMin - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3950732950 - Field 2135510062 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>DeliverySLA</source>

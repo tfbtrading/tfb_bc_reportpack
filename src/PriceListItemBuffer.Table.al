@@ -212,10 +212,16 @@ table 53120 "TFB Price List Item Buffer"
         {
 
         }
-        field(53190; ConfidenceDateRange; Integer)
+
+        field(53192; "DeliveryInNoDaysMin"; Integer)
         {
 
         }
+        field(53194; "DeliveryInNoDaysMax"; Integer)
+        {
+
+        }
+
         field(53170; TrackingAvailable; Boolean)
         {
 
@@ -277,12 +283,17 @@ table 53120 "TFB Price List Item Buffer"
                 Rec.Blocked := Item.Blocked;
                 Rec."Base Unit of Measure" := Item."Base Unit of Measure";
                 Rec."Unit of Measure ID" := Item."Unit of Measure Id";
-                Rec."Vendor No." := Item."Vendor No.";
+                If Item."TFB Vendor is Agent" then
+                    Rec."Vendor No." := Item."TFB Manufacturer Vendor No."
+                else
+                    Rec."Vendor No." := Item."Vendor No.";
+
+                If Vendor.Get(Rec."Vendor No.") then
+                    Rec."Vendor Id" := Vendor.SystemId;
+
                 Rec.MultiItemPalletOption := Item."TFB Multi-item Pallet Option";
                 Rec.QtyPerLayer := Item."TFB No. Of Bags Per Layer";
-
-                If Vendor.Get(Item."Vendor No.") then
-                    Rec.GenericItemID := Item."TFB Generic Item ID";
+                Rec.GenericItemID := Item."TFB Generic Item ID";
                 Rec.LastPaidUnitPrice := GetLastPricePaid(Item."No.", Customer."No.");
                 Rec.LastPaidKgPrice := PriceCU.CalcPerKgFromUnit(Rec.LastPaidUnitPrice, Rec."Net Weight");
 
@@ -291,7 +302,6 @@ table 53120 "TFB Price List Item Buffer"
 
 
                 If Vendor.Get(Item."Vendor No.") then begin
-                    Rec."Vendor Id" := Vendor.SystemId;
                     Rec.DeliverySLA := Vendor."TFB Delivery SLA";
                 end;
 
@@ -315,15 +325,26 @@ table 53120 "TFB Price List Item Buffer"
 
     var
         ShippingAgentServices: Record "Shipping Agent Services";
+        Purchasing: Record Purchasing;
         ShippingAgent: Record "Shipping Agent";
         SalesCU: CodeUnit "TFB Sales Mgmt";
 
+
     begin
 
-        ShippingAgentServices := SalesCU.GetShippingAgentDetailsForLocation(Customer."Location Code", Customer.County, Customer."Shipment Method Code");
+        If Purchasing.Get(Item."Purchasing Code") then
+            If Purchasing."Drop Shipment" then
+                ShippingAgentServices := SalesCU.GetShippingAgentDetailsForDropShipItem(Item, Customer)
+            else
+                ShippingAgentServices := SalesCU.GetShippingAgentDetailsForLocation(SalesCU.GetIntelligentLocation(Customer."No.", Item."No.", 0), Customer.County, Customer."Shipment Method Code");
 
         Rec.AgentCode := ShippingAgentServices."Shipping Agent Code";
         Rec.AgentServiceCode := ShippingAgentServices.Code;
+        Rec.DeliveryInNoDaysMin := CalcDate(ShippingAgentServices."Shipping Time", Today) - Today;
+        If format(ShippingAgentServices."TFB Shipping Time Max") <> '' then
+            Rec.DeliveryInNoDaysMax := CalcDate(ShippingAgentServices."TFB Shipping Time Max", Today) - Today
+        else
+            Rec.DeliveryInNoDaysMax := DeliveryInNoDaysMin;
 
         If ShippingAgent.Get(Rec.AgentCode) then
             Rec.TrackingAvailable := ShippingAgent."Internet Address" <> ''; //internet address assumed to be trackingis available
