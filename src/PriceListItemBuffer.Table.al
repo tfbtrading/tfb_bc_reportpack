@@ -284,7 +284,7 @@ table 53120 "TFB Price List Item Buffer"
                 Rec."Base Unit of Measure" := Item."Base Unit of Measure";
                 Rec."Unit of Measure ID" := Item."Unit of Measure Id";
                 If Item."TFB Vendor is Agent" then
-                    Rec."Vendor No." := Item."TFB Manufacturer Vendor No."
+                    Rec."Vendor No." := Item."TFB Item Manufacturer/Brand"
                 else
                     Rec."Vendor No." := Item."Vendor No.";
 
@@ -328,23 +328,39 @@ table 53120 "TFB Price List Item Buffer"
         Purchasing: Record Purchasing;
         ShippingAgent: Record "Shipping Agent";
         SalesCU: CodeUnit "TFB Sales Mgmt";
+        Vendor: record Vendor;
+        OverrideDates: Boolean;
 
 
     begin
 
-        If Purchasing.Get(Item."Purchasing Code") then
-            If Purchasing."Drop Shipment" then
-                ShippingAgentServices := SalesCU.GetShippingAgentDetailsForDropShipItem(Item, Customer)
-            else
-                ShippingAgentServices := SalesCU.GetShippingAgentDetailsForLocation(SalesCU.GetIntelligentLocation(Customer."No.", Item."No.", 0), Customer.County, Customer."Shipment Method Code");
+        If Purchasing.Get(Item."Purchasing Code") and Purchasing."Drop Shipment" then begin
+            ShippingAgentServices := SalesCU.GetShippingAgentDetailsForDropShipItem(Item, Customer);
+            If Vendor.Get(Item."Vendor No.") then
+                OverrideDates := true;
+        end
+        else
+            ShippingAgentServices := SalesCU.GetShippingAgentDetailsForLocation(SalesCU.GetIntelligentLocation(Customer."No.", Item."No.", 0), Customer.County, Customer."Shipment Method Code");
 
         Rec.AgentCode := ShippingAgentServices."Shipping Agent Code";
         Rec.AgentServiceCode := ShippingAgentServices.Code;
-        Rec.DeliveryInNoDaysMin := CalcDate(ShippingAgentServices."Shipping Time", Today) - Today;
+
+        //Add in vendor lead times until dispatch
+        If OverrideDates then begin
+            Rec.DeliveryInNoDaysMin := CalcDate(Vendor."TFB Dispatch Lead Time", Today) - Today;
+
+            If format(Vendor."TFB Dispatch Lead Time Max") = '' then
+                Rec.DeliveryInNoDaysMax := Rec.DeliveryInNoDaysMin
+            else
+                Rec.DeliveryInNoDaysMax := CalcDate(Vendor."TFB Dispatch Lead Time Max", Today) - Today;
+        end;
+
+        Rec.DeliveryInNoDaysMin += CalcDate(ShippingAgentServices."Shipping Time", Today) - Today;
+
         If format(ShippingAgentServices."TFB Shipping Time Max") <> '' then
-            Rec.DeliveryInNoDaysMax := CalcDate(ShippingAgentServices."TFB Shipping Time Max", Today) - Today
+            Rec.DeliveryInNoDaysMax += CalcDate(ShippingAgentServices."TFB Shipping Time Max", Today) - Today
         else
-            Rec.DeliveryInNoDaysMax := DeliveryInNoDaysMin;
+            Rec.DeliveryInNoDaysMax += DeliveryInNoDaysMin;
 
         If ShippingAgent.Get(Rec.AgentCode) then
             Rec.TrackingAvailable := ShippingAgent."Internet Address" <> ''; //internet address assumed to be trackingis available
