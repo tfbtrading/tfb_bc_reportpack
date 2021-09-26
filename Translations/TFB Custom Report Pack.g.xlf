@@ -143,6 +143,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field DateLastDispatched - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 49465452 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>DatePlannedForNextDelivery</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field DatePlannedForNextDelivery - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3950732950 - Field 2084928458 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>DaysSincePriceChange</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -238,10 +243,20 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field NextAvailable - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 1215709258 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>NextDeliveryID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field NextDeliveryID - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3950732950 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 271718714 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>NoEstimateAvailable</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field NoEstimateAvailable - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3950732950 - Field 3286755322 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>OldKgPrice</source>
@@ -268,6 +283,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field PriceChangeDate - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 2208222002 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>QtyOnNextDelivery</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field QtyOnNextDelivery - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3950732950 - Field 4173764601 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>QtyPendingDelivery</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -277,6 +297,11 @@
           <source>QtyPerLayer</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field QtyPerLayer - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 2244913845 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ReferenceForNextDelivery</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field ReferenceForNextDelivery - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3950732950 - Field 2639399489 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Safety Stock Quantity</source>
@@ -702,6 +727,21 @@
           <source>Next Availability Date</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control nextAvailable - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1624067204 - Control 3707756381 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Next Delivery Planned Shipment Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control nextDeliveryPlannedShipmentDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1624067204 - Control 2900053007 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Qty On Next Delivery</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control nextDeliveryQtyOutstanding - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1624067204 - Control 735137300 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Next Delivery Sales Order ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control nextDeliverySalesOrderID - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1624067204 - Control 2288429525 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No. Days since price changes</source>

@@ -253,6 +253,10 @@ table 53120 "TFB Price List Item Buffer"
         {
 
         }
+        field(53270; "NoEstimateAvailable"; Boolean)
+        {
+
+        }
 
     }
 
@@ -317,14 +321,14 @@ table 53120 "TFB Price List Item Buffer"
                 Rec.SpecificationCDN := CommonCU.GetSpecificationURL(Item);
 
 
-                If Vendor.Get(Item."Vendor No.") then begin
+                If Vendor.Get(Item."Vendor No.") then
                     Rec.DeliverySLA := Vendor."TFB Delivery SLA";
-                end;
+
 
                 Rec.MarketingCopy := GetMarketingCopy(Item);
                 GetSalesListPricing(Customer."No.", Customer."Customer Price Group", Item);
-                GetTransportDetails(Item, Customer);
                 GetAvailability(Item);
+                GetTransportDetails(Item, Customer);
                 FavouritedItem := GetFavouriteStatus(Item."No.", Customer."No.");
                 QtyPendingDelivery := GetQtyPendingDelivery(Item."No.", Customer."No.");
                 UpdateNextDeliveryDetails(Item."No.", Customer."No.");
@@ -342,11 +346,18 @@ table 53120 "TFB Price List Item Buffer"
 
     var
         ShippingAgentServices: Record "Shipping Agent Services";
+        Vendor: Record Vendor;
         Purchasing: Record Purchasing;
+        CustomCalendarChange: Array[2] of Record "Customized Calendar Change";
         ShippingAgent: Record "Shipping Agent";
+        Location: record Location;
         SalesCU: CodeUnit "TFB Sales Mgmt";
-        Vendor: record Vendor;
-        OverrideDates: Boolean;
+        CalendarMgmt: CodeUnit "Calendar Management";
+        NewDate: Date;
+
+
+        UseDropShipDateCalcs: Boolean;
+
 
 
     begin
@@ -354,23 +365,48 @@ table 53120 "TFB Price List Item Buffer"
         If Purchasing.Get(Item."Purchasing Code") and Purchasing."Drop Shipment" then begin
             ShippingAgentServices := SalesCU.GetShippingAgentDetailsForDropShipItem(Item, Customer);
             If Vendor.Get(Item."Vendor No.") then
-                OverrideDates := true;
+                UseDropShipDateCalcs := true;
         end
-        else
-            ShippingAgentServices := SalesCU.GetShippingAgentDetailsForLocation(SalesCU.GetIntelligentLocation(Customer."No.", Item."No.", 0), Customer.County, Customer."Shipment Method Code");
-
+        else begin
+            Location.Get(SalesCU.GetIntelligentLocation(Customer."No.", Item."No.", 0));
+            ShippingAgentServices := SalesCU.GetShippingAgentDetailsForLocation(Location.Code, Customer.County, Customer."Shipment Method Code");
+        end;
         Rec.AgentCode := ShippingAgentServices."Shipping Agent Code";
         Rec.AgentServiceCode := ShippingAgentServices.Code;
 
         //Add in vendor lead times until dispatch
-        If OverrideDates then begin
-            Rec.DeliveryInNoDaysMin := CalcDate(Vendor."TFB Dispatch Lead Time", Today) - Today;
+        case UseDropShipDateCalcs of
+            true:
+                begin
+                    Rec.DeliveryInNoDaysMin := CalcDate(Vendor."TFB Dispatch Lead Time", Today) - Today;
 
-            If format(Vendor."TFB Dispatch Lead Time Max") = '' then
-                Rec.DeliveryInNoDaysMax := Rec.DeliveryInNoDaysMin
-            else
-                Rec.DeliveryInNoDaysMax := CalcDate(Vendor."TFB Dispatch Lead Time Max", Today) - Today;
+                    If format(Vendor."TFB Dispatch Lead Time Max") = '' then
+                        Rec.DeliveryInNoDaysMax := Rec.DeliveryInNoDaysMin
+                    else
+                        Rec.DeliveryInNoDaysMax := CalcDate(Vendor."TFB Dispatch Lead Time Max", Today) - Today;
+                end;
+
+            false:
+                begin
+
+                    //Add in outbound number of days for handling
+                    CustomCalendarChange[1].SetSource(Enum::"Calendar Source Type"::Location, Location.Code, '', '');
+                    If not (Rec.AvailabilityStatus = Rec.AvailabilityStatus::OutofStock) then
+                        NewDate := CalcDate(Location."Outbound Whse. Handling Time", Today)
+                    else
+                        if Rec.NextAvailable > 0D then
+                            NewDate := CalcDate(Location."Outbound Whse. Handling Time", NextAvailable)
+                        else
+                            Rec.NoEstimateAvailable := true;
+
+                    if not Rec.NoEstimateAvailable then begin
+                        Rec.DeliveryInNoDaysMin := CalendarMgmt.CalcDateBOC('', NewDate, CustomCalendarChange, false) - Today;
+                        Rec.DeliveryInNoDaysMax := Rec.DeliveryInNoDaysMin;
+                    end;
+                end;
         end;
+
+
 
         Rec.DeliveryInNoDaysMin += CalcDate(ShippingAgentServices."Shipping Time", Today) - Today;
 

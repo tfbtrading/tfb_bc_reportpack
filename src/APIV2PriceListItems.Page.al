@@ -179,6 +179,10 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
 
                 }
+                field(isEstimateAvailable; Rec.NoEstimateAvailable)
+                {
+
+                }
                 field(deliveryInNoDaysMin; Rec.DeliveryInNoDaysMin)
                 {
 
