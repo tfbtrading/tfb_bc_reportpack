@@ -207,6 +207,10 @@ table 53120 "TFB Price List Item Buffer"
         {
 
         }
+        field(35152; MaxProductsPerPallet; Integer)
+        {
+
+        }
         field(53200; DeliverySLA; Text[256])
         {
 
@@ -420,7 +424,7 @@ table 53120 "TFB Price List Item Buffer"
         If format(ShippingAgentServices."TFB Shipping Time Max") <> '' then
             Rec.DeliveryInNoDaysMax += CalcDate(ShippingAgentServices."TFB Shipping Time Max", Today) - Today
         else
-            Rec.DeliveryInNoDaysMax += DeliveryInNoDaysMin;
+            Rec.DeliveryInNoDaysMax := DeliveryInNoDaysMin;
 
         If ShippingAgent.Get(Rec.AgentCode) then
             Rec.TrackingAvailable := ShippingAgent."Internet Address" <> ''; //internet address assumed to be trackingis available
@@ -511,6 +515,31 @@ table 53120 "TFB Price List Item Buffer"
         PriceAsset."Asset No." := ItemNo;
 
 
+    end;
+
+    local procedure GetPalletSplitOptions(Item: Record Item)
+
+    var
+        PurchasingCode: Record Purchasing;
+        Vendor: record Vendor;
+        DropShip: Boolean;
+    begin
+        If PurchasingCode.Get(Item."Purchasing Code") then
+            If PurchasingCode."Drop Shipment" then
+                DropShip := true;
+
+
+        Rec.MultiItemPalletOption := Item."TFB Multi-item Pallet Option";
+        Rec.QtyPerLayer := Item."TFB No. Of Bags Per Layer";
+
+        case DropShip of
+            true:
+                If Vendor.Get(Item."Vendor No.") then
+                    Rec.MaxProductsPerPallet := Vendor."TFB Max Products Per Pallet";
+            false:
+                If Rec.MultiItemPalletOption = Rec.MultiItemPalletOption::Half then
+                    Rec.MaxProductsPerPallet := 2;
+        end;
     end;
 
     local procedure GetAvailability(Item: Record Item): Boolean

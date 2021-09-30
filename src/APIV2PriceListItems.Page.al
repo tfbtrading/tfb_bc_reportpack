@@ -155,6 +155,10 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
                     Caption = 'Multi-Item pallet option';
                 }
+                field(maxItemsPerPallet;Rec.MaxProductsPerPallet)
+                {
+                    Caption = 'Max items per pallet';
+                }
                 field(qtyPerPalletLayer; Rec.QtyPerLayer)
                 {
                     Caption = 'Qty per pallet layer';
@@ -315,12 +319,12 @@ page 53002 "TFB APIV2 - Price List Items"
     var
         ShippingAgent: Record "Shipping Agent";
 
-        ShippingAgentName: Text;
         CountryRegion: Record "Country/Region";
-        RecordsLoaded: Boolean;
-        CommonCU: Codeunit "TFB Common Library";
-
         SalesSetup: Record "Sales & Receivables Setup";
+        CommonCU: Codeunit "TFB Common Library";
+        ShippingAgentName: Text;
+        RecordsLoaded: Boolean;
+
         ImageCDN: Text;
         SpecificationCDN: Text;
         FiltersNotSpecifiedErrorLbl: Label 'id type not specified.';
