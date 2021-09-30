@@ -364,20 +364,21 @@ table 53120 "TFB Price List Item Buffer"
 
         If Purchasing.Get(Item."Purchasing Code") and Purchasing."Drop Shipment" then begin
             ShippingAgentServices := SalesCU.GetShippingAgentDetailsForDropShipItem(Item, Customer);
-            If Vendor.Get(Item."Vendor No.") then
-                UseDropShipDateCalcs := true;
-        end
-        else begin
-            Location.Get(SalesCU.GetIntelligentLocation(Customer."No.", Item."No.", 0));
-            ShippingAgentServices := SalesCU.GetShippingAgentDetailsForLocation(Location.Code, Customer.County, Customer."Shipment Method Code");
+            Rec.AgentCode := ShippingAgentServices."Shipping Agent Code";
+            Rec.AgentServiceCode := ShippingAgentServices.Code;
+
+            UseDropShipDateCalcs := true;
         end;
-        Rec.AgentCode := ShippingAgentServices."Shipping Agent Code";
-        Rec.AgentServiceCode := ShippingAgentServices.Code;
+
 
         //Add in vendor lead times until dispatch
         case UseDropShipDateCalcs of
             true:
                 begin
+                    If not Vendor.Get(Item."Vendor No.") then begin
+                        Rec.NoEstimateAvailable := true;
+                        exit;
+                    end;
                     Rec.DeliveryInNoDaysMin := CalcDate(Vendor."TFB Dispatch Lead Time", Today) - Today;
 
                     If format(Vendor."TFB Dispatch Lead Time Max") = '' then
@@ -388,7 +389,13 @@ table 53120 "TFB Price List Item Buffer"
 
             false:
                 begin
-
+                    If not Location.Get(SalesCU.GetIntelligentLocation(Customer."No.", Item."No.", 0)) then begin
+                        Rec.NoEstimateAvailable := true;
+                        exit;
+                    end;
+                    ShippingAgentServices := SalesCU.GetShippingAgentDetailsForLocation(Location.Code, Customer.County, Customer."Shipment Method Code");
+                    Rec.AgentCode := ShippingAgentServices."Shipping Agent Code";
+                    Rec.AgentServiceCode := ShippingAgentServices.Code;
                     //Add in outbound number of days for handling
                     CustomCalendarChange[1].SetSource(Enum::"Calendar Source Type"::Location, Location.Code, '', '');
                     If not (Rec.AvailabilityStatus = Rec.AvailabilityStatus::OutofStock) then
