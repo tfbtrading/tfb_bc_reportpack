@@ -317,6 +317,7 @@ table 53120 "TFB Price List Item Buffer"
 
                 Rec.MultiItemPalletOption := Item."TFB Multi-item Pallet Option";
                 Rec.QtyPerLayer := Item."TFB No. Of Bags Per Layer";
+
                 Rec.GenericItemID := Item."TFB Generic Item ID";
                 Rec.LastPaidUnitPrice := GetLastPricePaid(Item."No.", Customer."No.");
                 Rec.LastPaidKgPrice := PriceCU.CalcPerKgFromUnit(Rec.LastPaidUnitPrice, Rec."Net Weight");
@@ -383,6 +384,7 @@ table 53120 "TFB Price List Item Buffer"
                         Rec.NoEstimateAvailable := true;
                         exit;
                     end;
+                    Rec.MaxProductsPerPallet := Vendor."TFB Max Products Per Pallet";
                     Rec.DeliveryInNoDaysMin := CalcDate(Vendor."TFB Dispatch Lead Time", Today) - Today;
 
                     If format(Vendor."TFB Dispatch Lead Time Max") = '' then
@@ -400,6 +402,8 @@ table 53120 "TFB Price List Item Buffer"
                     ShippingAgentServices := SalesCU.GetShippingAgentDetailsForLocation(Location.Code, Customer.County, Customer."Shipment Method Code");
                     Rec.AgentCode := ShippingAgentServices."Shipping Agent Code";
                     Rec.AgentServiceCode := ShippingAgentServices.Code;
+                    If Rec.MultiItemPalletOption = Rec.MultiItemPalletOption::Half then
+                        Rec.MaxProductsPerPallet := 2;
                     //Add in outbound number of days for handling
                     CustomCalendarChange[1].SetSource(Enum::"Calendar Source Type"::Location, Location.Code, '', '');
                     If not (Rec.AvailabilityStatus = Rec.AvailabilityStatus::OutofStock) then

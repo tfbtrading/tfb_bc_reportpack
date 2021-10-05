@@ -228,6 +228,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field MarketingCopy - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3950732950 - Field 3304066909 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>MaxProductsPerPallet</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field MaxProductsPerPallet - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3950732950 - Field 283511737 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>MultiItemPalletOption</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -712,6 +717,11 @@
           <source>Marketing Copy</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control marketingCopy - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1624067204 - Control 1741500879 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Max items per pallet</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control maxItemsPerPallet - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1624067204 - Control 1980071321 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Multi-Item pallet option</source>
