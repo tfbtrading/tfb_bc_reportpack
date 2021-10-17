@@ -323,7 +323,7 @@ table 53120 "TFB Price List Item Buffer"
                 Rec.LastPaidKgPrice := PriceCU.CalcPerKgFromUnit(Rec.LastPaidUnitPrice, Rec."Net Weight");
 
                 Rec."Country/Region of Origin Code" := Item."Country/Region of Origin Code";
-                Rec.SpecificationCDN := CommonCU.GetSpecificationURL(Item);
+                Rec.SpecificationCDN := CommonCU.GetSpecificationURL(Item).Substring(1,512);
 
 
                 If Vendor.Get(Item."Vendor No.") then

@@ -24,12 +24,10 @@ pageextension 53020 "TFB RP Customer List" extends "Customer List"
                 var
 
                     PriceHistoryBuffer: Record "TFB Price History Buffer";
-                    PriceHistory: Page "TFB Customer Price History";
-                    ItemList: Page "Item List";
+            
                     Item: Record Item;
-                    Item2: Record Item;
-                    ItemCode: text;
-
+                    ItemList: Page "Item List";
+                  
 
                 begin
                     ItemList.LookupMode := true;

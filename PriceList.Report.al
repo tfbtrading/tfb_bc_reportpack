@@ -256,8 +256,7 @@ Report 53120 "TFB Price List"
 
     var
 
-        PricingCalculations: CodeUnit "TFB Pricing Calculations";
-
+       
         _PriceHistory: DateFormula;
         _EffectiveDate: Date;
         KgPrice: Decimal;

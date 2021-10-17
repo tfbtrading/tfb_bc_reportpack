@@ -143,7 +143,7 @@ page 53001 "TFB APIV2 - Customers"
                     Multiplicity = ZeroOrOne;
                     EntityName = 'picture';
                     EntitySetName = 'pictures';
-                    SubPageLink = Id = Field(SystemId), "Parent Type" = const(1);
+                    SubPageLink = Id = Field(SystemId), "Parent Type" = const(Customer);
                 }
 
                 part(agedAccountsReceivable; "APIV2 - Aged AR")
@@ -159,7 +159,7 @@ page 53001 "TFB APIV2 - Customers"
                     Caption = 'Contacts Information';
                     EntityName = 'contactInformation';
                     EntitySetName = 'contactsInformation';
-                    SubPageLink = "Related Id" = field(SystemId), "Related Type" = const(1);
+                    SubPageLink = "Related Id" = field(SystemId), "Related Type" = const(Customer);
                 }
 
                 part(priceListItems; "TFB APIV2 - Price List Items")
