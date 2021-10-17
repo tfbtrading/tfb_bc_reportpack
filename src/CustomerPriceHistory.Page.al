@@ -22,31 +22,37 @@ page 53007 "TFB Customer Price History"
                 {
                     Caption = 'Price Type';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Price Type field.';
                 }
                 field(effectiveFromOrOn; Rec.Dated)
                 {
                     Caption = 'Dated';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Dated field.';
                 }
                 field(priceSourceNo; Rec."Price Source No.")
                 {
                     Caption = 'Price Source No';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Price Source No field.';
                 }
                 field(unitPrice; Rec."Unit Price")
                 {
                     Caption = 'Price Per Unit';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Price Per Unit field.';
                 }
                 field(pricePerKg; Rec."Price Per Kg")
                 {
                     Caption = 'Price Per Kg';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Price Per Kg field.';
                 }
                 field(customerPriceGroup; Rec."Customer Price Group")
                 {
                     Caption = 'Pricing Group Code';
                     ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Pricing Group Code field.';
                 }
             }
         }

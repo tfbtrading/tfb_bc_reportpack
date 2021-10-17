@@ -192,21 +192,14 @@ page 53001 "TFB APIV2 - Customers"
     end;
 
     var
-        // Currency: Record Currency;
-        //PaymentTerms: Record "Payment Terms";
-        //ShipmentMethod: Record "Shipment Method";
+ 
         //PaymentMethod: Record "Payment Method";
         TempFieldSet: Record 2000000041 temporary;
         GraphMgtGeneralTools: Codeunit "Graph Mgt - General Tools";
         LCYCurrencyCode: Code[10];
-        //TaxRegistrationNumber: Text[50];
+
         CurrencyCodeTxt: Text;
-    //TaxAreaDisplayNameGlobal: Text;
-    //CurrencyValuesDontMatchErr: Label 'The currency values do not match to a specific Currency.';
-    //BlankGUID: Guid;
-    //NotProvidedCustomerNameErr: Label 'A "displayName" must be provided.', Comment = 'displayName is a field name and should not be translated.';
-    //BlankCustomerNameErr: Label 'The blank "displayName" is not allowed.', Comment = 'displayName is a field name and should not be translated.';
-    //BECountryCodeLbl: Label 'BE', Locked = true;
+
 
     local procedure SetCalculatedFields()
     var
@@ -216,12 +209,7 @@ page 53001 "TFB APIV2 - Customers"
 
     end;
 
-    local procedure ClearCalculatedFields()
-    begin
-        Clear(Rec.SystemId);
-        TempFieldSet.DeleteAll();
-    end;
-
+  
 
     local procedure RegisterFieldSet(FieldNo: Integer)
     begin
