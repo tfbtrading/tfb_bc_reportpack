@@ -7,6 +7,7 @@ page 53002 "TFB APIV2 - Price List Items"
     EntityName = 'priceListItem';
     EntitySetName = 'priceListItems';
     ODataKeyFields = ItemID, "No.", "Item Category ID", "Vendor Id";
+    DataAccessIntent = ReadOnly;
 
     PageType = API;
     SourceTable = "TFB Price List Item Buffer";
@@ -14,6 +15,7 @@ page 53002 "TFB APIV2 - Price List Items"
     Extensible = false;
     InsertAllowed = false;
     ModifyAllowed = false;
+    Editable = false;
     DeleteAllowed = false;
     APIPublisher = 'tfb';
     APIGroup = 'inreach';
