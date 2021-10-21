@@ -893,30 +893,60 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB Customer Price History - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2101413429 - Control 3999962618 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Pricing Group Code field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB Customer Price History - Control customerPriceGroup - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 2101413429 - Control 3999962618 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Pricing Group Code</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB Customer Price History - Control customerPriceGroup - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2101413429 - Control 3974559649 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Dated field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB Customer Price History - Control effectiveFromOrOn - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2101413429 - Control 3974559649 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Dated</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB Customer Price History - Control effectiveFromOrOn - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2101413429 - Control 1875849762 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Price Per Kg field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB Customer Price History - Control pricePerKg - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 2101413429 - Control 1875849762 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Price Per Kg</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB Customer Price History - Control pricePerKg - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2101413429 - Control 922195539 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Price Source No field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB Customer Price History - Control priceSourceNo - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2101413429 - Control 922195539 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Price Source No</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB Customer Price History - Control priceSourceNo - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 2101413429 - Control 3378750023 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Price Type field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB Customer Price History - Control priceType - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 2101413429 - Control 3378750023 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Price Type</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB Customer Price History - Control priceType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2101413429 - Control 3421409717 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the value of the Price Per Unit field.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB Customer Price History - Control unitPrice - Property ToolTip</note>
         </trans-unit>
         <trans-unit id="Page 2101413429 - Control 3421409717 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Price Per Unit</source>

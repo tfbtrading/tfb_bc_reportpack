@@ -323,7 +323,7 @@ table 53120 "TFB Price List Item Buffer"
                 Rec.LastPaidKgPrice := PriceCU.CalcPerKgFromUnit(Rec.LastPaidUnitPrice, Rec."Net Weight");
 
                 Rec."Country/Region of Origin Code" := Item."Country/Region of Origin Code";
-                Rec.SpecificationCDN := CommonCU.GetSpecificationURL(Item);
+                Rec.SpecificationCDN := CommonCU.GetSpecificationURL(Item).Substring(1,512);
 
 
                 If Vendor.Get(Item."Vendor No.") then
@@ -521,31 +521,6 @@ table 53120 "TFB Price List Item Buffer"
 
     end;
 
-    local procedure GetPalletSplitOptions(Item: Record Item)
-
-    var
-        PurchasingCode: Record Purchasing;
-        Vendor: record Vendor;
-        DropShip: Boolean;
-    begin
-        If PurchasingCode.Get(Item."Purchasing Code") then
-            If PurchasingCode."Drop Shipment" then
-                DropShip := true;
-
-
-        Rec.MultiItemPalletOption := Item."TFB Multi-item Pallet Option";
-        Rec.QtyPerLayer := Item."TFB No. Of Bags Per Layer";
-
-        case DropShip of
-            true:
-                If Vendor.Get(Item."Vendor No.") then
-                    Rec.MaxProductsPerPallet := Vendor."TFB Max Products Per Pallet";
-            false:
-                If Rec.MultiItemPalletOption = Rec.MultiItemPalletOption::Half then
-                    Rec.MaxProductsPerPallet := 2;
-        end;
-    end;
-
     local procedure GetAvailability(Item: Record Item): Boolean
     var
 
@@ -734,18 +709,7 @@ table 53120 "TFB Price List Item Buffer"
 
     end;
 
-    local procedure GetUnitType(var Item: Record Item): Text
-
-    var
-
-        UnitOfMeasure: Record "Unit of Measure";
-
-
-    begin
-
-        If UnitOfMeasure.Get(Item."Base Unit of Measure") then
-            Exit(Format(Item."Net Weight") + 'kg net ' + UnitOfMeasure.Description);
-    end;
+   
 
     local procedure GetPerPallet(var ItemVar: Record Item): Integer
 
@@ -762,24 +726,7 @@ table 53120 "TFB Price List Item Buffer"
             Exit(ItemUnitOfMeasure."Qty. per Unit of Measure");
     end;
 
-    local procedure GetAQISFactors(var ItemVar: Record Item): Text
-    var
-
-        ReturnText: TextBuilder;
-    begin
-
-
-        If ItemVar."TFB Fumigation" then
-            ReturnText.Append('F');
-
-        If ItemVar."TFB Inspection" then
-            if ReturnText.Length() > 0 then
-                ReturnText.Append(',I')
-            else
-                ReturnText.Append('I');
-
-        exit(ReturnText.ToText()); // Added an exit to reset the global var when function cannot find a result
-    end;
+  
 
     local procedure GetBookmarkStatus(ItemNo: Code[20]; CustNo: Code[20]): Boolean
 

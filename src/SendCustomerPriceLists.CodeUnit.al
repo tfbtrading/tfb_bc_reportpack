@@ -76,10 +76,10 @@ codeunit 53002 "TFB Send Customer Price Lists"
     var
 
         Customer: Record Customer;
-        Window: Dialog;
         Builder: CodeUnit "Report Xml Parameters Builder";
         ReportPackCU: CodeUnit "TFB Report Pack Mgmt";
         PriceListDialog: Page "TFB Price List Dialog";
+        Window: Dialog;
         ParametersXML: XmlDocument;
         ParametersString: Text;
         HTMLTemplate: Text;

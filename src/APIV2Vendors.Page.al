@@ -59,7 +59,7 @@ page 53005 "TFB APIV2 - Vendors"
                     Multiplicity = ZeroOrOne;
                     EntityName = 'picture';
                     EntitySetName = 'pictures';
-                    SubPageLink = Id = Field(SystemId), "Parent Type" = const(3);
+                    SubPageLink = Id = Field(SystemId), "Parent Type" = const(Vendor);
                 }
 
             }

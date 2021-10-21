@@ -7,6 +7,7 @@ page 53002 "TFB APIV2 - Price List Items"
     EntityName = 'priceListItem';
     EntitySetName = 'priceListItems';
     ODataKeyFields = ItemID, "No.", "Item Category ID", "Vendor Id";
+    DataAccessIntent = ReadOnly;
 
     PageType = API;
     SourceTable = "TFB Price List Item Buffer";
@@ -14,6 +15,7 @@ page 53002 "TFB APIV2 - Price List Items"
     Extensible = false;
     InsertAllowed = false;
     ModifyAllowed = false;
+    Editable = false;
     DeleteAllowed = false;
     APIPublisher = 'tfb';
     APIGroup = 'inreach';
@@ -155,7 +157,7 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
                     Caption = 'Multi-Item pallet option';
                 }
-                field(maxItemsPerPallet;Rec.MaxProductsPerPallet)
+                field(maxItemsPerPallet; Rec.MaxProductsPerPallet)
                 {
                     Caption = 'Max items per pallet';
                 }
@@ -239,7 +241,7 @@ page 53002 "TFB APIV2 - Price List Items"
                     Multiplicity = ZeroOrOne;
                     EntityName = 'picture';
                     EntitySetName = 'pictures';
-                    SubPageLink = Id = Field(ItemID), "Parent Type" = const(2);
+                    SubPageLink = Id = Field(ItemID), "Parent Type" = const(Item);
                 }
                 part(priceTrackingEntry; "TFB APIV2 - Price History")
                 {
@@ -321,12 +323,10 @@ page 53002 "TFB APIV2 - Price List Items"
 
         CountryRegion: Record "Country/Region";
         SalesSetup: Record "Sales & Receivables Setup";
-        CommonCU: Codeunit "TFB Common Library";
         ShippingAgentName: Text;
         RecordsLoaded: Boolean;
 
         ImageCDN: Text;
-        SpecificationCDN: Text;
         FiltersNotSpecifiedErrorLbl: Label 'id type not specified.';
 
         CountryOfOriginName: Text;
