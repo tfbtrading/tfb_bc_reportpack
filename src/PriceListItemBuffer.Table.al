@@ -562,7 +562,7 @@ table 53120 "TFB Price List Item Buffer"
     begin
 
         ItemLedger.SetFilter("Posting Date", '<t-7d..>');
-        ItemLedger.SetFilter("Entry Type", '%1|%2|%3|%4', ItemLedger."Entry Type"::Purchase, ItemLedger."Entry Type"::Transfer, ItemLedger."Entry Type"::"Assembly Output");
+        ItemLedger.SetFilter("Entry Type", '%1|%2|%3', ItemLedger."Entry Type"::Purchase, ItemLedger."Entry Type"::Transfer, ItemLedger."Entry Type"::"Assembly Output");
         ItemLedger.SetFilter("Location Code", 'CS|MB|EFFLOG|BRS-3PL'); //TODO Add in a configure setting for warehouses included
         ItemLedger.SetRange("Drop Shipment", false);
         ItemLedger.SetRange("Item No.", Item."No.");
