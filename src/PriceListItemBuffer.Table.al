@@ -568,7 +568,7 @@ table 53120 "TFB Price List Item Buffer"
         ItemLedger.SetRange("Item No.", Item."No.");
         ItemLedger.SetCurrentKey("Posting Date");
         ItemLedger.SetAscending("Posting Date", false);
-        ItemLedger.SetLoadFields(Quantity, "Posting Date", "Entry No.");
+        ItemLedger.SetLoadFields("Remaining Quantity", Quantity, "Posting Date", "Entry No.");
 
         If not ItemLedger.FindFirst() then exit;
 
@@ -577,7 +577,7 @@ table 53120 "TFB Price List Item Buffer"
         LastReceiptDate := ItemLedger."Posting Date";
         LastReceiptQty := ItemLedger.Quantity;
         ItemLedger.CalcFields("Reserved Quantity");
-        LastReceiptQtySold := ItemLedger."Reserved Quantity";
+        LastReceiptQtySold := ItemLedger."Reserved Quantity" + (ItemLedger.Quantity - ItemLedger."Remaining Quantity");
 
         Salesline.SetRange("Document Type"::Order);
         Salesline.SetRange("No.", Item."No.");
