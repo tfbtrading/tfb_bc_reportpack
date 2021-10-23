@@ -134,6 +134,10 @@ table 53120 "TFB Price List Item Buffer"
         {
 
         }
+        field(53300; AvailableToSellBaseQty; Decimal)
+        {
+
+        }
         field(53057; LastPaidKgPrice; Decimal)
         {
 
@@ -145,10 +149,14 @@ table 53120 "TFB Price List Item Buffer"
 
         field(53060; Availability; Text[100])
         {
+            ObsoleteState = Pending;
+            ObsoleteReason = 'Replaced by enum';
         }
 
         field(53070; EstETA; Text[50])
         {
+            ObsoleteState = Pending;
+            ObsoleteReason = 'Replaced by date field';
 
         }
         field(53075; "NextAvailable"; Date)
@@ -261,6 +269,27 @@ table 53120 "TFB Price List Item Buffer"
         {
 
         }
+        field(53310; "LastReceiptDate"; Date)
+        {
+
+        }
+        field(53320; "LastReceiptQty"; Decimal)
+        {
+
+        }
+        field(53330; "LastReceiptQtySold"; Decimal)
+        {
+
+        }
+
+        field(53340; "MarketInsightType"; Enum "TFB Market Insight Type")
+        {
+
+        }
+        field(53350; "LastSaleDateTime"; DateTime)
+        {
+
+        }
 
     }
 
@@ -323,7 +352,7 @@ table 53120 "TFB Price List Item Buffer"
                 Rec.LastPaidKgPrice := PriceCU.CalcPerKgFromUnit(Rec.LastPaidUnitPrice, Rec."Net Weight");
 
                 Rec."Country/Region of Origin Code" := Item."Country/Region of Origin Code";
-                Rec.SpecificationCDN := CommonCU.GetSpecificationURL(Item).Substring(1,512);
+                Rec.SpecificationCDN := CommonCU.GetSpecificationURL(Item);
 
 
                 If Vendor.Get(Item."Vendor No.") then
@@ -333,6 +362,7 @@ table 53120 "TFB Price List Item Buffer"
                 Rec.MarketingCopy := GetMarketingCopy(Item);
                 GetSalesListPricing(Customer."No.", Customer."Customer Price Group", Item);
                 GetAvailability(Item);
+                GetRecentStockStatus(Item);
                 GetTransportDetails(Item, Customer);
                 FavouritedItem := GetFavouriteStatus(Item."No.", Customer."No.");
                 QtyPendingDelivery := GetQtyPendingDelivery(Item."No.", Customer."No.");
@@ -480,6 +510,8 @@ table 53120 "TFB Price List Item Buffer"
                 If OldKgPrice <> KgPrice then begin
                     PriceChangeDate := PriceListLine."Starting Date";
                     DaysSincePriceChange := SearchDate - PriceListLine."Starting Date";
+                    If DaysSincePriceChange < 7 then
+                        MarketInsightType := MarketInsightType::PriceChange;
                 end;
             end
             else begin
@@ -521,13 +553,51 @@ table 53120 "TFB Price List Item Buffer"
 
     end;
 
+    local procedure GetRecentStockStatus(Item: Record Item)
+
+    var
+        ItemLedger: Record "Item Ledger Entry";
+        Salesline: Record "Sales Line";
+
+    begin
+
+        ItemLedger.SetFilter("Posting Date", '<t-7d..>');
+        ItemLedger.SetFilter("Entry Type", '%1|%2|%3|%4', ItemLedger."Entry Type"::Purchase, ItemLedger."Entry Type"::Transfer, ItemLedger."Entry Type"::"Assembly Output");
+        ItemLedger.SetFilter("Location Code", 'CS|MB|EFFLOG|BRS-3PL'); //TODO Add in a configure setting for warehouses included
+        ItemLedger.SetRange("Drop Shipment", false);
+        ItemLedger.SetRange("Item No.", Item."No.");
+        ItemLedger.SetCurrentKey("Posting Date");
+        ItemLedger.SetAscending("Posting Date", false);
+        ItemLedger.SetLoadFields(Quantity, "Posting Date", "Entry No.");
+
+        If not ItemLedger.FindFirst() then exit;
+
+
+
+        LastReceiptDate := ItemLedger."Posting Date";
+        LastReceiptQty := ItemLedger.Quantity;
+        ItemLedger.CalcFields("Reserved Quantity");
+        LastReceiptQtySold := ItemLedger."Reserved Quantity";
+
+        Salesline.SetRange("Document Type"::Order);
+        Salesline.SetRange("No.", Item."No.");
+        Salesline.SetFilter("Outstanding Qty. (Base)", '>0');
+        Salesline.SetCurrentKey(SystemCreatedAt);
+        SalesLine.SetAscending(SystemCreatedAt, false);
+        If salesline.FindFirst() then
+            LastSaleDateTime := salesline.SystemCreatedAt;
+
+        MarketInsightType := MarketInsightType::NewStock;
+
+
+    end;
+
     local procedure GetAvailability(Item: Record Item): Boolean
     var
 
-        ItemLedger: Record "Item Ledger Entry";
+        SalesLine: Record "Sales Line";
+        SalesShipmentLine: Record "Sales Shipment Line";
         PurchasingCode: Record Purchasing;
-        ResEntry: Record "Reservation Entry";
-        QtyReserved: Decimal;
         QtyRemaining: Decimal;
         NextQtyRemaining: Decimal;
         SafetyStock: Decimal;
@@ -538,10 +608,10 @@ table 53120 "TFB Price List Item Buffer"
 
     begin
 
-        EstETA := '';
         NextAvailable := 0D;
-        Availability := '';
         NextQtyRemaining := 0;
+
+
         If Item."Safety Stock Quantity" = 0 then
             SafetyStock := 200 else
             SafetyStock := Item."Safety Stock Quantity";
@@ -570,39 +640,46 @@ table 53120 "TFB Price List Item Buffer"
 
             end
         else begin
-            Clear(ItemLedger);
-            ItemLedger.SetRange("Item No.", Item."No.");
-            ItemLedger.SetFilter("Entry Type", '%1|%2|%3|%4', ItemLedger."Entry Type"::Purchase, ItemLedger."Entry Type"::"Positive Adjmt.", ItemLedger."Entry Type"::Transfer, ItemLedger."Entry Type"::"Assembly Output");
-            ItemLedger.SetRange(Open, true);
+
+            Item.SetFilter("Drop Shipment Filter", '%1', false);
+            Item.SetFilter("Location Filter", 'CS|MB|EFFLOG|BRS-3PL'); //TODO Add code to dynamically configure this;
+            Item.CalcFields(Inventory, "Reserved Qty. on Inventory");
+
+            QtyRemaining := Item.Inventory - Item."Reserved Qty. on Inventory";
 
 
-            If ItemLedger.CalcSums("Remaining Quantity") then begin
 
-                ResEntry.SetRange("Source Type", 32);
-                ResEntry.SetRange("Item No.", Item."No.");
-                ResEntry.SetRange("Reservation Status", ResEntry."Reservation Status"::Reservation);
-                ResEntry.SetRange(Positive, true);
-                ResEntry.CalcSums("Qty. to Handle (Base)");
-                QtyReserved := ResEntry."Qty. to Handle (Base)";
-                QtyRemaining := ItemLedger."Remaining Quantity" - QtyReserved;
-
-
-                Case QtyRemaining of
-                    0:
-                        begin
-                            AvailabilityStatus := AvailabilityStatus::OutofStock;
-                            If GetDateOfNextOrderOrTransfer(Item."No.", NextQtyRemaining, EstDateInt) then
-                                NextAvailable := EstDateInt;
-                        end;
-                    1 .. SafetyStock:
+            Case QtyRemaining of
+                0:
+                    begin
+                        AvailabilityStatus := AvailabilityStatus::OutofStock;
+                        If GetDateOfNextOrderOrTransfer(Item."No.", NextQtyRemaining, EstDateInt) then
+                            NextAvailable := EstDateInt;
+                    end;
+                1 .. SafetyStock:
+                    begin
                         AvailabilityStatus := AvailabilityStatus::Low;
-                    else
-                        AvailabilityStatus := AvailabilityStatus::Okay;
-                end;
+                        If GetDateOfNextOrderOrTransfer(Item."No.", NextQtyRemaining, EstDateInt) then
+                            NextAvailable := EstDateInt;
+                    end;
+                else
+                    AvailabilityStatus := AvailabilityStatus::Okay;
             end;
-
         end;
+
+        AvailableToSellBaseQty := QtyRemaining;
+        If (AvailabilityStatus = AvailabilityStatus::Low) and (not DropShip) then
+            MarketInsightType := MarketInsightType::LowStock;
+
+        If (AvailabilityStatus = AvailabilityStatus::OutofStock) and (not DropShip) then
+            MarketInsightType := MarketInsightType::OutOfStock;
+
+
+
+        MarketInsightType := MarketInsightType::NewStock;
+
     end;
+
 
     local procedure GetFavouriteStatus(ItemNo: Code[20]; CustNo: Code[20]): Boolean
 
@@ -709,9 +786,9 @@ table 53120 "TFB Price List Item Buffer"
 
     end;
 
-   
 
-    local procedure GetPerPallet(var ItemVar: Record Item): Integer
+
+    local procedure GetPerPallet(ItemVar: Record Item): Integer
 
     var
 
@@ -726,7 +803,7 @@ table 53120 "TFB Price List Item Buffer"
             Exit(ItemUnitOfMeasure."Qty. per Unit of Measure");
     end;
 
-  
+
 
     local procedure GetBookmarkStatus(ItemNo: Code[20]; CustNo: Code[20]): Boolean
 

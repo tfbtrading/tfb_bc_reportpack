@@ -1,11 +1,11 @@
-page 53002 "TFB APIV2 - Price List Items"
+page 53008 "TFB APIV2 - Market Insights"
 {
     APIVersion = 'v2.0';
-    EntityCaption = 'Price List Item';
-    EntitySetCaption = 'Price List Items';
+    EntityCaption = 'Market Insight';
+    EntitySetCaption = 'Market Insights';
     DelayedInsert = true;
-    EntityName = 'priceListItem';
-    EntitySetName = 'priceListItems';
+    EntityName = 'marketInsight';
+    EntitySetName = 'marketInsights';
     ODataKeyFields = ItemID, "No.", "Item Category ID", "Vendor Id";
     DataAccessIntent = ReadOnly;
 
@@ -45,10 +45,6 @@ page 53002 "TFB APIV2 - Price List Items"
                 field(marketingCopy; Rec.MarketingCopy)
                 {
                     Caption = 'Marketing Copy';
-                }
-                field(marketInsightType; Rec.MarketInsightType)
-                {
-
                 }
                 field(netWeight; Rec."Net Weight")
                 {
@@ -112,29 +108,9 @@ page 53002 "TFB APIV2 - Price List Items"
                     Caption = 'Availability Status';
 
                 }
-                field(availableToSellBaseQty; Rec.AvailableToSellBaseQty)
-                {
-                    Caption = 'Available To Sell Base Qty';
-                }
                 field(nextAvailable; Rec.NextAvailable)
                 {
                     Caption = 'Next Availability Date';
-                }
-                field(lastReceiptDate; Rec.LastReceiptDate)
-                {
-                    Caption = 'Last Receipt Date';
-                }
-                field(lastReceiptQty; Rec.LastReceiptQty)
-                {
-                    Caption = 'Last Receipt Quantity';
-                }
-                field(lastReceiptQtySold; Rec.LastReceiptQtySold)
-                {
-                    Caption = 'Last Receipt Quantity Sold';
-                }
-                field(lastSaleTimeStamp; Rec.LastSaleDateTime)
-                {
-                    Caption = 'Last Sale TimeStamp';
                 }
                 field(qtyPerPallet; Rec.PerPallet)
                 {
@@ -144,6 +120,7 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
                     Caption = 'Date Last Dispatched';
                 }
+
 
                 field(qtyOutstanding; Rec.QtyPendingDelivery)
                 {
