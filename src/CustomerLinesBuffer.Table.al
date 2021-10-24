@@ -52,6 +52,10 @@ table 53140 "TFB Customer Lines Buffer"
         {
 
         }
+        field(13; "Line No."; Integer)
+        {
+
+        }
         field(30; "Vendor Id"; GUID)
         {
             Caption = 'Vendor ID';
@@ -204,7 +208,7 @@ table 53140 "TFB Customer Lines Buffer"
 
     keys
     {
-        key(PK; CustomerID, DocumentType, DocumentID, "No.")
+        key(PK; CustomerID, DocumentType, DocumentID, "Line No.", "No.")
         {
             Clustered = true;
         }
@@ -244,6 +248,7 @@ table 53140 "TFB Customer Lines Buffer"
                 Rec.CustomerID := CustomerIdFilter;
                 Rec."No." := Item."No.";
                 Rec.ItemID := Item.SystemId;
+                Rec."Line No." := SalesLine."Line No.";
                 Rec.Description := Item.Description;
                 Rec."Net Weight" := Item."Net Weight";
                 Rec."Alternative Names" := Item."TFB Alt. Names";
@@ -304,6 +309,7 @@ table 53140 "TFB Customer Lines Buffer"
                 Rec.DocumentType := Rec.DocumentType::Shipment;
                 Rec."No." := Item."No.";
                 Rec.ItemID := Item.SystemId;
+                Rec."Line No." := ShipmentLine."Line No.";
                 Rec.Description := Item.Description;
                 Rec."Net Weight" := Item."Net Weight";
                 Rec."Alternative Names" := Item."TFB Alt. Names";
