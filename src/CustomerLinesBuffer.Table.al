@@ -204,7 +204,7 @@ table 53140 "TFB Customer Lines Buffer"
 
     keys
     {
-        key(PK; CustomerID, "No.")
+        key(PK; CustomerID, DocumentType, DocumentID, "No.")
         {
             Clustered = true;
         }
@@ -268,8 +268,8 @@ table 53140 "TFB Customer Lines Buffer"
 
                 SalesHeader.Get(SalesLine."Document Type", SalesLine."Document No.");
 
-                
-                LineUnitOfMeasure.Get(Item."No.",SalesLine."Unit of Measure Code");
+
+                LineUnitOfMeasure.Get(Item."No.", SalesLine."Unit of Measure Code");
                 UnitOfMeasure.Get(LineUnitOfMeasure.Code);
                 Rec."Unit of Measure ID" := UnitOfMeasure.SystemId;
 
