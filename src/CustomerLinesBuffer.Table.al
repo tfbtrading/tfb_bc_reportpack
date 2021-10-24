@@ -204,6 +204,10 @@ table 53140 "TFB Customer Lines Buffer"
         {
 
         }
+        field(280; "No. Of Non-Conformances"; Integer)
+        {
+
+        }
     }
 
     keys
@@ -237,8 +241,9 @@ table 53140 "TFB Customer Lines Buffer"
 
         Customer.GetBySystemId(CustomerIdFilter);
         SalesLine.SetRange("Sell-to Customer No.", Customer."No.");
+        SalesLine.SetRange("Document Type", SalesLine."Document Type"::Order);
         SalesLine.SetFilter("Outstanding Quantity", '>0');
-        SalesLine.SetFilter("Planned Shipment Date", '<=t');
+        SalesLine.SetFilter("Planned Shipment Date", '<=t+7d');
 
         If SalesLine.FindSet(false, false) then
             repeat
@@ -279,12 +284,14 @@ table 53140 "TFB Customer Lines Buffer"
                 Rec."Unit of Measure ID" := UnitOfMeasure.SystemId;
 
                 Rec.DocumentID := SalesHeader.SystemId;
+                Rec.DocumentType := Rec.DocumentType::Order;
                 Rec.QtyPendingDelivery := SalesLine."Outstanding Qty. (Base)";
                 Rec.PlannedShipmentDate := SalesLine."Planned Shipment Date";
                 Rec.RequestedDeliveryDate := SalesLine."Requested Delivery Date";
                 Rec."External Document No." := SalesHeader."External Document No.";
                 Rec."Ship-to Code" := SalesHeader."Ship-to Code";
                 Rec."Ship-to Name" := SalesHeader."Ship-to Name";
+                Rec."Ship-to Contact" := SalesHeader."Ship-to Contact";
                 Rec."Ship-to Address" := SalesHeader."Ship-to Address";
                 Rec."Ship-to Address 2" := SalesHeader."Ship-to Address 2";
                 Rec."Ship-to City" := SalesHeader."Ship-to City";
@@ -352,12 +359,49 @@ table 53140 "TFB Customer Lines Buffer"
                 Rec."Ship-to Address" := ShipmentHeader."Ship-to Address";
                 Rec."Ship-to Address 2" := ShipmentHeader."Ship-to Address 2";
                 Rec."Ship-to City" := ShipmentHeader."Ship-to City";
+                Rec."Ship-to Contact" := ShipmentHeader."Ship-to Contact";
                 Rec."Ship-to County" := ShipmentHeader."Ship-to County";
                 Rec."Ship-to Post Code" := ShipmentHeader."Ship-to Post Code";
                 Rec."Ship-to Country/Region Code" := ShipmentHeader."Ship-to Country/Region Code";
+                Rec."No. Of Non-Conformances" := NonConformanceCount(ShipmentLine);
 
                 Rec.Insert();
             until ShipmentLine.Next() = 0;
+    end;
+
+    local procedure NonConformanceCount(ShipmentLine: Record "Sales Shipment Line"): Integer
+
+    var
+
+
+    begin
+        Exit(GetNonConformances(ShipmentLine).Count());
+    end;
+
+    local procedure GetNonConformances(ShipmentLine: Record "Sales Shipment Line") TempNCR: Record "TFB Non-Conformance Report" temporary
+
+    var
+        ItemLedgerEntry: Record "Item Ledger Entry";
+        NCR: Record "TFB Non-Conformance Report";
+    begin
+        ItemLedgerEntry.SetRange("Entry Type", ItemLedgerEntry."Entry Type"::Sale);
+        ItemLedgerEntry.SetRange("Document No.", ShipmentLine."Document No.");
+        ItemLedgerEntry.SetRange("Document Line No.", ShipmentLine."Line No.");
+        ItemLedgerEntry.SetRange("Document Type", ItemLedgerEntry."Document Type"::"Sales Shipment");
+        TempNCR.DeleteAll();
+
+        If ItemLedgerEntry.FindSet(false, false) then
+            repeat
+                NCR.SetRange("Item Ledger Entry No.", ItemLedgerEntry."Entry No.");
+                If NCR.FindSet(false, false) then
+                    repeat
+                        TempNCR.Init();
+                        TempNCR := NCR;
+                        TempNCR.Insert();
+                    until NCR.Next() = 0;
+
+            until ItemLedgerEntry.Next() = 0;
+
     end;
 
     local procedure GetTransportDetails(CustomerNo: Code[20]; "Shipping Agent Code": Code[10]; "Shipping Agent Service Code": Code[10]; DropShipment: Boolean; DropShipmentOrderNo: Code[20]; PlannedShipmentDate: Date): Boolean

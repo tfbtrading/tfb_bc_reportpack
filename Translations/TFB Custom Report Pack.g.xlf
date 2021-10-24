@@ -93,6 +93,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field ItemID - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3960208283 - Field 3320823955 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field Line No. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3960208283 - Field 3088522385 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Net Weight</source>
           <note from="Developer" annotates="general" priority="2"></note>

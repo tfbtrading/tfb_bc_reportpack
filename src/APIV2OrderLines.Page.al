@@ -144,6 +144,10 @@ page 53008 "TFB APIV2 - Order Lines"
                 {
                     Caption = 'Related Invoice ID';
                 }
+                field(noOfNonConformances; Rec."No. Of Non-Conformances")
+                {
+                    Caption = 'No. Of Non Conformances';
+                }
                 field(requestedDeliveryDate; Rec.RequestedDeliveryDate)
                 {
                     Caption = 'RequestedDeliveryDate';
