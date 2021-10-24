@@ -1578,23 +1578,28 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum TFB Availability Status - EnumValue OutofStock - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Enum 4046435550 - EnumValue 1371923692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>None</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum TFB Market Insight Type - EnumValue   - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Enum 4046435550 - EnumValue 1187825072 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Low Stock</source>
+          <source>LowStock</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum TFB Market Insight Type - EnumValue LowStock - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 4046435550 - EnumValue 2917524728 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Newly In Stock</source>
+          <source>NewStock</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum TFB Market Insight Type - EnumValue NewStock - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 4046435550 - EnumValue 2231529401 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Out Of Stock</source>
+          <source>OutOfStock</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum TFB Market Insight Type - EnumValue OutOfStock - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 4046435550 - EnumValue 473339197 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Price Change</source>
+          <source>PriceChange</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum TFB Market Insight Type - EnumValue PriceChange - Property Caption</note>
         </trans-unit>
