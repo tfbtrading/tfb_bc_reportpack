@@ -326,6 +326,7 @@ table 53120 "TFB Price List Item Buffer"
             repeat
                 clear(Rec);
                 Rec.CustomerID := CustomerIdFilter;
+                Rec.MarketInsightType := Rec.MarketInsightType::" ";
                 Rec."No." := Item."No.";
                 Rec.ItemID := Item.SystemId;
                 Rec.Description := Item.Description;
@@ -673,10 +674,6 @@ table 53120 "TFB Price List Item Buffer"
 
         If (AvailabilityStatus = AvailabilityStatus::OutofStock) and (not DropShip) then
             MarketInsightType := MarketInsightType::OutOfStock;
-
-
-
-        MarketInsightType := MarketInsightType::NewStock;
 
     end;
 

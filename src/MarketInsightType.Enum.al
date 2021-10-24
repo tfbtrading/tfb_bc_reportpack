@@ -2,22 +2,25 @@ enum 53002 "TFB Market Insight Type"
 {
     Extensible = true;
 
-
-    value(0; LowStock)
+    value(0; " ")
     {
-        Caption = 'Low Stock';
+        Caption = 'None';
     }
-    value(1; NewStock)
+    value(1; LowStock)
     {
-        Caption = 'Newly In Stock';
+        Caption = 'LowStock';
     }
-    value(2; PriceChange)
+    value(2; NewStock)
     {
-        Caption = 'Price Change';
+        Caption = 'NewStock';
     }
-    value(3; OutOfStock)
+    value(3; PriceChange)
     {
-        Caption = 'Out Of Stock';
+        Caption = 'PriceChange';
+    }
+    value(4; OutOfStock)
+    {
+        Caption = 'OutOfStock';
     }
 
 }
