@@ -4,7 +4,7 @@ page 53008 "TFB APIV2 - Order Lines"
     EntityCaption = 'Order Lines';
     EntitySetCaption = 'Order Lines';
     DelayedInsert = true;
-    EntityName = 'orderLines';
+    EntityName = 'orderLine';
     EntitySetName = 'orderLines';
     ODataKeyFields = DocumentType, DocumentID, CustomerLineStatus, "No.";
     DataAccessIntent = ReadOnly;

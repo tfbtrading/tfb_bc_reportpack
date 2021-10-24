@@ -169,6 +169,13 @@ page 53001 "TFB APIV2 - Customers"
                     EntitySetName = 'priceListItems';
                     SubPageLink = CustomerID = Field(SystemId);
                 }
+                part(orderLines; "TFB APIV2 - Order Lines")
+                {
+                    Caption = 'Customer Order Lines';
+                    EntityName = 'orderLine';
+                    EntitySetName = 'orderLines';
+                    SubPageLink = CustomerID = Field(SystemId);
+                }
             }
         }
     }
@@ -192,7 +199,7 @@ page 53001 "TFB APIV2 - Customers"
     end;
 
     var
- 
+
         //PaymentMethod: Record "Payment Method";
         TempFieldSet: Record 2000000041 temporary;
         GraphMgtGeneralTools: Codeunit "Graph Mgt - General Tools";
@@ -209,7 +216,7 @@ page 53001 "TFB APIV2 - Customers"
 
     end;
 
-  
+
 
     local procedure RegisterFieldSet(FieldNo: Integer)
     begin
