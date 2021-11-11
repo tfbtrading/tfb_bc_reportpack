@@ -102,6 +102,10 @@ table 53140 "TFB Customer Lines Buffer"
         {
 
         }
+        field(137; OrderDate; Date)
+        {
+
+        }
 
         field(138; "PlannedShipmentDate"; Date)
         {
@@ -285,6 +289,7 @@ table 53140 "TFB Customer Lines Buffer"
 
                 Rec.DocumentID := SalesHeader.SystemId;
                 Rec.DocumentType := Rec.DocumentType::Order;
+                Rec.OrderDate := SalesHeader."Order Date";
                 Rec.QtyPendingDelivery := SalesLine."Outstanding Qty. (Base)";
                 Rec.PlannedShipmentDate := SalesLine."Planned Shipment Date";
                 Rec.RequestedDeliveryDate := SalesLine."Requested Delivery Date";
@@ -338,6 +343,7 @@ table 53140 "TFB Customer Lines Buffer"
 
                 ShipmentHeader.Get(ShipmentLine."Document No.");
                 Rec.DocumentID := ShipmentHeader.SystemId;
+                Rec.OrderDate := ShipmentHeader."Order Date";
                 GetTransportDetails(ShipmentHeader."Sell-to Customer No.", ShipmentHeader."Shipping Agent Code", ShipmentHeader."Shipping Agent Service Code", ShipmentLine."Drop Shipment", ShipmentLine."Purchase Order No.", ShipmentHeader."Posting Date");
                 Rec.PackageTrackingNo := ShipmentHeader."Package Tracking No.";
                 PerPallet := GetPerPallet(Item);

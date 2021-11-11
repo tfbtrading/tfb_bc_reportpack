@@ -108,6 +108,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3960208283 - Field 638457102 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. Of Non-Conformances</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field No. Of Non-Conformances - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3960208283 - Field 1817760606 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>OrderDate</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field OrderDate - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3960208283 - Field 902657488 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>PackageTrackingNo</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -907,6 +917,11 @@
           <source>Net Weight</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Order Lines - Control netWeight - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1185520806 - Control 4013674619 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No. Of Non Conformances</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Order Lines - Control noOfNonConformances - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1185520806 - Control 2757394829 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>No.</source>

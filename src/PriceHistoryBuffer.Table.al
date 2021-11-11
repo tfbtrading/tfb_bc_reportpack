@@ -180,8 +180,8 @@ table 53150 "TFB Price History Buffer"
                 Rec."Line No." := LineNo;
                 Rec."Customer Price Group" := SalesInvoiceLine."Customer Price Group";
                 Rec.Dated := SalesInvoiceHeader."Order Date";
-                Rec."Unit Price" := SalesInvoiceLine."Unit Price" / SalesLine."Qty. per Unit of Measure";
-                Rec."Price Per Kg" := PricingCU.CalculatePriceUnitByUnitPrice(Item."No.", SalesInvoiceLine."Unit of Measure Code", Enum::"TFB Price Unit"::KG, SalesInvoiceLine."Unit Price");
+                Rec."Unit Price" := (SalesInvoiceLine."Line Amount" / SalesInvoiceLine.Quantity) / SalesLine."Qty. per Unit of Measure";
+                Rec."Price Per Kg" := PricingCU.CalculatePriceUnitByUnitPrice(Item."No.", SalesInvoiceLine."Unit of Measure Code", Enum::"TFB Price Unit"::KG, Rec."Unit Price");
                 Rec."Price Source No." := SalesInvoiceHeader."Order No.";
                 Rec.Insert();
             until SalesInvoiceLine.Next() = 0;
@@ -206,8 +206,8 @@ table 53150 "TFB Price History Buffer"
                 Rec."Price Type" := Rec."Price Type"::Purchase;
                 Rec."Customer Price Group" := SalesLine."Customer Price Group";
                 Rec.Dated := SalesHeader."Order Date";
-                Rec."Unit Price" := SalesLine."Unit Price" / SalesLine."Qty. per Unit of Measure";
-                Rec."Price Per Kg" := PricingCU.CalculatePriceUnitByUnitPrice(Item."No.", SalesLine."Unit of Measure Code", Enum::"TFB Price Unit"::KG, SalesLine."Unit Price");
+                Rec."Unit Price" := (SalesLine."Line Amount" - SalesLine.Quantity) / SalesLine."Qty. per Unit of Measure";
+                Rec."Price Per Kg" := PricingCU.CalculatePriceUnitByUnitPrice(Item."No.", SalesLine."Unit of Measure Code", Enum::"TFB Price Unit"::KG, Rec."Unit Price");
                 Rec."Price Source No." := SalesLine."Document No.";
                 Rec.Insert();
 

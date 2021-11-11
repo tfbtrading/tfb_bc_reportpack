@@ -600,6 +600,7 @@ table 53120 "TFB Price List Item Buffer"
         SalesShipmentLine: Record "Sales Shipment Line";
         PurchasingCode: Record Purchasing;
         QtyRemaining: Decimal;
+        DateOfLastSale: Date;
         NextQtyRemaining: Decimal;
         SafetyStock: Decimal;
 
@@ -672,11 +673,73 @@ table 53120 "TFB Price List Item Buffer"
         If (AvailabilityStatus = AvailabilityStatus::Low) and (not DropShip) then
             MarketInsightType := MarketInsightType::LowStock;
 
-        If (AvailabilityStatus = AvailabilityStatus::OutofStock) and (not DropShip) then
-            MarketInsightType := MarketInsightType::OutOfStock;
+        If (AvailabilityStatus = AvailabilityStatus::OutofStock) and (not DropShip) then begin
+
+            //Check if item was recently sold-out in last three months
+            If IsRecentlySoldOut(Item, Item."Reserved Qty. on Inventory", Rec.LastSaleDateTime) then
+                MarketInsightType := MarketInsightType::OutOfStock;
+
+
+
+        end;
 
     end;
 
+    local procedure IsRecentlySoldOut(Item: Record Item; ReservedQtyOnInventory: Integer; var LastSaleDateTime: DateTime): Boolean
+
+    var
+        ItemLedger: Record "Item Ledger Entry";
+        ReservationEntry: Record "Reservation Entry";
+        ReservationEntry2: Record "Reservation Entry";
+        SalesHeader: Record "Sales Header";
+        DurationToCheck: DateFormula;
+        BeginPeriod: Date;
+
+    begin
+
+        Evaluate(DurationToCheck, '<-1M>');
+        BeginPeriod := CalcDate(DurationToCheck, Today);
+
+        If ReservedQtyOnInventory = 0 then begin
+            ItemLedger.SetRange("Item No.", Item."No.");
+            ItemLedger.SetRange("Posting Date", BeginPeriod, Today());
+            ItemLedger.SetRange("Entry Type", ItemLedger."Entry Type"::Sale);
+            ItemLedger.SetCurrentKey("Posting Date");
+            ItemLedger.SetAscending("Posting Date", false);
+            ItemLedger.SetLoadFields("Document No.", "Posting Date");
+
+            If ItemLedger.FindFirst() then begin
+                LastSaleDateTime := ItemLedger.SystemCreatedAt;
+                Exit(true);
+            end
+            else
+                Exit(false);
+        end
+        else begin
+            ReservationEntry.SetRange("Item No.", Item."No.");
+            ReservationEntry.SetRange("Source Type", 32);
+            ReservationEntry.SetRange(Positive, true);
+            ReservationEntry.SetCurrentKey("Creation Date");
+            ReservationEntry.SetAscending("Creation Date", false);
+
+            If ReservationEntry.FindFirst() then begin
+                ReservationEntry2.SetRange("Entry No.", ReservationEntry."Entry No.");
+                ReservationEntry2.SetRange(Positive, false);
+                ReservationEntry2.SetRange("Source Type", 37);
+
+                If ReservationEntry2.FindFirst() then
+                    If SalesHeader.Get(SalesHeader."Document Type"::Order, ReservationEntry2."Source ID") then
+                        If SalesHeader."Order Date" > BeginPeriod then begin
+                            LastSaleDateTime := SalesHeader.SystemCreatedAt;
+                            Exit(true);
+                        end;
+
+            end;
+        end;
+
+
+
+    end;
 
     local procedure GetFavouriteStatus(ItemNo: Code[20]; CustNo: Code[20]): Boolean
 
@@ -727,14 +790,14 @@ table 53120 "TFB Price List Item Buffer"
 
         If SalesLine.FindLast() then
             If not ((SalesLine."Outstanding Qty. (Base)" = 0) and (salesline."Qty. Shipped Not Invd. (Base)" = 0)) then
-                Exit(SalesLine."Unit Price" / SalesLine."Qty. per Unit of Measure");
+                Exit((SalesLine."Line Amount" / SalesLine.Quantity) / SalesLine."Qty. per Unit of Measure");
 
         SalesInvoiceLine.SetRange("No.", ItemNo);
         SalesInvoiceLine.SetRange("Sell-to Customer No.", CustNo);
         SalesLine.SetCurrentKey("Document No.", "Line No.");
 
         If SalesInvoiceLine.FindLast() then
-            Exit(SalesInvoiceLine."Unit Price" / SalesInvoiceLine."Qty. per Unit of Measure");
+            Exit((SalesInvoiceLine."Line Amount" / SalesInvoiceLine.Quantity) / SalesInvoiceLine."Qty. per Unit of Measure");
     end;
 
     local procedure GetQtyPendingDelivery(ItemNo: Code[20]; CustNo: Code[20]): Decimal
