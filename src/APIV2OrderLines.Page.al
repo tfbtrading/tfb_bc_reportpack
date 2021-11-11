@@ -148,6 +148,10 @@ page 53008 "TFB APIV2 - Order Lines"
                 {
                     Caption = 'No. Of Non Conformances';
                 }
+                field(orderDate; Rec.OrderDate)
+                {
+                    Caption = 'OrderDate';
+                }
                 field(requestedDeliveryDate; Rec.RequestedDeliveryDate)
                 {
                     Caption = 'RequestedDeliveryDate';

@@ -786,7 +786,10 @@ table 53120 "TFB Price List Item Buffer"
         SalesLine.SetRange("Document Type", SalesLine."Document Type"::Order);
         SalesLine.SetRange("No.", ItemNo);
         SalesLine.SetRange("Sell-to Customer No.", CustNo);
+        SalesLine.SetFilter(Quantity, '>0');
         SalesLine.SetCurrentKey("Document No.", "Line No.");
+
+
 
         If SalesLine.FindLast() then
             If not ((SalesLine."Outstanding Qty. (Base)" = 0) and (salesline."Qty. Shipped Not Invd. (Base)" = 0)) then
@@ -794,7 +797,8 @@ table 53120 "TFB Price List Item Buffer"
 
         SalesInvoiceLine.SetRange("No.", ItemNo);
         SalesInvoiceLine.SetRange("Sell-to Customer No.", CustNo);
-        SalesLine.SetCurrentKey("Document No.", "Line No.");
+        SalesInvoiceLine.SetFilter(Quantity, '>0');
+        SalesInvoiceLine.SetCurrentKey("Document No.", "Line No.");
 
         If SalesInvoiceLine.FindLast() then
             Exit((SalesInvoiceLine."Line Amount" / SalesInvoiceLine.Quantity) / SalesInvoiceLine."Qty. per Unit of Measure");
