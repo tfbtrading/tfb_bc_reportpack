@@ -246,6 +246,7 @@ table 53140 "TFB Customer Lines Buffer"
         Customer.GetBySystemId(CustomerIdFilter);
         SalesLine.SetRange("Sell-to Customer No.", Customer."No.");
         SalesLine.SetRange("Document Type", SalesLine."Document Type"::Order);
+        SalesLine.SetRange(Type, SalesLine.Type::Item);
         SalesLine.SetFilter("Outstanding Quantity", '>0');
         SalesLine.SetFilter("Planned Shipment Date", '<=t+7d');
 
@@ -308,6 +309,7 @@ table 53140 "TFB Customer Lines Buffer"
             until SalesLine.Next() = 0;
 
         ShipmentLine.SetRange("Sell-to Customer No.", Customer."No.");
+        ShipmentLine.SetRange(Type, ShipmentLine.Type::Item);
         ShipmentLine.SetFilter(Quantity, '>0');
         ShipmentLine.SetFilter("Posting Date", '>t-1m'); //Set for previous two weeks
 
