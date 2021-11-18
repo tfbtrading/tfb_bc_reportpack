@@ -176,6 +176,10 @@ page 53008 "TFB APIV2 - Order Lines"
                 {
 
                 }
+                field(markedReceivedByCustomer; Rec.MarkedAsReceivedByCustomer)
+                {
+
+                }
                 field(podEnabled; Rec.PODEnabled)
                 {
 
@@ -184,7 +188,7 @@ page 53008 "TFB APIV2 - Order Lines"
                 {
 
                 }
-                field(podUrl;Rec.PODUrl)
+                field(podUrl; Rec.PODUrl)
                 {
 
                 }
