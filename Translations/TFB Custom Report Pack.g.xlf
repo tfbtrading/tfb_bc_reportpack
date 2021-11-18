@@ -3,6 +3,11 @@
   <file datatype="xml" source-language="en-US" target-language="en-US" original="TFB Custom Report Pack">
     <body>
       <group id="body">
+        <trans-unit id="Table 3960208283 - Field 89201093 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ActualDeliveryDateTime</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field ActualDeliveryDateTime - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3960208283 - Field 4016446262 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>ActualShipmentDate</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -98,6 +103,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field Line No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3960208283 - Field 2874062418 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>MarkedAsReceivedByCustomer</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field MarkedAsReceivedByCustomer - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3960208283 - Field 3088522385 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Net Weight</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -123,6 +133,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field PackageTrackingNo - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3960208283 - Field 2217707658 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PackageTrackingURL</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field PackageTrackingURL - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3960208283 - Field 1280049185 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>PerPallet</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -132,6 +147,21 @@
           <source>PlannedShipmentDate</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field PlannedShipmentDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3960208283 - Field 1070656946 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PODEnabled</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field PODEnabled - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3960208283 - Field 4255525320 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PODReceived</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field PODReceived - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 3960208283 - Field 4087018340 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PODUrl</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field PODUrl - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 3960208283 - Field 4173764601 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>QtyPendingDelivery</source>
@@ -927,6 +957,11 @@
           <source>No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Order Lines - Control number - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1185520806 - Control 2072918206 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>OrderDate</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Order Lines - Control orderDate - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1185520806 - Control 2241152536 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Order Line Status</source>

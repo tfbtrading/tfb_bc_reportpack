@@ -172,6 +172,22 @@ page 53008 "TFB APIV2 - Order Lines"
                 {
                     Caption = 'ActualShipmentDate';
                 }
+                field(actDeliveryDateTime; Rec.ActualDeliveryDateTime)
+                {
+
+                }
+                field(podEnabled; Rec.PODEnabled)
+                {
+
+                }
+                field(podReceived; Rec.PODReceived)
+                {
+
+                }
+                field(podUrl;Rec.PODUrl)
+                {
+
+                }
                 field(agentCode; Rec.AgentCode)
                 {
                     Caption = 'AgentCode';

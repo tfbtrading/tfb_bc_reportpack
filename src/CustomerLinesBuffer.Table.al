@@ -141,12 +141,37 @@ table 53140 "TFB Customer Lines Buffer"
         {
 
         }
+        field(202; ActualDeliveryDateTime; DateTime)
+        {
+
+
+        }
+        field(204; "PODEnabled"; Boolean)
+        {
+
+        }
+        field(206; "PODReceived"; Boolean)
+        {
+
+        }
+        field(208; "PODUrl"; Text[100])
+        {
+
+        }
+        field(209; "MarkedAsReceivedByCustomer"; Boolean)
+        {
+
+        }
 
         field(210; TrackingAvailable; Boolean)
         {
 
         }
         field(220; PackageTrackingNo; Text[50])
+        {
+
+        }
+        field(222; PackageTrackingURL; Text[100])
         {
 
         }
@@ -277,7 +302,7 @@ table 53140 "TFB Customer Lines Buffer"
                 Rec."Country/Region of Origin Code" := Item."Country/Region of Origin Code";
 
 
-                GetTransportDetails(SalesLine."Sell-to Customer No.", SalesLine."Shipping Agent Code", SalesLine."Shipping Agent Service Code", SalesLine."Drop Shipment", SalesLine."Purchase Order No.", SalesLine."Planned Shipment Date");
+                GetTransportDetails(SalesLine."Sell-to Customer No.", SalesLine."Shipping Agent Code", SalesLine."Shipping Agent Service Code", SalesLine."Drop Shipment", SalesLine."Purchase Order No.", SalesLine."Planned Shipment Date", '');
                 Rec.PackageTrackingNo := '';
                 PerPallet := GetPerPallet(Item);
 
@@ -346,7 +371,7 @@ table 53140 "TFB Customer Lines Buffer"
                 ShipmentHeader.Get(ShipmentLine."Document No.");
                 Rec.DocumentID := ShipmentHeader.SystemId;
                 Rec.OrderDate := ShipmentHeader."Order Date";
-                GetTransportDetails(ShipmentHeader."Sell-to Customer No.", ShipmentHeader."Shipping Agent Code", ShipmentHeader."Shipping Agent Service Code", ShipmentLine."Drop Shipment", ShipmentLine."Purchase Order No.", ShipmentHeader."Posting Date");
+                GetTransportDetails(ShipmentHeader."Sell-to Customer No.", ShipmentHeader."Shipping Agent Code", ShipmentHeader."Shipping Agent Service Code", ShipmentLine."Drop Shipment", ShipmentLine."Purchase Order No.", ShipmentHeader."Posting Date", ShipmentHeader."Package Tracking No.");
                 Rec.PackageTrackingNo := ShipmentHeader."Package Tracking No.";
                 PerPallet := GetPerPallet(Item);
 
@@ -412,7 +437,7 @@ table 53140 "TFB Customer Lines Buffer"
 
     end;
 
-    local procedure GetTransportDetails(CustomerNo: Code[20]; "Shipping Agent Code": Code[10]; "Shipping Agent Service Code": Code[10]; DropShipment: Boolean; DropShipmentOrderNo: Code[20]; PlannedShipmentDate: Date): Boolean
+    local procedure GetTransportDetails(CustomerNo: Code[20]; "Shipping Agent Code": Code[10]; "Shipping Agent Service Code": Code[10]; DropShipment: Boolean; DropShipmentOrderNo: Code[20]; PlannedShipmentDate: Date; PackageTrackingNo: Text[30]): Boolean
 
     var
         ShippingAgentServices: Record "Shipping Agent Services";
@@ -436,8 +461,9 @@ table 53140 "TFB Customer Lines Buffer"
             Rec.EstDeliveryDateMax := EstDeliveryDateMin;
 
         If ShippingAgent.Get(Rec.AgentCode) then
-            Rec.TrackingAvailable := ShippingAgent."Internet Address" <> ''; //internet address assumed to be trackingis available
+            Rec.TrackingAvailable := (ShippingAgent."Internet Address" <> '') and (PackageTrackingNo <> ''); //internet address assumed to be trackingis available
 
+        If TrackingAvailable then PackageTrackingURL := Text.CopyStr(ShippingAgent.GetTrackingInternetAddr(PackageTrackingNo), 1, 100);
     end;
 
 
