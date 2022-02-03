@@ -1728,6 +1728,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report TFB Price List - Control PriceHistory - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 1825560192 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Sales Return Order - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 1825560192 - Control 1992870141 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Design</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Sales Return Order - Control ForNavOpenDesigner - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 3448828929 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Send Customer Price Lists</source>
           <note from="Developer" annotates="general" priority="2"></note>
