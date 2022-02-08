@@ -233,6 +233,10 @@ table 53140 "TFB Customer Lines Buffer"
         {
 
         }
+        field(275; "Related Shipment Line ID"; GUID)
+        {
+
+        }
         field(280; "No. Of Non-Conformances"; Integer)
         {
 
@@ -370,6 +374,7 @@ table 53140 "TFB Customer Lines Buffer"
 
                 ShipmentHeader.Get(ShipmentLine."Document No.");
                 Rec.DocumentID := ShipmentHeader.SystemId;
+                Rec."Related Shipment Line ID" := ShipmentLine.SystemId;
                 Rec.OrderDate := ShipmentHeader."Order Date";
                 GetTransportDetails(ShipmentHeader."Sell-to Customer No.", ShipmentHeader."Shipping Agent Code", ShipmentHeader."Shipping Agent Service Code", ShipmentLine."Drop Shipment", ShipmentLine."Purchase Order No.", ShipmentHeader."Posting Date", ShipmentHeader."Package Tracking No.");
                 Rec.PackageTrackingNo := ShipmentHeader."Package Tracking No.";

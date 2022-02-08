@@ -472,6 +472,7 @@ table 53120 "TFB Price List Item Buffer"
         PriceAsset: Record "Price Asset";
         PriceListLine: Record "Price List Line";
         OldPriceListLine: Record "Price List Line";
+        TypeHelper: CodeUnit "Type Helper";
 
         _PriceHistory: DateFormula;
         SearchDate: Date;
@@ -487,7 +488,7 @@ table 53120 "TFB Price List Item Buffer"
         DaysSincePriceChange := 0;
 
 
-        SearchDate := Today();
+        SearchDate := DT2DATE(TypeHelper.GetCurrentDateTimeInUserTimeZone());
         Evaluate(_PriceHistory, '-1Y');
 
 
@@ -538,8 +539,6 @@ table 53120 "TFB Price List Item Buffer"
         PriceListLine.SetRange("Starting Date", 0D, EffectiveDate);
         PriceListLine.SetFilter("Ending Date", '%1|>=%2', 0D, EffectiveDate);
         PriceListLine.SetFilter("Currency Code", '%1|%2', CurrencyCode, '');
-
-
 
     end;
 

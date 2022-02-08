@@ -136,6 +136,10 @@ page 53008 "TFB APIV2 - Order Lines"
                 {
 
                 }
+                field(relatedShipmentLineID;Rec."Related Shipment Line ID")
+                {
+                    Caption = 'Related Shipment Line ID';
+                }
                 field(relatedInvoiceDocNo; Rec."Related Invoice Doc. No.")
                 {
                     Caption = 'Related Invoice Doc. No.';
