@@ -273,7 +273,7 @@ table 53140 "TFB Customer Lines Buffer"
         SalesLine.SetRange("Document Type", SalesLine."Document Type"::Order);
         SalesLine.SetRange(Type, SalesLine.Type::Item);
         SalesLine.SetFilter("Outstanding Quantity", '>0');
-        SalesLine.SetFilter("Planned Shipment Date", '<=t+7d');
+        SalesLine.SetFilter("Planned Shipment Date", '<=t+2m');
 
         If SalesLine.FindSet(false, false) then
             repeat
