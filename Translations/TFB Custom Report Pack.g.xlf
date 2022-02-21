@@ -648,6 +648,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 873002870 - Method 2256815581 - NamedType 2396386738" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No customer filter has been specified</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Method LoadDataFromFilters - NamedType FiltersNotSpecifiedErrorLbl</note>
+        </trans-unit>
         <trans-unit id="Table 873002870 - Field 3168444338 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Address</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -714,7 +719,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field Related Id - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 873002870 - Field 1249018182 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>ShipTo AddressId</source>
+          <source>ShipTo Address Id</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field ShipTo AddressId - Property Caption</note>
         </trans-unit>
