@@ -118,12 +118,14 @@ table 53050 "TFB Ship-to Address Buffer"
         ShipToAddress: Record "Ship-to Address";
         Customer: Record Customer;
 
+
     begin
+        Rec.DeleteAll();
         Customer.GetBySystemId(RelatedIdFilter);
         ShipToAddress.SetRange("Customer No.", Customer."No.");
 
         Clear(Rec);
-        If ShipToAddress.Code = '' then
+        If Customer."Ship-to Code" = '' then
             Rec."Default Address" := true;
         Rec.SystemId := Customer.SystemId;
         Rec.Address := Customer.Address;
@@ -133,7 +135,7 @@ table 53050 "TFB Ship-to Address Buffer"
         Rec."Country/Region Code" := Customer."Country/Region Code";
         Rec."Post Code" := Customer."Post Code";
         Rec.Name := Customer.Name;
-        Rec.Insert();
+        Rec.Insert(false, true);
 
         If ShipToAddress.FindSet() then
             repeat
@@ -148,7 +150,7 @@ table 53050 "TFB Ship-to Address Buffer"
                 Rec."Country/Region Code" := ShipToAddress."Country/Region Code";
                 Rec."Post Code" := ShipToAddress."Post Code";
                 Rec.Name := ShipToAddress.Name;
-                Rec.Insert();
+                Rec.Insert(false, true);
 
             until ShipToAddress.Next() = 0;
     end;

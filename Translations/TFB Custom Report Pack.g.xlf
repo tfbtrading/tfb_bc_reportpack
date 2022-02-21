@@ -643,6 +643,86 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Price List Item Buffer - Field Vendor No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 873002870 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ship-to Address Buffer</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 873002870 - Field 3168444338 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field Address - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 873002870 - Field 2306852000 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address 2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field Address 2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 873002870 - Field 714791889 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>City</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field City - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 873002870 - Field 3004954119 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 873002870 - Field 3993128796 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contact</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field Contact - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 873002870 - Field 284764054 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Country/Region Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field Country/Region Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 873002870 - Field 499448942 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>County</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field County - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 873002870 - Field 1486676687 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Default Address</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field Default Address - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 873002870 - Field 2961552353 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 873002870 - Field 966287263 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Name 2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field Name 2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 873002870 - Field 3986423421 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Phone No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field Phone No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 873002870 - Field 3660300303 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Post Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field Post Code - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 873002870 - Field 1340768974 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Related Id</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field Related Id - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 873002870 - Field 3822313814 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ShipTo Address ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field ShipTo Address ID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 873002870 - Field 721876055 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Standard Address</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field Standard Address - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Codeunit 2024371952 - Method 1393666389 - NamedType 4042886984" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sending Customer Price List:\#1############################</source>
           <note from="Developer" annotates="general" priority="2">%1=Customer</note>
@@ -652,6 +732,36 @@
           <source>Sending Customer Price Lists:\#1#########2##################</source>
           <note from="Developer" annotates="general" priority="2">%1=Customer No,%2=Customer Name</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TFB Send Customer Price Lists - NamedType Text001Msg</note>
+        </trans-unit>
+        <trans-unit id="Page 2909582113 - Property 3446740159" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ShipTo Information</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Customer ShipTos - Property EntityCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 2909582113 - Property 631549417" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ShipTo Information</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Customer ShipTos - Property EntitySetCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 2909582113 - NamedType 2396386738" size-unit="char" translate="yes" xml:space="preserve">
+          <source>id type not specified.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Customer ShipTos - NamedType FiltersNotSpecifiedErrorLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 2909582113 - Control 4022549041 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Market Segment</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Customer ShipTos - Control marketSegment - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2909582113 - Control 2347398798 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Market Segment Id</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Customer ShipTos - Control marketSegmentID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2909582113 - Control 1656136372 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Title</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Customer ShipTos - Control title - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3016377562 - Property 3446740159" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer</source>
@@ -772,6 +882,11 @@
           <source>Price List Items</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Customers - Control priceListItems - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 3016377562 - Control 3287977955 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ShipTo Addresses</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Customers - Control shipToAddresses - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3016377562 - Control 1405163793 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>State</source>
@@ -1342,6 +1457,81 @@
           <source>Vendor No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control vendorNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4096720436 - Property 3446740159" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ShipTo Address</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - ShipTo Addresses - Property EntityCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 4096720436 - Property 631549417" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ShipTo Addresses</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - ShipTo Addresses - Property EntitySetCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 4096720436 - NamedType 2396386738" size-unit="char" translate="yes" xml:space="preserve">
+          <source>id type not specified.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - ShipTo Addresses - NamedType FiltersNotSpecifiedErrorLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 4096720436 - Control 1762530770 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - ShipTo Addresses - Control address - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4096720436 - Control 1593193288 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Address 2</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - ShipTo Addresses - Control address2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4096720436 - Control 2685504509 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contact Id</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - ShipTo Addresses - Control addressId - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4096720436 - Control 2754366897 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>City</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - ShipTo Addresses - Control city - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4096720436 - Control 639513079 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Country/Region Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - ShipTo Addresses - Control countryRegionCode - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4096720436 - Control 3303491150 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>County</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - ShipTo Addresses - Control county - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4096720436 - Control 3922912319 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contact Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - ShipTo Addresses - Control defaultAddress - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4096720436 - Control 3558812865 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Related Id</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - ShipTo Addresses - Control name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4096720436 - Control 2213755927 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Post Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - ShipTo Addresses - Control postCode - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4096720436 - Control 1490263870 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Related Id</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - ShipTo Addresses - Control relatedId - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4096720436 - Control 1971564552 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contact Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - ShipTo Addresses - Control shipToCode - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4096720436 - Control 618064135 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Contact No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - ShipTo Addresses - Control standardAddress - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 3813293234 - Property 3446740159" size-unit="char" translate="yes" xml:space="preserve">
           <source>Trade Vendor</source>
