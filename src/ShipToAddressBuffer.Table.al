@@ -135,6 +135,7 @@ table 53050 "TFB Ship-to Address Buffer"
         Clear(Rec);
         If Customer."Ship-to Code" = '' then
             Rec."Default Address" := true;
+        Rec."Standard Address" := true;
         Rec."ShipTo AddressId" := Customer.SystemId;
         Rec.Address := Customer.Address;
         Rec."Related Id" := Customer.SystemId;
@@ -153,6 +154,7 @@ table 53050 "TFB Ship-to Address Buffer"
                 If ShipToAddress.Code = Customer."Ship-to Code" then
                     Rec."Default Address" := true;
                 Rec."ShipTo AddressId" := ShipToAddress.SystemId;
+                Rec."Standard Address" := false;
                 Rec.Address := ShipToAddress.Address;
                 Rec."Address 2" := ShipToAddress."Address 2";
                 Rec.City := ShipToAddress.City;
