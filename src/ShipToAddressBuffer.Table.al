@@ -129,6 +129,7 @@ table 53050 "TFB Ship-to Address Buffer"
         FiltersNotSpecifiedErrorLbl: Label 'No customer filter has been specified';
     begin
 
+        Customer.SetLoadFields(SystemId, "No.", Address, "Ship-to Code", "Address 2", City, County, "Country/Region Code", "Post Code", Name);
         If not Customer.GetBySystemId(RelatedIdFilter) then
             Error(FiltersNotSpecifiedErrorLbl);
 
