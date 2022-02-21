@@ -161,6 +161,14 @@ page 53001 "TFB APIV2 - Customers"
                     EntitySetName = 'contactsInformation';
                     SubPageLink = "Related Id" = field(SystemId), "Related Type" = const(Customer);
                 }
+                part(shipToAddresses; "TFB APIV2 - ShipTo Addresses")
+                {
+                    Caption = 'ShipTo Addresses';
+                    EntityName = 'shipToAddress';
+                    EntitySetName = 'shipToAddresses';
+                    SubPageLink = "Related Id" = field(SystemId);
+                }
+
 
                 part(priceListItems; "TFB APIV2 - Price List Items")
                 {
