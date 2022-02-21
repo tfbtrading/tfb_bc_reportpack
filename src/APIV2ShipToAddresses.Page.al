@@ -6,7 +6,7 @@ page 53010 "TFB APIV2 - ShipTo Addresses"
     DelayedInsert = true;
     EntityName = 'shipToAddress';
     EntitySetName = 'shipToAddresses';
-    ODataKeyFields = "ShipTo Address ID";
+    ODataKeyFields = "ShipTo AddressId";
     APIPublisher = 'tfb';
     APIGroup = 'inreach';
     PageType = API;
@@ -23,7 +23,7 @@ page 53010 "TFB APIV2 - ShipTo Addresses"
         {
             repeater(GroupName)
             {
-                field(addressId; Rec."ShipTo Address ID")
+                field(addressId; Rec."ShipTo AddressId")
                 {
                     Caption = 'Contact Id';
                 }

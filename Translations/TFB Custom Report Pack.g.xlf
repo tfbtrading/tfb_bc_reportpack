@@ -713,10 +713,10 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field Related Id - Property Caption</note>
         </trans-unit>
-        <trans-unit id="Table 873002870 - Field 3822313814 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>ShipTo Address ID</source>
+        <trans-unit id="Table 873002870 - Field 1249018182 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>ShipTo AddressId</source>
           <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field ShipTo Address ID - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Ship-to Address Buffer - Field ShipTo AddressId - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 873002870 - Field 721876055 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Standard Address</source>

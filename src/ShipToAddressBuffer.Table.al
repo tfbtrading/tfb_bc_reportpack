@@ -4,10 +4,11 @@ table 53050 "TFB Ship-to Address Buffer"
     DataClassification = SystemMetadata;
     TableType = Temporary;
 
+
     fields
     {
 
-        field(53000; "ShipTo Address ID"; GUID)
+        field(53000; "ShipTo AddressId"; GUID)
         {
 
         }
@@ -106,7 +107,7 @@ table 53050 "TFB Ship-to Address Buffer"
 
     keys
     {
-        key(Key1; "ShipTo Address ID")
+        key(Key1; "ShipTo AddressId")
         {
             Clustered = true;
         }
@@ -117,17 +118,16 @@ table 53050 "TFB Ship-to Address Buffer"
     var
         ShipToAddress: Record "Ship-to Address";
         Customer: Record Customer;
-
-
+        FiltersNotSpecifiedErrorLbl: Label 'No customer filter has been specified';
     begin
-        Rec.DeleteAll();
-        Customer.GetBySystemId(RelatedIdFilter);
-        ShipToAddress.SetRange("Customer No.", Customer."No.");
+
+        If not Customer.GetBySystemId(RelatedIdFilter) then
+            Error(FiltersNotSpecifiedErrorLbl);
 
         Clear(Rec);
         If Customer."Ship-to Code" = '' then
             Rec."Default Address" := true;
-        Rec.SystemId := Customer.SystemId;
+        Rec."ShipTo AddressId" := Customer.SystemId;
         Rec.Address := Customer.Address;
         Rec."Address 2" := Customer."Address 2";
         Rec.City := Customer.City;
@@ -135,14 +135,15 @@ table 53050 "TFB Ship-to Address Buffer"
         Rec."Country/Region Code" := Customer."Country/Region Code";
         Rec."Post Code" := Customer."Post Code";
         Rec.Name := Customer.Name;
-        Rec.Insert(false, true);
+        Rec.Insert();
 
+        ShipToAddress.SetRange("Customer No.", Customer."No.");
         If ShipToAddress.FindSet() then
             repeat
                 Clear(Rec);
                 If ShipToAddress.Code = Customer."Ship-to Code" then
                     Rec."Default Address" := true;
-                Rec.SystemId := ShipToAddress.SystemId;
+                Rec."ShipTo AddressId" := ShipToAddress.SystemId;
                 Rec.Address := ShipToAddress.Address;
                 Rec."Address 2" := ShipToAddress."Address 2";
                 Rec.City := ShipToAddress.City;
@@ -150,7 +151,7 @@ table 53050 "TFB Ship-to Address Buffer"
                 Rec."Country/Region Code" := ShipToAddress."Country/Region Code";
                 Rec."Post Code" := ShipToAddress."Post Code";
                 Rec.Name := ShipToAddress.Name;
-                Rec.Insert(false, true);
+                Rec.Insert();
 
             until ShipToAddress.Next() = 0;
     end;
