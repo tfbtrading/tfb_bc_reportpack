@@ -288,7 +288,6 @@ page 53002 "TFB APIV2 - Price List Items"
     trigger OnFindRecord(Which: Text): Boolean
     var
         RelatedIdFilter: Text;
-
         FilterView: Text;
     begin
         RelatedIdFilter := Rec.GetFilter(CustomerID);
