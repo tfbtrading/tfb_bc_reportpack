@@ -27,15 +27,15 @@ page 53010 "TFB APIV2 - ShipTo Addresses"
                 {
                     Caption = 'Contact Id';
                 }
-                field(standardAddress; Rec."Standard Address")
+                field(standard; Rec."Standard Address")
                 {
                     Caption = 'Contact No.';
                 }
-                field(defaultAddress; Rec."Default Address")
+                field(default; Rec."Default Address")
                 {
                     Caption = 'Contact Name';
                 }
-                field(shipToCode; Rec.Code)
+                field(code; Rec.Code)
                 {
                     Caption = 'Contact Type';
                 }
@@ -43,11 +43,15 @@ page 53010 "TFB APIV2 - ShipTo Addresses"
                 {
                     Caption = 'Related Id';
                 }
-                field(address; Rec.Address)
+                field(contact;Rec.Contact)
+                {
+                    Caption = 'Contact';
+                }
+                field(addressLine1; Rec.Address)
                 {
                     Caption = 'Address';
                 }
-                field(address2; Rec."Address 2")
+                field(addressLine2; Rec."Address 2")
                 {
                     Caption = 'Address 2';
                 }
@@ -55,21 +59,17 @@ page 53010 "TFB APIV2 - ShipTo Addresses"
                 {
                     Caption = 'City';
                 }
-                field(county; Rec.County)
+                field(state; Rec.County)
                 {
-                    Caption = 'County';
+                    Caption = 'State';
                 }
-                field(countryRegionCode; Rec."Country/Region Code")
+                field(country; Rec."Country/Region Code")
                 {
                     Caption = 'Country/Region Code';
                 }
                 field(postCode; Rec."Post Code")
                 {
                     Caption = 'Post Code';
-                }
-                field(relatedId; Rec."Related Id")
-                {
-                    Caption = 'Related Id';
                 }
 
 
