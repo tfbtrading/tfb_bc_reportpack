@@ -134,6 +134,10 @@ table 53120 "TFB Price List Item Buffer"
         {
 
         }
+        field(53059; AvailableAsDropShip; Boolean)
+        {
+
+        }
         field(53300; AvailableToSellBaseQty; Decimal)
         {
 
@@ -404,6 +408,7 @@ table 53120 "TFB Price List Item Buffer"
             Rec.AgentServiceCode := ShippingAgentServices.Code;
 
             UseDropShipDateCalcs := true;
+            Rec.AvailableAsDropShip := true;
         end;
 
 
@@ -673,15 +678,12 @@ table 53120 "TFB Price List Item Buffer"
         If (AvailabilityStatus = AvailabilityStatus::Low) and (not DropShip) then
             MarketInsightType := MarketInsightType::LowStock;
 
-        If (AvailabilityStatus = AvailabilityStatus::OutofStock) and (not DropShip) then begin
+        If (AvailabilityStatus = AvailabilityStatus::OutofStock) and (not DropShip) then
 
             //Check if item was recently sold-out in last three months
             If IsRecentlySoldOut(Item, Item."Reserved Qty. on Inventory", Rec.LastSaleDateTime) then
                 MarketInsightType := MarketInsightType::OutOfStock;
 
-
-
-        end;
 
     end;
 
@@ -697,7 +699,7 @@ table 53120 "TFB Price List Item Buffer"
 
     begin
 
-        Evaluate(DurationToCheck, '<-1M>');
+        Evaluate(DurationToCheck, '<-3M>');
         BeginPeriod := CalcDate(DurationToCheck, Today);
 
         If ReservedQtyOnInventory = 0 then begin
