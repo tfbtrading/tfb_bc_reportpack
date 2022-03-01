@@ -112,6 +112,10 @@ page 53002 "TFB APIV2 - Price List Items"
                     Caption = 'Availability Status';
 
                 }
+                field(availableAsDropShip; Rec.AvailableAsDropShip)
+                {
+                    Caption = 'Available As Dropship';
+                }
                 field(availableToSellBaseQty; Rec.AvailableToSellBaseQty)
                 {
                     Caption = 'Available To Sell Base Qty';
@@ -120,6 +124,7 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
                     Caption = 'Next Availability Date';
                 }
+                
                 field(lastReceiptDate; Rec.LastReceiptDate)
                 {
                     Caption = 'Last Receipt Date';
@@ -288,7 +293,6 @@ page 53002 "TFB APIV2 - Price List Items"
     trigger OnFindRecord(Which: Text): Boolean
     var
         RelatedIdFilter: Text;
-
         FilterView: Text;
     begin
         RelatedIdFilter := Rec.GetFilter(CustomerID);

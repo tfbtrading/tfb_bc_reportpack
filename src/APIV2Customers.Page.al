@@ -16,6 +16,7 @@ page 53001 "TFB APIV2 - Customers"
     APIPublisher = 'tfb';
     APIGroup = 'inreach';
 
+
     layout
     {
         area(content)
@@ -116,6 +117,11 @@ page 53001 "TFB APIV2 - Customers"
                     Caption = 'Payment Method Id';
 
                 }
+                field(customerPriceGroupDesc; CustomerPriceGroupDesc)
+                {
+
+                    Caption = 'Customer Price Group';
+                }
                 field(blocked; Rec.Blocked)
                 {
                     Caption = 'Blocked';
@@ -161,6 +167,14 @@ page 53001 "TFB APIV2 - Customers"
                     EntitySetName = 'contactsInformation';
                     SubPageLink = "Related Id" = field(SystemId), "Related Type" = const(Customer);
                 }
+                part(shipToAddresses; "TFB APIV2 - ShipTo Addresses")
+                {
+                    Caption = 'ShipTo Addresses';
+                    EntityName = 'shipToAddress';
+                    EntitySetName = 'shipToAddresses';
+                    SubPageLink = "Related Id" = field(SystemId);
+                }
+
 
                 part(priceListItems; "TFB APIV2 - Price List Items")
                 {
@@ -206,14 +220,18 @@ page 53001 "TFB APIV2 - Customers"
         LCYCurrencyCode: Code[10];
 
         CurrencyCodeTxt: Text;
+        CustomerPriceGroupDesc: Text;
 
 
     local procedure SetCalculatedFields()
     var
+        CustomerPriceGroup: Record "Customer Price Group";
 
     begin
         CurrencyCodeTxt := GraphMgtGeneralTools.TranslateNAVCurrencyCodeToCurrencyCode(LCYCurrencyCode, Rec."Currency Code");
-
+        CustomerPriceGroup.SetLoadFields(Description);
+        CustomerPriceGroup.Get(Rec."Customer Price Group");
+        CustomerPriceGroupDesc := CustomerPriceGroup.Description;
     end;
 
 
