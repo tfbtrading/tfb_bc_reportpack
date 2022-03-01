@@ -183,6 +183,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field Related Invoice ID - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3960208283 - Field 1853730968 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Related Shipment Line ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field Related Shipment Line ID - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3960208283 - Field 3630132196 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>RequestedDeliveryDate</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1092,6 +1097,11 @@
           <source>Related Invoice ID</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Order Lines - Control relatedInvoiceID - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1185520806 - Control 3287394680 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Related Shipment Line ID</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Order Lines - Control relatedShipmentLineID - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1185520806 - Control 125901060 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>RequestedDeliveryDate</source>
