@@ -365,7 +365,7 @@ table 53120 "TFB Price List Item Buffer"
 
 
                 Rec.MarketingCopy := GetMarketingCopy(Item);
-                GetSalesListPricing(Customer."No.", Customer."Customer Price Group", Item);
+                GetSalesListPricing(Customer."Customer Price Group", Item);
                 GetAvailability(Item);
                 GetRecentStockStatus(Item);
                 GetTransportDetails(Item, Customer);
@@ -471,7 +471,7 @@ table 53120 "TFB Price List Item Buffer"
 
     end;
 
-    local procedure GetSalesListPricing(CustNo: Code[20]; CustomerPriceGroup: Code[20]; Item: Record Item): Boolean
+    local procedure GetSalesListPricing(CustomerPriceGroup: Code[20]; Item: Record Item): Boolean
 
     var
         PriceAsset: Record "Price Asset";
@@ -600,11 +600,9 @@ table 53120 "TFB Price List Item Buffer"
     local procedure GetAvailability(Item: Record Item): Boolean
     var
 
-        SalesLine: Record "Sales Line";
-        SalesShipmentLine: Record "Sales Shipment Line";
         PurchasingCode: Record Purchasing;
         QtyRemaining: Decimal;
-        DateOfLastSale: Date;
+       
         NextQtyRemaining: Decimal;
         SafetyStock: Decimal;
 

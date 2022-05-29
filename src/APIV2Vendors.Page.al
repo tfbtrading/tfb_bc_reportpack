@@ -75,23 +75,6 @@ page 53005 "TFB APIV2 - Vendors"
 
 
     var
-        Currency: Record Currency;
-        PaymentTerms: Record "Payment Terms";
-        PaymentMethod: Record "Payment Method";
-        TempFieldSet: Record 2000000041 temporary;
-        GraphMgtGeneralTools: Codeunit "Graph Mgt - General Tools";
-        LCYCurrencyCode: Code[10];
-        CurrencyCodeTxt: Text;
-        TaxRegistrationNumber: Text[50];
-        IRS1099VendorCode: Code[10];
-        CurrencyValuesDontMatchErr: Label 'The currency values do not match to a specific Currency.';
-        CurrencyIdDoesNotMatchACurrencyErr: Label 'The "currencyId" does not match to a Currency.', Comment = 'currencyId is a field name and should not be translated.';
-        CurrencyCodeDoesNotMatchACurrencyErr: Label 'The "currencyCode" does not match to a Currency.', Comment = 'currencyCode is a field name and should not be translated.';
-        PaymentTermsIdDoesNotMatchAPaymentTermsErr: Label 'The "paymentTermsId" does not match to a Payment Terms.', Comment = 'paymentTermsId is a field name and should not be translated.';
-        PaymentMethodIdDoesNotMatchAPaymentMethodErr: Label 'The "paymentMethodId" does not match to a Payment Method.', Comment = 'paymentMethodId is a field name and should not be translated.';
-        BlankGUID: Guid;
-        BECountryCodeLbl: Label 'BE', Locked = true;
-
-
+      
 }
 

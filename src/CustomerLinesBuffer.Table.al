@@ -267,8 +267,7 @@ table 53140 "TFB Customer Lines Buffer"
         TempSalesInvLine: Record "Sales Invoice Line" temporary;
         SalesInvoiceHeader: Record "Sales Invoice Header";
         Vendor: Record Vendor;
-        PriceCU: CodeUnit "TFB Pricing Calculations";
-        CommonCU: CodeUnit "TFB Common Library";
+
 
     begin
 
@@ -306,7 +305,7 @@ table 53140 "TFB Customer Lines Buffer"
                 Rec."Country/Region of Origin Code" := Item."Country/Region of Origin Code";
 
 
-                GetTransportDetails(SalesLine."Sell-to Customer No.", SalesLine."Shipping Agent Code", SalesLine."Shipping Agent Service Code", SalesLine."Drop Shipment", SalesLine."Purchase Order No.", SalesLine."Planned Shipment Date", '');
+                GetTransportDetails(SalesLine."Sell-to Customer No.", SalesLine."Shipping Agent Code", SalesLine."Shipping Agent Service Code", SalesLine."Planned Shipment Date", '');
                 Rec.PackageTrackingNo := '';
                 PerPallet := GetPerPallet(Item);
 
@@ -376,7 +375,7 @@ table 53140 "TFB Customer Lines Buffer"
                 Rec.DocumentID := ShipmentHeader.SystemId;
                 Rec."Related Shipment Line ID" := ShipmentLine.SystemId;
                 Rec.OrderDate := ShipmentHeader."Order Date";
-                GetTransportDetails(ShipmentHeader."Sell-to Customer No.", ShipmentHeader."Shipping Agent Code", ShipmentHeader."Shipping Agent Service Code", ShipmentLine."Drop Shipment", ShipmentLine."Purchase Order No.", ShipmentHeader."Posting Date", ShipmentHeader."Package Tracking No.");
+                GetTransportDetails(ShipmentHeader."Sell-to Customer No.", ShipmentHeader."Shipping Agent Code", ShipmentHeader."Shipping Agent Service Code", ShipmentHeader."Posting Date", ShipmentHeader."Package Tracking No.");
                 Rec.PackageTrackingNo := ShipmentHeader."Package Tracking No.";
                 PerPallet := GetPerPallet(Item);
 
@@ -442,7 +441,7 @@ table 53140 "TFB Customer Lines Buffer"
 
     end;
 
-    local procedure GetTransportDetails(CustomerNo: Code[20]; "Shipping Agent Code": Code[10]; "Shipping Agent Service Code": Code[10]; DropShipment: Boolean; DropShipmentOrderNo: Code[20]; PlannedShipmentDate: Date; PackageTrackingNo: Text[30]): Boolean
+    local procedure GetTransportDetails(CustomerNo: Code[20]; "Shipping Agent Code": Code[10]; "Shipping Agent Service Code": Code[10]; PlannedShipmentDate: Date; PackageTrackingNo: Text[30]): Boolean
 
     var
         ShippingAgentServices: Record "Shipping Agent Services";

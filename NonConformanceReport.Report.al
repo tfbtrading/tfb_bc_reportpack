@@ -95,8 +95,6 @@ Report 53001 "TFB Non-Conformance Report"
     var
         ReportForNav: Codeunit "ForNAV Report Management";
         ReportForNavInitialized: Boolean;
-        ReportForNavShowOutput: Boolean;
-        ReportForNavTotalsCausedBy: Integer;
         ReportForNavOpenDesigner: Boolean;
         [InDataSet]
         ReportForNavAllowDesign: Boolean;
@@ -114,15 +112,9 @@ Report 53001 "TFB Non-Conformance Report"
         if ReportForNav.LaunchDesigner(ReportForNavOpenDesigner) then CurrReport.Quit();
     end;
 
-    local procedure ReportForNavSetTotalsCausedBy(value: Integer)
-    begin
-        ReportForNavTotalsCausedBy := value;
-    end;
+    
 
-    local procedure ReportForNavSetShowOutput(value: Boolean)
-    begin
-        ReportForNavShowOutput := value;
-    end;
+  
 
     local procedure ReportForNavInit(jsonObject: JsonObject)
     begin

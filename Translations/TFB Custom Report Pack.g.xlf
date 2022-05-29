@@ -1543,31 +1543,6 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Vendors - Property EntitySetCaption</note>
         </trans-unit>
-        <trans-unit id="Page 3813293234 - NamedType 1805429782" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The "currencyCode" does not match to a Currency.</source>
-          <note from="Developer" annotates="general" priority="2">currencyCode is a field name and should not be translated.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Vendors - NamedType CurrencyCodeDoesNotMatchACurrencyErr</note>
-        </trans-unit>
-        <trans-unit id="Page 3813293234 - NamedType 3939449910" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The "currencyId" does not match to a Currency.</source>
-          <note from="Developer" annotates="general" priority="2">currencyId is a field name and should not be translated.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Vendors - NamedType CurrencyIdDoesNotMatchACurrencyErr</note>
-        </trans-unit>
-        <trans-unit id="Page 3813293234 - NamedType 2624287652" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The currency values do not match to a specific Currency.</source>
-          <note from="Developer" annotates="general" priority="2"></note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Vendors - NamedType CurrencyValuesDontMatchErr</note>
-        </trans-unit>
-        <trans-unit id="Page 3813293234 - NamedType 3183835414" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The "paymentMethodId" does not match to a Payment Method.</source>
-          <note from="Developer" annotates="general" priority="2">paymentMethodId is a field name and should not be translated.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Vendors - NamedType PaymentMethodIdDoesNotMatchAPaymentMethodErr</note>
-        </trans-unit>
-        <trans-unit id="Page 3813293234 - NamedType 2002735526" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The "paymentTermsId" does not match to a Payment Terms.</source>
-          <note from="Developer" annotates="general" priority="2">paymentTermsId is a field name and should not be translated.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Vendors - NamedType PaymentTermsIdDoesNotMatchAPaymentTermsErr</note>
-        </trans-unit>
         <trans-unit id="Page 3813293234 - Control 2186328609 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Country/Region Code</source>
           <note from="Developer" annotates="general" priority="2"></note>
