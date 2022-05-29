@@ -10,20 +10,26 @@ report 53004 "TFB Transport History"
         dataitem(WhseShipmentLine; "Posted Whse. Shipment Line")
         {
             DataItemTableView = sorting("Posting Date", "No.", "Line No.") where("Unit of Measure Code" = filter('PALLET'));
-
-            column(Item_No_; "Item No.")
+            RequestFilterFields = "Item No.";
+            RequestFilterHeading = 'Warehouse Transport Details';
+            PrintOnlyIfDetail = true;
+            column(ItemNo; "Item No.")
             {
 
             }
-            column(Description; Description)
+            column(ItemName; Description)
             {
 
             }
-            column(PostedWarehouseShipmentNo; "No.")
+            column(ReferenceNo; "Whse. Shipment No.")
             {
 
             }
-            column(WarehouseShipmentNo; "Whse. Shipment No.")
+            column(ShipmentNo; WhseShipmentLine."Posted Source No.")
+            {
+
+            }
+            column(Type; WhseShipmentLine."Source Document")
             {
 
             }
@@ -41,15 +47,16 @@ report 53004 "TFB Transport History"
             {
                 DataItemLinkReference = WhseShipmentLine;
                 DataItemLink = "No." = field("No.");
-                PrintOnlyIfDetail = true;
 
-                column(Posting_Date;
-                "Posting Date")
+                RequestFilterFields = "Posting Date";
+                RequestFilterHeading = 'Warehouse Transport Details';
+
+                column(DateShipped; "Posting Date")
                 {
 
                 }
 
-                column(Shipping_Agent_Code; "Shipping Agent Code")
+                column(ShippingAgent; "Shipping Agent Code")
                 {
 
                 }
@@ -64,25 +71,12 @@ report 53004 "TFB Transport History"
                     DataItemLinkReference = WhseShipmentHeader;
                     DataItemLink = Code = field("Location Code");
 
+
                     column(OrigPostCode; "Post Code")
                     {
 
                     }
                 }
-
-                trigger OnAfterGetRecord()
-
-                begin
-
-                end;
-
-            }
-
-
-            dataitem(ItemUnitOfMeasure; "Item Unit of Measure")
-            {
-                DataItemLinkReference = WhseShipmentLine;
-                DataItemLink = "Item No." = field("Item No."), Code = field("Unit of Measure Code");
 
                 column(Cubage; Cubage)
                 {
@@ -105,7 +99,36 @@ report 53004 "TFB Transport History"
 
                 }
 
+                trigger OnAfterGetRecord()
+
+                var
+                    ItemUnitOfMeasure: Record "Item Unit of Measure";
+
+
+                begin
+                    If ItemUnitOfMeasure.Get(WhseShipmentLine."Item No.", WhseShipmentLine."Unit of Measure Code") then begin
+                        Weight := ItemUnitOfMeasure.Weight;
+                        Cubage := ItemUnitOfMeasure.Cubage;
+                        Height := ItemUnitOfMeasure.Height;
+                        Width := ItemUnitOfMeasure.Width;
+                        Length := ItemUnitOfMeasure.Length;
+                    end
+                    else begin
+                        Weight := 0;
+                        Cubage := 0;
+                        Height := 0;
+                        Width := 0;
+                        Length := 0;
+                    end;
+
+
+
+                end;
+
             }
+
+
+
             trigger OnAfterGetRecord()
 
             var
@@ -189,4 +212,5 @@ report 53004 "TFB Transport History"
 
         TempSourceRef: Code[20];
         TempPostedRef: Code[20];
+        Weight, Cubage, Height, Width, Length : Decimal;
 }

@@ -1948,6 +1948,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report TFB Transport History - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 1220300923 - ReportDataItem 4221474097 - Property 1806354803" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Warehouse Transport Details</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Transport History - ReportDataItem WhseShipmentLine - Property RequestFilterHeading</note>
+        </trans-unit>
+        <trans-unit id="Report 1220300923 - ReportDataItem 1504523434 - Property 1806354803" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Warehouse Transport Details</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Transport History - ReportDataItem WhseShipmentHeader - Property RequestFilterHeading</note>
+        </trans-unit>
         <trans-unit id="Report 375353700 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Warehouse Shipment v2</source>
           <note from="Developer" annotates="general" priority="2"></note>
