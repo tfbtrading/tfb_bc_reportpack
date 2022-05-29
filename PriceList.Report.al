@@ -115,7 +115,7 @@ Report 53120 "TFB Price List"
 
                 trigger OnAfterGetRecord();
                 begin
-                    GetSalesListPricing(Customer."No.", Customer."Customer Price Group", Item);
+                    GetSalesListPricing(Customer."Customer Price Group", Item);
                     // GetPricing(Customer."No.", Customer."Customer Price Group", Item); Obselete Code
                     GetAvailability(Item);
                     QtyPendingDelivery := GetQtyPendingDelivery(Item."No.", Customer."No.");
@@ -324,7 +324,7 @@ Report 53120 "TFB Price List"
         Exit(HtmlBuilder.ToText());
     end;
 
-    local procedure GetSalesListPricing(CustNo: Code[20]; CustomerPriceGroup: Code[20]; Item: Record Item): Boolean
+    local procedure GetSalesListPricing(CustomerPriceGroup: Code[20]; Item: Record Item): Boolean
 
     var
         PriceAsset: Record "Price Asset";
