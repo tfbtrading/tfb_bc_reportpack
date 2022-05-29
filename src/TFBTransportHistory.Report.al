@@ -76,6 +76,10 @@ report 53004 "TFB Transport History"
                     {
 
                     }
+                    column(TFB_Location_Type; "TFB Location Type")
+                    {
+
+                    }
                 }
 
                 column(Cubage; Cubage)
