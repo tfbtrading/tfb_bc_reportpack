@@ -1943,6 +1943,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report TFB Send Cust. Price Lists - Control MessageTopic - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 1220300923 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Transport History</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Transport History - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 375353700 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Warehouse Shipment v2</source>
           <note from="Developer" annotates="general" priority="2"></note>
