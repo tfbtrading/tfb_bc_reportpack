@@ -23,4 +23,8 @@ enum 53003 "TFB Customer Line Status"
     {
         Caption = 'DeliveryConfirmed';
     }
+    value(5;"OnQuote")
+    {
+        Caption = 'OnQuote';
+    }
 }

@@ -136,7 +136,7 @@ page 53008 "TFB APIV2 - Order Lines"
                 {
 
                 }
-                field(relatedShipmentLineID;Rec."Related Shipment Line ID")
+                field(relatedShipmentLineID; Rec."Related Shipment Line ID")
                 {
                     Caption = 'Related Shipment Line ID';
                 }
@@ -155,6 +155,10 @@ page 53008 "TFB APIV2 - Order Lines"
                 field(orderDate; Rec.OrderDate)
                 {
                     Caption = 'OrderDate';
+                }
+                field(quoteValidToDate; Rec.QuoteValidToDate)
+                {
+                    Caption = 'QuoteValidToDate';
                 }
                 field(requestedDeliveryDate; Rec.RequestedDeliveryDate)
                 {

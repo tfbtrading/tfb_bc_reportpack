@@ -124,6 +124,10 @@ table 53140 "TFB Customer Lines Buffer"
         {
 
         }
+        field(165; QuoteValidToDate; Date)
+        {
+
+        }
         field(170; AgentCode; Code[10])
         {
 
@@ -272,6 +276,8 @@ table 53140 "TFB Customer Lines Buffer"
     begin
 
         Customer.GetBySystemId(CustomerIdFilter);
+
+        //Get by sales order lines
         SalesLine.SetRange("Sell-to Customer No.", Customer."No.");
         SalesLine.SetRange("Document Type", SalesLine."Document Type"::Order);
         SalesLine.SetRange(Type, SalesLine.Type::Item);
@@ -319,6 +325,74 @@ table 53140 "TFB Customer Lines Buffer"
                 Rec.DocumentID := SalesHeader.SystemId;
                 Rec.DocumentType := Rec.DocumentType::Order;
                 Rec.OrderDate := SalesHeader."Order Date";
+                Rec.QtyPendingDelivery := SalesLine."Outstanding Qty. (Base)";
+                Rec.PlannedShipmentDate := SalesLine."Planned Shipment Date";
+                Rec.RequestedDeliveryDate := SalesLine."Requested Delivery Date";
+                Rec."External Document No." := SalesHeader."External Document No.";
+                Rec."Ship-to Code" := SalesHeader."Ship-to Code";
+                Rec."Ship-to Name" := SalesHeader."Ship-to Name";
+                Rec."Ship-to Contact" := SalesHeader."Ship-to Contact";
+                Rec."Ship-to Address" := SalesHeader."Ship-to Address";
+                Rec."Ship-to Address 2" := SalesHeader."Ship-to Address 2";
+                Rec."Ship-to City" := SalesHeader."Ship-to City";
+                Rec."Ship-to County" := SalesHeader."Ship-to County";
+                Rec."Ship-to Post Code" := SalesHeader."Ship-to Post Code";
+                Rec."Ship-to Country/Region Code" := SalesHeader."Ship-to Country/Region Code";
+
+                Rec.Insert();
+            until SalesLine.Next() = 0;
+
+
+
+        //Get by sales quote lines
+        SalesLine.SetRange("Sell-to Customer No.", Customer."No.");
+        SalesLine.SetRange("Document Type", SalesLine."Document Type"::Quote);
+        SalesLine.SetRange(Type, SalesLine.Type::Item);
+        SalesLine.SetFilter("Quantity (Base)", '>0');
+
+
+        If SalesLine.FindSet(false, false) then
+            repeat
+                clear(Rec);
+                Item.Get(SalesLine."No.");
+                Rec.CustomerLineStatus := Rec.CustomerLineStatus::OnQuote;
+                Rec.CustomerID := CustomerIdFilter;
+                Rec."No." := Item."No.";
+                Rec.ItemID := Item.SystemId;
+                Rec."Line No." := SalesLine."Line No.";
+                Rec.Description := Item.Description;
+                Rec."Net Weight" := Item."Net Weight";
+                Rec."Alternative Names" := Item."TFB Alt. Names";
+                Rec.Blocked := Item.Blocked;
+                Rec."Base Unit of Measure" := Item."Base Unit of Measure";
+                Rec."Unit of Measure ID" := Item."Unit of Measure Id";
+                If Item."TFB Vendor is Agent" then
+                    Rec."Vendor No." := Item."TFB Item Manufacturer/Brand"
+                else
+                    Rec."Vendor No." := Item."Vendor No.";
+
+                If Vendor.Get(Rec."Vendor No.") then
+                    Rec."Vendor Id" := Vendor.SystemId;
+
+                Rec.GenericItemID := Item."TFB Generic Item ID";
+                Rec."Country/Region of Origin Code" := Item."Country/Region of Origin Code";
+
+
+                GetTransportDetails(SalesLine."Sell-to Customer No.", SalesLine."Shipping Agent Code", SalesLine."Shipping Agent Service Code", SalesLine."Planned Shipment Date", '');
+                Rec.PackageTrackingNo := '';
+                PerPallet := GetPerPallet(Item);
+
+                SalesHeader.Get(SalesLine."Document Type", SalesLine."Document No.");
+
+
+                LineUnitOfMeasure.Get(Item."No.", SalesLine."Unit of Measure Code");
+                UnitOfMeasure.Get(LineUnitOfMeasure.Code);
+                Rec."Unit of Measure ID" := UnitOfMeasure.SystemId;
+
+                Rec.DocumentID := SalesHeader.SystemId;
+                Rec.DocumentType := Rec.DocumentType::Quote;
+                Rec.OrderDate := SalesHeader."Order Date";
+                Rec.QuoteValidToDate := SalesHeader."Quote Valid Until Date";
                 Rec.QtyPendingDelivery := SalesLine."Outstanding Qty. (Base)";
                 Rec.PlannedShipmentDate := SalesLine."Planned Shipment Date";
                 Rec.RequestedDeliveryDate := SalesLine."Requested Delivery Date";
