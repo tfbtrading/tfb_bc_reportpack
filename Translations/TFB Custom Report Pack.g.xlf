@@ -173,6 +173,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field QtyShipped - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3960208283 - Field 998750517 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>QuoteValidToDate</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field QuoteValidToDate - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3960208283 - Field 3741642897 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Related Invoice Doc. No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1087,6 +1092,11 @@
           <source>Quantity Per Pallet</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Order Lines - Control qtyPerPallet - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1185520806 - Control 3864334933 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>QuoteValidToDate</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Order Lines - Control quoteValidToDate - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1185520806 - Control 2404385513 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Related Invoice Doc. No.</source>
@@ -2037,6 +2047,11 @@
           <source>OnOrder</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum TFB Customer Line Status - EnumValue OnOrder - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 1791928866 - EnumValue 1121835493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>OnQuote</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum TFB Customer Line Status - EnumValue OnQuote - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 1791928866 - EnumValue 3653172808 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>DeliveryAssumed</source>
