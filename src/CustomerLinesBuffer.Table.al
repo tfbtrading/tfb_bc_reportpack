@@ -183,6 +183,14 @@ table 53140 "TFB Customer Lines Buffer"
         {
 
         }
+        field(300; KgPrice; Decimal)
+        {
+
+        }
+        field(310; UnitPrice; Decimal)
+        {
+
+        }
         field(240; "Ship-to Code"; Text[100])
         {
 
@@ -224,6 +232,10 @@ table 53140 "TFB Customer Lines Buffer"
         {
             Caption = 'Ship-to Country/Region Code';
             TableRelation = "Country/Region";
+        }
+        field(249; "Document No."; Code[20])
+        {
+
         }
         field(250; "External Document No."; Text[50])
         {
@@ -290,6 +302,7 @@ table 53140 "TFB Customer Lines Buffer"
                 Item.Get(SalesLine."No.");
                 Rec.CustomerLineStatus := Rec.CustomerLineStatus::OnOrder;
                 Rec.CustomerID := CustomerIdFilter;
+                Rec."Document No." := SalesLine."Document No.";
                 Rec."No." := Item."No.";
                 Rec.ItemID := Item.SystemId;
                 Rec."Line No." := SalesLine."Line No.";
@@ -299,6 +312,8 @@ table 53140 "TFB Customer Lines Buffer"
                 Rec.Blocked := Item.Blocked;
                 Rec."Base Unit of Measure" := Item."Base Unit of Measure";
                 Rec."Unit of Measure ID" := Item."Unit of Measure Id";
+                Rec.UnitPrice := salesline."Unit Price";
+                Rec.KgPrice := TFBPricingLogic.CalculatePriceUnitByUnitPrice(Item."No.", salesLine."Unit of Measure Code", Enum::"TFB Price Unit"::KG, SalesLine."Unit Price");
                 If Item."TFB Vendor is Agent" then
                     Rec."Vendor No." := Item."TFB Item Manufacturer/Brand"
                 else
@@ -357,6 +372,7 @@ table 53140 "TFB Customer Lines Buffer"
                 Item.Get(SalesLine."No.");
                 Rec.CustomerLineStatus := Rec.CustomerLineStatus::OnQuote;
                 Rec.CustomerID := CustomerIdFilter;
+                Rec."Document No." := SalesLine."Document No.";
                 Rec."No." := Item."No.";
                 Rec.ItemID := Item.SystemId;
                 Rec."Line No." := SalesLine."Line No.";
@@ -366,6 +382,9 @@ table 53140 "TFB Customer Lines Buffer"
                 Rec.Blocked := Item.Blocked;
                 Rec."Base Unit of Measure" := Item."Base Unit of Measure";
                 Rec."Unit of Measure ID" := Item."Unit of Measure Id";
+                Rec.UnitPrice := salesline."Unit Price";
+                Rec.KgPrice := TFBPricingLogic.CalculatePriceUnitByUnitPrice(Item."No.", salesLine."Unit of Measure Code", Enum::"TFB Price Unit"::KG, SalesLine."Unit Price");
+
                 If Item."TFB Vendor is Agent" then
                     Rec."Vendor No." := Item."TFB Item Manufacturer/Brand"
                 else
@@ -432,6 +451,9 @@ table 53140 "TFB Customer Lines Buffer"
                 Rec.Blocked := Item.Blocked;
                 Rec."Base Unit of Measure" := Item."Base Unit of Measure";
                 Rec."Unit of Measure ID" := Item."Unit of Measure Id";
+                Rec.UnitPrice := salesline."Unit Price";
+                Rec.KgPrice := TFBPricingLogic.CalculatePriceUnitByUnitPrice(Item."No.", salesLine."Unit of Measure Code", Enum::"TFB Price Unit"::KG, SalesLine."Unit Price");
+
                 If Item."TFB Vendor is Agent" then
                     Rec."Vendor No." := Item."TFB Item Manufacturer/Brand"
                 else
@@ -446,6 +468,8 @@ table 53140 "TFB Customer Lines Buffer"
 
 
                 ShipmentHeader.Get(ShipmentLine."Document No.");
+                Rec."Document No." := ShipmentHeader."Order No.";
+                Rec."External Document No." := ShipmentHeader."External Document No.";
                 Rec.DocumentID := ShipmentHeader.SystemId;
                 Rec."Related Shipment Line ID" := ShipmentLine.SystemId;
                 Rec.OrderDate := ShipmentHeader."Order Date";
@@ -563,6 +587,7 @@ table 53140 "TFB Customer Lines Buffer"
     end;
 
 
-
+    var
+        TFBPricingLogic: CodeUnit "TFB Pricing Calculations";
 
 }

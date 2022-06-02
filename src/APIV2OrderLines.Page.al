@@ -39,6 +39,10 @@ page 53008 "TFB APIV2 - Order Lines"
                     Caption = 'Document Type';
 
                 }
+                field(documentNo; "Document No.")
+                {
+                    Caption = 'Document No.';
+                }
                 field(documentID; Rec.DocumentID)
                 {
                     Caption = 'Document ID';
@@ -93,6 +97,14 @@ page 53008 "TFB APIV2 - Order Lines"
                 field(baseUnitOfMeasureCode; Rec."Base Unit of Measure")
                 {
                     Caption = 'Base Unit Of Measure Code';
+                }
+                field(kgPrice; Rec.KgPrice)
+                {
+                    Caption = 'kg price';
+                }
+                field(unitPrice; Rec.UnitPrice)
+                {
+                    Caption = 'unit price';
                 }
 
                 field(vendorNo; Rec."Vendor No.")
