@@ -253,7 +253,7 @@ table 53140 "TFB Customer Lines Buffer"
         {
 
         }
-        field(276; "Related Warehouse Shipment No.";Code[20])
+        field(276; "Related Warehouse Shipment No."; Code[20])
         {
 
         }
@@ -491,8 +491,8 @@ table 53140 "TFB Customer Lines Buffer"
                 end;
 
                 WhseShipline.SetLoadFields("Whse. Shipment No.");
-                WhseShipline.SetRange("Posted Source No.",ShipmentLine."No.");
-                WhseShipline.SetRange("Posted Source Document",WhseShipline."Posted Source Document"::"Posted Shipment");
+                WhseShipline.SetRange("Posted Source No.", ShipmentLine."Document No.");
+                WhseShipline.SetRange("Posted Source Document", WhseShipline."Posted Source Document"::"Posted Shipment");
 
                 If WhseShipline.FindFirst() then
                     Rec."Related Warehouse Shipment No." := WhseShipline."Whse. Shipment No.";
@@ -600,7 +600,7 @@ table 53140 "TFB Customer Lines Buffer"
             Exit(ItemUnitOfMeasure."Qty. per Unit of Measure");
     end;
 
-  
+
 
 
     var
