@@ -148,6 +148,10 @@ page 53008 "TFB APIV2 - Order Lines"
                 {
 
                 }
+                field(warehouseShipmentNo; Rec."Related Warehouse Shipment No.")
+                {
+                    Caption = 'Related Warehouse Shipment No.';
+                }
                 field(relatedShipmentLineID; Rec."Related Shipment Line ID")
                 {
                     Caption = 'Related Shipment Line ID';

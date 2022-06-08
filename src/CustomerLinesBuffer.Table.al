@@ -253,6 +253,10 @@ table 53140 "TFB Customer Lines Buffer"
         {
 
         }
+        field(276; "Related Warehouse Shipment No.";Code[20])
+        {
+
+        }
         field(280; "No. Of Non-Conformances"; Integer)
         {
 
@@ -282,6 +286,7 @@ table 53140 "TFB Customer Lines Buffer"
         ShipmentHeader: Record "Sales Shipment Header";
         TempSalesInvLine: Record "Sales Invoice Line" temporary;
         SalesInvoiceHeader: Record "Sales Invoice Header";
+        WhseShipline: Record "Posted Whse. Shipment Line";
         Vendor: Record Vendor;
 
 
@@ -484,6 +489,15 @@ table 53140 "TFB Customer Lines Buffer"
                     SalesInvoiceHeader.Get(TempSalesInvLine."Document No.");
                     Rec."Related Invoice ID" := SalesInvoiceHeader.SystemId;
                 end;
+
+                WhseShipline.SetLoadFields("Whse. Shipment No.");
+                WhseShipline.SetRange("Posted Source No.",ShipmentLine."No.");
+                WhseShipline.SetRange("Posted Source Document",WhseShipline."Posted Source Document"::"Posted Shipment");
+
+                If WhseShipline.FindFirst() then
+                    Rec."Related Warehouse Shipment No." := WhseShipline."Whse. Shipment No.";
+
+
                 Rec.QtyShipped := ShipmentLine."Quantity (Base)";
                 Rec.PlannedShipmentDate := ShipmentLine."Planned Shipment Date";
                 Rec.RequestedDeliveryDate := ShipmentLine."Requested Delivery Date";
@@ -585,6 +599,8 @@ table 53140 "TFB Customer Lines Buffer"
         If ItemUnitOfMeasure.FindFirst() then
             Exit(ItemUnitOfMeasure."Qty. per Unit of Measure");
     end;
+
+  
 
 
     var
