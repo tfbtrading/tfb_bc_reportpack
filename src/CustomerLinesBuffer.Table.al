@@ -191,6 +191,10 @@ table 53140 "TFB Customer Lines Buffer"
         {
 
         }
+        field(305; discountPerKg; Decimal)
+        {
+
+        }
         field(240; "Ship-to Code"; Text[100])
         {
 
@@ -319,6 +323,7 @@ table 53140 "TFB Customer Lines Buffer"
                 Rec."Unit of Measure ID" := Item."Unit of Measure Id";
                 Rec.UnitPrice := salesline."Unit Price";
                 Rec.KgPrice := TFBPricingLogic.CalculatePriceUnitByUnitPrice(Item."No.", salesLine."Unit of Measure Code", Enum::"TFB Price Unit"::KG, SalesLine."Unit Price");
+                Rec.discountPerKg := salesline."TFB Price Unit Discount";
                 If Item."TFB Vendor is Agent" then
                     Rec."Vendor No." := Item."TFB Item Manufacturer/Brand"
                 else

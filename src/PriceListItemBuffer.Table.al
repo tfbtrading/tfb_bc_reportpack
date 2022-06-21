@@ -584,7 +584,7 @@ table 53120 "TFB Price List Item Buffer"
         ItemLedger.CalcFields("Reserved Quantity");
         LastReceiptQtySold := ItemLedger."Reserved Quantity" + (ItemLedger.Quantity - ItemLedger."Remaining Quantity");
 
-        Salesline.SetRange("Document Type"::Order);
+        Salesline.SetRange("Document Type", Salesline."Document Type"::Order);
         Salesline.SetRange("No.", Item."No.");
         Salesline.SetFilter("Outstanding Qty. (Base)", '>0');
         Salesline.SetCurrentKey(SystemCreatedAt);
@@ -602,7 +602,7 @@ table 53120 "TFB Price List Item Buffer"
 
         PurchasingCode: Record Purchasing;
         QtyRemaining: Decimal;
-       
+
         NextQtyRemaining: Decimal;
         SafetyStock: Decimal;
 

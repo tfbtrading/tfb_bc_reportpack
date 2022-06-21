@@ -104,7 +104,11 @@ page 53008 "TFB APIV2 - Order Lines"
                 }
                 field(unitPrice; Rec.UnitPrice)
                 {
-                    Caption = 'unit price';
+                    Caption = 'UnitPrice';
+                }
+                field(discountPerKg; Rec.discountPerKg)
+                {
+                    Caption = 'DiscountPerKg';
                 }
 
                 field(vendorNo; Rec."Vendor No.")
