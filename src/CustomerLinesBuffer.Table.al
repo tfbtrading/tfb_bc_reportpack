@@ -566,18 +566,28 @@ table 53140 "TFB Customer Lines Buffer"
         ShippingAgent: Record "Shipping Agent";
         Location: record Location;
         CalendarMgmt: CodeUnit "Calendar Management";
+        ShippingAgentDateFormulaMin: DateFormula;
+        ShippingAgentDateFormulaMax: DateFormula;
 
     begin
-        ShippingAgentServices.Get("Shipping Agent Code", "Shipping Agent Service Code");
-        Rec.AgentCode := ShippingAgentServices."Shipping Agent Code";
-        Rec.AgentServiceCode := ShippingAgentServices.Code;
+        Rec.AgentCode := "Shipping Agent Code";
+        Rec.AgentServiceCode := "Shipping Agent Service Code";
+
+        If ShippingAgentServices.Get("Shipping Agent Code", "Shipping Agent Service Code") then begin
+            ShippingAgentDateFormulaMin := ShippingAgentServices."Shipping Time";
+            ShippingAgentDateFormulaMax := ShippingAgentServices."TFB Shipping Time Max";
+        end
+        else begin
+            Evaluate(ShippingAgentDateFormulaMin, '<1D>');
+            ShippingAgentDateFormulaMax := ShippingAgentDateFormulaMin;
+        end;
 
         CustomCalendarChange[1].SetSource(Enum::"Calendar Source Type"::Location, Location.Code, '', '');
         CustomCalendarChange[2].SetSource(Enum::"Calendar Source Type"::Customer, CustomerNo, '', '');
-        Rec.EstDeliveryDateMin := CalendarMgmt.CalcDateBOC('', CalcDate(ShippingAgentServices."Shipping Time", PlannedShipmentDate), CustomCalendarChange, false);
+        Rec.EstDeliveryDateMin := CalendarMgmt.CalcDateBOC('', CalcDate(ShippingAgentDateFormulaMin, PlannedShipmentDate), CustomCalendarChange, false);
 
-        If format(ShippingAgentServices."TFB Shipping Time Max") <> '' then
-            Rec.EstDeliveryDateMax := CalendarMgmt.CalcDateBOC('', CalcDate(ShippingAgentServices."TFB Shipping Time Max", PlannedShipmentDate), CustomCalendarChange, false)
+        If format(ShippingAgentDateFormulaMax) <> '' then
+            Rec.EstDeliveryDateMax := CalendarMgmt.CalcDateBOC('', CalcDate(ShippingAgentDateFormulaMax, PlannedShipmentDate), CustomCalendarChange, false)
         else
             Rec.EstDeliveryDateMax := EstDeliveryDateMin;
 
