@@ -9,8 +9,8 @@ page 53011 "TFB APIV2 - Sales Quote Lines"
     APIPublisher = 'tfb';
     APIGroup = 'inreach';
     ODataKeyFields = SystemId;
-    EntityName = 'salesQuoteLine';
-    EntitySetName = 'salesQuoteLines';
+    EntityName = 'salesQuoteLine2';
+    EntitySetName = 'salesQuoteLines2';
     SourceTable = "Sales Invoice Line Aggregate";
     SourceTableTemporary = true;
     Extensible = false;

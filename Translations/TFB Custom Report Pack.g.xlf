@@ -63,6 +63,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field Description - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 3960208283 - Field 1317536482 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>discountPerKg</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TFB Customer Lines Buffer - Field discountPerKg - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 3960208283 - Field 486908828 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Document No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1038,6 +1043,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Order Lines - Control customerID - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1185520806 - Control 1317536482 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>DiscountPerKg</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Order Lines - Control discountPerKg - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1185520806 - Control 460507951 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>DisplayName</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1199,7 +1209,7 @@
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Order Lines - Control unitOfMeasureId - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1185520806 - Control 3421409717 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>unit price</source>
+          <source>UnitPrice</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Order Lines - Control unitPrice - Property Caption</note>
         </trans-unit>
@@ -1507,6 +1517,201 @@
           <source>Vendor No.</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control vendorNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Property 3446740159" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Quote Line</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Property EntityCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Property 631549417" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sales Quote Lines</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Property EntitySetCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - NamedType 1048593969" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Account does not exist.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - NamedType AccountDoesNotExistErr</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - NamedType 3559327969" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Both "itemId" and "accountId" are specified. Specify only one of them.</source>
+          <note from="Developer" annotates="general" priority="2">itemId and accountId are field names and should not be translated.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - NamedType BothItemIdAndAccountIdAreSpecifiedErr</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - NamedType 2697791227" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The value for "documentId" cannot be modified.</source>
+          <note from="Developer" annotates="general" priority="2">documentId is a field name and should not be translated.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - NamedType CannotChangeDocumentIdNoErr</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - NamedType 3577643735" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The value for sequence cannot be modified. Delete and insert the line again.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - NamedType CannotChangeLineNoErr</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - NamedType 91023212" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The value for "lineObjectNumber" cannot be modified.</source>
+          <note from="Developer" annotates="general" priority="2">lineObjectNumber is a field name and should not be translated.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - NamedType CannotChangeLineObjectNoErr</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - NamedType 2565185687" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You must specify an Id or a Document Id to get the lines.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - NamedType IDOrDocumentIdShouldBeSpecifiedForLinesErr</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - NamedType 2671689085" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item does not exist.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - NamedType ItemDoesNotExistErr</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 1406037800 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Account Id</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control accountId - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 3260766182 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount Excluding Tax</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control amountExcludingTax - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 4103372332 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount Including Tax</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control amountIncludingTax - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 4232699882 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 252685889 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Dimension Set Lines</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control dimensionSetLines - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 2286581531 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>DiscountAmount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control discountAmount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 1312831416 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Discount Applied Before Tax</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control discountAppliedBeforeTax - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 659357154 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Discount Percent</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control discountPercent - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 1317536482 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>DiscountPerKg</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control discountPerKg - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 565362798 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document Id</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control documentId - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 2686962215 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Id</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control id - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 1137752084 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Id</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control itemId - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 3104767193 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Variant Id</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control itemVariantId - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 1716610572 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line Object No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control lineObjectNumber - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 2268742530 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control lineType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 743685791 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Location</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control location - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 110024060 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Location Id</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control locationId - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 3755691981 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Net Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control netAmount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 462527801 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Net Amount Including Tax</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control netAmountIncludingTax - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 639184402 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Net Tax Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control netTaxAmount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 1875849762 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>PricePerKg</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control pricePerKg - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 3355113493 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 4026315105 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sequence</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control sequence - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 594817020 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Tax Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control taxCode - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 2776482850 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Tax Percent</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control taxPercent - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 4101803605 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Total Tax Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control totalTaxAmount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 1092236590 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unit Of Measure Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control unitOfMeasureCode - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 84346318 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unit Of Measure Id</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control unitOfMeasureId - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 3421409717 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unit Price</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control unitPrice - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 2232801274 - Control 3211211970 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>UnitWeight</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Sales Quote Lines - Control unitWeight - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 2896458852 - Property 3446740159" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sales Quote</source>
