@@ -39,7 +39,7 @@ page 53008 "TFB APIV2 - Order Lines"
                     Caption = 'Document Type';
 
                 }
-                field(documentNo; "Document No.")
+                field(documentNo; Rec."Document No.")
                 {
                     Caption = 'Document No.';
                 }
@@ -329,7 +329,7 @@ page 53008 "TFB APIV2 - Order Lines"
 
     begin
 
-        ImageCDN := StrSubstNo(SalesSetup."TFB Image URL Pattern", Rec."No.");
+        ImageCDN := StrSubstNo(CoreSetup."Image URL Pattern", Rec."No.");
         If CountryRegion.Get(Rec."Country/Region of Origin Code") then
             CountryOfOriginName := CountryRegion.Name
         else
@@ -347,14 +347,14 @@ page 53008 "TFB APIV2 - Order Lines"
     trigger OnOpenPage()
 
     begin
-        SalesSetup.Get();
+        CoreSetup.Get();
     end;
 
     var
         ShippingAgent: Record "Shipping Agent";
 
         CountryRegion: Record "Country/Region";
-        SalesSetup: Record "Sales & Receivables Setup";
+        CoreSetup: Record "TFB Core Setup";
         ShippingAgentName: Text;
         RecordsLoaded: Boolean;
 

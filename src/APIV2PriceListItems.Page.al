@@ -124,7 +124,7 @@ page 53002 "TFB APIV2 - Price List Items"
                 {
                     Caption = 'Next Availability Date';
                 }
-                
+
                 field(lastReceiptDate; Rec.LastReceiptDate)
                 {
                     Caption = 'Last Receipt Date';
@@ -324,7 +324,7 @@ page 53002 "TFB APIV2 - Price List Items"
 
     begin
 
-        ImageCDN := StrSubstNo(SalesSetup."TFB Image URL Pattern", Rec."No.");
+        ImageCDN := StrSubstNo(CoreSetup."Image URL Pattern", Rec."No.");
         If CountryRegion.Get(Rec."Country/Region of Origin Code") then
             CountryOfOriginName := CountryRegion.Name
         else
@@ -342,14 +342,14 @@ page 53002 "TFB APIV2 - Price List Items"
     trigger OnOpenPage()
 
     begin
-        SalesSetup.Get();
+        CoreSetup.Get();
     end;
 
     var
         ShippingAgent: Record "Shipping Agent";
 
         CountryRegion: Record "Country/Region";
-        SalesSetup: Record "Sales & Receivables Setup";
+        CoreSetup: Record "TFB Core Setup";
         ShippingAgentName: Text;
         RecordsLoaded: Boolean;
 
