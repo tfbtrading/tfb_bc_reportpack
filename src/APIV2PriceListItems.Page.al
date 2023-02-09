@@ -285,7 +285,13 @@ page 53002 "TFB APIV2 - Price List Items"
                     EntitySetName = 'itemMarketSegments';
                     SubPageLink = "Item ID" = Field(ItemID);
                 }
-
+                part(lotImage; "TFB APIV2 - Lot Image URLs")
+                {
+                    Caption = 'Lot Images';
+                    EntityName = 'lotImage';
+                    EntitySetName = 'lotImages';
+                    SubPageLink = "Item No." = Field("No.");
+                }
             }
         }
     }
