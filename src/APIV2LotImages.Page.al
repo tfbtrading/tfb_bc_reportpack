@@ -45,6 +45,18 @@ page 53012 "TFB APIV2 - Lot Image URLs"
                 {
                     Caption = 'modifiedat';
                 }
+                field(itemDescription; getItemDesccription())
+                {
+                    Caption = 'itemdescription';
+                }
+                field(imageNote; getImageNote())
+                {
+
+                }
+                field(bestBeforeDate; getBestBefore())
+                {
+                    Caption = 'bestbeforedate';
+                }
                 field(gridUrl; getGridURL())
                 {
                     Caption = 'gridurl';
@@ -65,5 +77,33 @@ page 53012 "TFB APIV2 - Lot Image URLs"
 
         exit(CommonCU.GetLotImagesURL('gridbowl', Rec."Isol. Image Blob Name", Rec."Lot No.", Rec."Item No."));
 
+    end;
+
+    local procedure getBestBefore(): Date
+    var
+        ItemLedgerEntry: Record "Item Ledger Entry";
+
+    begin
+        ItemLedgerEntry.SetLoadFields("Expiration Date");
+        If ItemLedgerEntry.GetBySystemId(Rec."Item Ledger Entry ID") then
+            Exit(ItemLedgerEntry."Expiration Date");
+
+    end;
+
+    local procedure getItemDesccription(): Text[100]
+
+    var
+        Item: Record Item;
+    begin
+
+        Item.SetLoadFields(Description);
+        If Item.get(Rec."Item No.") then
+            Exit(Item.Description);
+
+    end;
+
+    local procedure getImageNote(): Text[200]
+    begin
+        Exit('Test Note');
     end;
 }
