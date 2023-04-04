@@ -91,13 +91,12 @@ page 53009 "TFB APIV2 - Sales Quotes"
                     Caption = 'Customer Id';
 
                     trigger OnValidate()
-                    var
-                        O365SalesInvoiceMgmt: Codeunit "O365 Sales Invoice Mgmt";
+                 
                     begin
                         if not SellToCustomer.GetBySystemId(Rec."Customer Id") then
                             Error(CouldNotFindSellToCustomerErr);
 
-                        O365SalesInvoiceMgmt.EnforceCustomerTemplateIntegrity(SellToCustomer);
+                  
 
                         Rec."Sell-to Customer No." := SellToCustomer."No.";
                         RegisterFieldSet(Rec.FieldNo("Customer Id"));
@@ -110,8 +109,7 @@ page 53009 "TFB APIV2 - Sales Quotes"
                     Caption = 'Customer No.';
 
                     trigger OnValidate()
-                    var
-                        O365SalesInvoiceMgmt: Codeunit "O365 Sales Invoice Mgmt";
+                  
                     begin
                         if SellToCustomer."No." <> '' then begin
                             if SellToCustomer."No." <> Rec."Sell-to Customer No." then
@@ -122,7 +120,6 @@ page 53009 "TFB APIV2 - Sales Quotes"
                         if not SellToCustomer.Get(Rec."Sell-to Customer No.") then
                             Error(CouldNotFindSellToCustomerErr);
 
-                        O365SalesInvoiceMgmt.EnforceCustomerTemplateIntegrity(SellToCustomer);
 
                         Rec."Customer Id" := SellToCustomer.SystemId;
                         RegisterFieldSet(Rec.FieldNo("Customer Id"));
@@ -144,13 +141,12 @@ page 53009 "TFB APIV2 - Sales Quotes"
                     Caption = 'Bill-To Customer Id';
 
                     trigger OnValidate()
-                    var
-                        O365SalesInvoiceMgmt: Codeunit "O365 Sales Invoice Mgmt";
+              
                     begin
                         if not BillToCustomer.GetBySystemId(Rec."Bill-to Customer Id") then
                             Error(CouldNotFindBillToCustomerErr);
 
-                        O365SalesInvoiceMgmt.EnforceCustomerTemplateIntegrity(BillToCustomer);
+                       
 
                         Rec."Bill-to Customer No." := BillToCustomer."No.";
                         RegisterFieldSet(Rec.FieldNo("Bill-to Customer Id"));
@@ -162,8 +158,7 @@ page 53009 "TFB APIV2 - Sales Quotes"
                     Caption = 'Bill-To Customer No.';
 
                     trigger OnValidate()
-                    var
-                        O365SalesInvoiceMgmt: Codeunit "O365 Sales Invoice Mgmt";
+          
                     begin
                         if BillToCustomer."No." <> '' then begin
                             if BillToCustomer."No." <> Rec."Bill-to Customer No." then
@@ -174,7 +169,7 @@ page 53009 "TFB APIV2 - Sales Quotes"
                         if not BillToCustomer.Get(Rec."Bill-to Customer No.") then
                             Error(CouldNotFindBillToCustomerErr);
 
-                        O365SalesInvoiceMgmt.EnforceCustomerTemplateIntegrity(BillToCustomer);
+                  
 
                         Rec."Bill-to Customer Id" := BillToCustomer.SystemId;
                         RegisterFieldSet(Rec.FieldNo("Bill-to Customer Id"));

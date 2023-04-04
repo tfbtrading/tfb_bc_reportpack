@@ -49,7 +49,7 @@ codeunit 53030 "TFB Report Pack Mgmt"
         CompanyContact: Record Contact;
         OtherContacts: Record Contact;
         ContactJobResponsibility: Record "Contact Job Responsibility";
-        SalesReceivablesSetup: Record "Sales & Receivables Setup";
+        CoreSetup: Record "TFB Core Setup";
         TFBPriceList: Report "TFB Price List";
 
         TempBlobCU: Codeunit "Temp Blob";
@@ -92,10 +92,10 @@ codeunit 53030 "TFB Report Pack Mgmt"
         //Iterate through other contacts with the same company contact to check for their purchasing responsibilities
         if OtherContacts.FindSet() then begin
 
-            SalesReceivablesSetup.Get();
+            CoreSetup.Get();
             repeat
-                If SalesReceivablesSetup."TFB PL Def. Job Resp. Rec." <> '' then begin
-                    ContactJobResponsibility.SetRange("Job Responsibility Code", SalesReceivablesSetup."TFB PL Def. Job Resp. Rec.");
+                If CoreSetup."PL Def. Job Resp. Rec." <> '' then begin
+                    ContactJobResponsibility.SetRange("Job Responsibility Code", CoreSetup."PL Def. Job Resp. Rec.");
                     ContactJobResponsibility.SetRange("Contact No.", OtherContacts."No.");
 
                     If not ContactJobResponsibility.IsEmpty() then
@@ -143,7 +143,7 @@ codeunit 53030 "TFB Report Pack Mgmt"
 
         EmailMessage.AddAttachment(CopyStr(FileNameBuilder.ToText(), 1, 250), 'Application/pdf', InStream);
 
-        Email.AddRelation(EmailMessage, Database::Customer, Customer.SystemId, Enum::"Email Relation Type"::"Related Entity");
+        Email.AddRelation(EmailMessage, Database::Customer, Customer.SystemId, Enum::"Email Relation Type"::"Related Entity", enum::"Email Relation Origin"::"Compose Context");
         If Prompt then
             Email.OpenInEditorModally(EmailMessage, EmailScenEnum::PriceList)
         else

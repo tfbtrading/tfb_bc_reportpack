@@ -55,7 +55,7 @@ page 53004 "TFB APIV2 - Market Segment"
     var
 
     begin
-        SalesSetup.Get();
+        CoreSetup.Get();
     end;
 
     trigger OnAfterGetRecord()
@@ -63,12 +63,12 @@ page 53004 "TFB APIV2 - Market Segment"
 
     begin
 
-        ImageCDN := StrSubstNo(SalesSetup."TFB Image URL Pattern", ConvertStr(Rec.TableCaption + '_' + Rec.Title, ' ', '_'));
+        ImageCDN := StrSubstNo(CoreSetup."Image URL Pattern", ConvertStr(Rec.TableCaption + '_' + Rec.Title, ' ', '_'));
 
     end;
 
     var
 
-        SalesSetup: Record "Sales & Receivables Setup";
+        CoreSetup: Record "TFB Core Setup";
         ImageCDN: Text;
 }

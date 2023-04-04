@@ -332,12 +332,12 @@ page 53011 "TFB APIV2 - Sales Quote Lines"
 
     trigger OnFindRecord(Which: Text): Boolean
     var
-        GraphMgtSalesQuoteBuffer: Codeunit "Graph Mgt - Sales Quote Buffer";
         GraphMgtSalesInvLines: Codeunit "Graph Mgt - Sales Inv. Lines";
+        GraphMgtSalesQuoteBuffer: Codeunit "Graph Mgt - Sales Quote Buffer";
         SysId: Guid;
         DocumentIdFilter: Text;
-        IdFilter: Text;
         FilterView: Text;
+        IdFilter: Text;
     begin
         if not LinesLoaded then begin
             FilterView := Rec.GetView();
@@ -381,21 +381,21 @@ page 53011 "TFB APIV2 - Sales Quote Lines"
     end;
 
     var
-        TempFieldBuffer: Record "Field Buffer" temporary;
-        _pricePerKg: Decimal;
-        _unitWeight: Decimal;
-
-        _discountPerKg: Decimal;
         Item: Record "Item";
+        TempFieldBuffer: Record "Field Buffer" temporary;
         TempItemFieldSet: Record 2000000041 temporary;
         LinesLoaded: Boolean;
-        IDOrDocumentIdShouldBeSpecifiedForLinesErr: Label 'You must specify an Id or a Document Id to get the lines.';
+        _discountPerKg: Decimal;
+        _pricePerKg: Decimal;
+        _unitWeight: Decimal;
+        AccountDoesNotExistErr: Label 'Account does not exist.';
+        BothItemIdAndAccountIdAreSpecifiedErr: Label 'Both "itemId" and "accountId" are specified. Specify only one of them.', Comment = 'itemId and accountId are field names and should not be translated.';
         CannotChangeDocumentIdNoErr: Label 'The value for "documentId" cannot be modified.', Comment = 'documentId is a field name and should not be translated.';
         CannotChangeLineNoErr: Label 'The value for sequence cannot be modified. Delete and insert the line again.';
-        BothItemIdAndAccountIdAreSpecifiedErr: Label 'Both "itemId" and "accountId" are specified. Specify only one of them.', Comment = 'itemId and accountId are field names and should not be translated.';
-        ItemDoesNotExistErr: Label 'Item does not exist.';
-        AccountDoesNotExistErr: Label 'Account does not exist.';
         CannotChangeLineObjectNoErr: Label 'The value for "lineObjectNumber" cannot be modified.', Comment = 'lineObjectNumber is a field name and should not be translated.';
+        IDOrDocumentIdShouldBeSpecifiedForLinesErr: Label 'You must specify an Id or a Document Id to get the lines.';
+        ItemDoesNotExistErr: Label 'Item does not exist.';
+
 
     local procedure RegisterFieldSet(FieldNo: Integer)
     var
