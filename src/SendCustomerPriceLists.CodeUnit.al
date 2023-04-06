@@ -29,7 +29,7 @@ codeunit 53002 "TFB Send Customer Price Lists"
             Customer.SetRange("TFB Price List Recipient", true);
             Customer.SetFilter("E-Mail", '<>%1', '');
         end;
-        If Customer.FindSet(false, false) then
+        If Customer.FindSet(false) then
             repeat
                 Window.Update(1, StrSubstNo('%1 %2 %3', Customer."No.", Customer.Name, AvgTimeText));
 

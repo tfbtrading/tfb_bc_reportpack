@@ -143,9 +143,8 @@ report 53004 "TFB Transport History"
             begin
 
                 If (WhseShipmentHeader."No." = TempPostedRef) then begin
-                    if not (WhseShipmentLine."Posted Source No." = TempSourceRef) or Consolidated then begin
+                    if not (WhseShipmentLine."Posted Source No." = TempSourceRef) or Consolidated then
                         Consolidated := true
-                    end
                 end
                 else
                     Consolidated := false;

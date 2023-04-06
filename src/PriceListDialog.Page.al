@@ -35,12 +35,12 @@ page 53000 "TFB Price List Dialog"
         }
     }
 
-    procedure Setup(MessageTopic: text; EffectiveDate: Date; Duration: DateFormula)
+    procedure Setup(newMessageTopic: text; newEffectiveDate: Date; newDuration: DateFormula)
 
     begin
-        _Duration := Duration;
-        _EffectiveDate := EffectiveDate;
-        MessageTopicVar := MessageTopic;
+        _Duration := newDuration;
+        _EffectiveDate := newEffectiveDate;
+        MessageTopicVar := newMessageTopic;
 
     end;
 

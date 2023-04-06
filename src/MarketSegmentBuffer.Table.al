@@ -53,7 +53,7 @@ table 53130 "TFB Market Segment Buffer"
             If Item.GetBySystemId(ItemIdFilter) then
                 ItemMarketRel.SetRange(GenericItemID, Item."TFB Generic Item ID");
 
-        If ItemMarketRel.FindSet(false, false) then
+        If ItemMarketRel.FindSet(false) then
             repeat
                 clear(rec);
                 Rec."Item ID" := ItemIdFilter;

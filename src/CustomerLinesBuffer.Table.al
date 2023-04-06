@@ -305,7 +305,7 @@ table 53140 "TFB Customer Lines Buffer"
         SalesLine.SetFilter("Outstanding Quantity", '>0');
         SalesLine.SetFilter("Planned Shipment Date", '<=t+2m');
 
-        If SalesLine.FindSet(false, false) then
+        If SalesLine.FindSet(false) then
             repeat
                 clear(Rec);
                 Item.Get(SalesLine."No.");
@@ -376,7 +376,7 @@ table 53140 "TFB Customer Lines Buffer"
         SalesLine.SetFilter("Quantity (Base)", '>0');
 
 
-        If SalesLine.FindSet(false, false) then
+        If SalesLine.FindSet(false) then
             repeat
                 clear(Rec);
                 Item.Get(SalesLine."No.");
@@ -445,7 +445,7 @@ table 53140 "TFB Customer Lines Buffer"
         ShipmentLine.SetFilter("Posting Date", '>t-1m'); //Set for previous two weeks
 
 
-        If ShipmentLine.FindSet(false, false) then
+        If ShipmentLine.FindSet(false) then
             repeat
                 clear(Rec);
                 Item.Get(ShipmentLine."No.");
@@ -544,10 +544,10 @@ table 53140 "TFB Customer Lines Buffer"
         ItemLedgerEntry.SetRange("Document Type", ItemLedgerEntry."Document Type"::"Sales Shipment");
         TempNCR.DeleteAll();
 
-        If ItemLedgerEntry.FindSet(false, false) then
+        If ItemLedgerEntry.FindSet(false) then
             repeat
                 NCR.SetRange("Item Ledger Entry No.", ItemLedgerEntry."Entry No.");
-                If NCR.FindSet(false, false) then
+                If NCR.FindSet(false) then
                     repeat
                         TempNCR.Init();
                         TempNCR := NCR;
@@ -558,7 +558,7 @@ table 53140 "TFB Customer Lines Buffer"
 
     end;
 
-    local procedure GetTransportDetails(CustomerNo: Code[20]; "Shipping Agent Code": Code[10]; "Shipping Agent Service Code": Code[10]; PlannedShipmentDate: Date; PackageTrackingNo: Text[30]): Boolean
+    local procedure GetTransportDetails(CustomerNo: Code[20]; "Shipping Agent Code": Code[10]; "Shipping Agent Service Code": Code[10]; tempPlannedShipmentDate: Date; tempPackageTrackingNo: Text[30]): Boolean
 
     var
         ShippingAgentServices: Record "Shipping Agent Services";
@@ -584,17 +584,17 @@ table 53140 "TFB Customer Lines Buffer"
 
         CustomCalendarChange[1].SetSource(Enum::"Calendar Source Type"::Location, Location.Code, '', '');
         CustomCalendarChange[2].SetSource(Enum::"Calendar Source Type"::Customer, CustomerNo, '', '');
-        Rec.EstDeliveryDateMin := CalendarMgmt.CalcDateBOC('', CalcDate(ShippingAgentDateFormulaMin, PlannedShipmentDate), CustomCalendarChange, false);
+        Rec.EstDeliveryDateMin := CalendarMgmt.CalcDateBOC('', CalcDate(ShippingAgentDateFormulaMin, tempPlannedShipmentDate), CustomCalendarChange, false);
 
         If format(ShippingAgentDateFormulaMax) <> '' then
-            Rec.EstDeliveryDateMax := CalendarMgmt.CalcDateBOC('', CalcDate(ShippingAgentDateFormulaMax, PlannedShipmentDate), CustomCalendarChange, false)
+            Rec.EstDeliveryDateMax := CalendarMgmt.CalcDateBOC('', CalcDate(ShippingAgentDateFormulaMax, tempPlannedShipmentDate), CustomCalendarChange, false)
         else
             Rec.EstDeliveryDateMax := EstDeliveryDateMin;
 
         If ShippingAgent.Get(Rec.AgentCode) then
-            Rec.TrackingAvailable := (ShippingAgent."Internet Address" <> '') and (PackageTrackingNo <> ''); //internet address assumed to be trackingis available
+            Rec.TrackingAvailable := (ShippingAgent."Internet Address" <> '') and (tempPackageTrackingNo <> ''); //internet address assumed to be trackingis available
 
-        If TrackingAvailable then PackageTrackingURL := Text.CopyStr(ShippingAgent.GetTrackingInternetAddr(PackageTrackingNo), 1, 100);
+        If TrackingAvailable then PackageTrackingURL := Text.CopyStr(ShippingAgent.GetTrackingInternetAddr(tempPackageTrackingNo), 1, 100);
     end;
 
 

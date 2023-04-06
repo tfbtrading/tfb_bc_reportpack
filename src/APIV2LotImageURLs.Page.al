@@ -75,7 +75,7 @@ page 53012 "TFB APIV2 - Lot Image URLs"
     local procedure getGridURL(): Text[256]
     begin
 
-        exit(CommonCU.GetLotImagesURL('gridbowl', Rec."Isol. Image Blob Name", Rec."Lot No.", Rec."Item No."));
+        exit(Text.CopyStr(CommonCU.GetLotImagesURL('gridbowl', Rec."Isol. Image Blob Name", Rec."Lot No.", Rec."Item No."),1,256));
 
     end;
 

@@ -97,7 +97,7 @@ table 53150 "TFB Price History Buffer"
         PriceListLine.SetAscending("Starting Date", true);
 
 
-        If PriceListLine.FindSet(false, false) then
+        If PriceListLine.FindSet(false) then
             repeat
                 Clear(Rec);
                 LineNo += 1;
@@ -165,7 +165,7 @@ table 53150 "TFB Price History Buffer"
         SalesInvoiceLine.SetFilter("Quantity (Base)", '>0');
 
 
-        If SalesInvoiceLine.FindSet(false, false) then
+        If SalesInvoiceLine.FindSet(false) then
             repeat
 
 
@@ -195,7 +195,7 @@ table 53150 "TFB Price History Buffer"
         SalesLine.SetFilter("Quantity (Base)", '>0');
 
 
-        If SalesLine.FindSet(false, false) then
+        If SalesLine.FindSet(false) then
             repeat
                 SalesHeader.Get(SalesLine."Document Type", SalesLine."Document No.");
                 Clear(Rec);

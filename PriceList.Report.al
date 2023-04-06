@@ -256,7 +256,7 @@ Report 53120 "TFB Price List"
 
     var
 
-       
+
         _PriceHistory: DateFormula;
         _EffectiveDate: Date;
         KgPrice: Decimal;
@@ -383,7 +383,7 @@ Report 53120 "TFB Price List"
 
     end;
 
-    local procedure FilterPriceListLine(CustomerPriceGroup: Code[20]; PriceAsset: Record "Price Asset"; var PriceListLine: Record "Price List Line"; EffectiveDate: Date; CurrencyCode: Code[10])
+    local procedure FilterPriceListLine(CustomerPriceGroup: Code[20]; PriceAsset: Record "Price Asset"; var PriceListLine: Record "Price List Line"; tempEffectiveDate: Date; CurrencyCode: Code[10])
 
     begin
         PriceListLine.SetRange("Asset Type", PriceAsset."Asset Type");
@@ -394,8 +394,8 @@ Report 53120 "TFB Price List"
         PriceListLine.SetRange("Source Type", PriceListLine."Source Type"::"Customer Price Group");
         PriceListLine.SetRange("Source No.", CustomerPriceGroup);
         PriceListLine.SetFilter("Amount Type", '%1|%2', PriceListLine."Amount Type"::Price, PriceListLine."Amount Type"::Any);
-        PriceListLine.SetRange("Starting Date", 0D, EffectiveDate);
-        PriceListLine.SetFilter("Ending Date", '%1|>=%2', 0D, EffectiveDate);
+        PriceListLine.SetRange("Starting Date", 0D, tempEffectiveDate);
+        PriceListLine.SetFilter("Ending Date", '%1|>=%2', 0D, tempEffectiveDate);
         PriceListLine.SetFilter("Currency Code", '%1|%2', CurrencyCode, '');
 
 
@@ -652,7 +652,7 @@ Report 53120 "TFB Price List"
         PurchaseLine.SetFilter("Outstanding Qty. (Base)", '>0');
         PurchaseLine.SetCurrentKey("Expected Receipt Date");
 
-        If PurchaseLine.FindSet(false, false) then
+        If PurchaseLine.FindSet(false) then
             repeat
                 If (not TransferSupplyFound) or (TransferSupplyFound and (PurchaseLine."Expected Receipt Date" < TransferLine."Receipt Date")) then begin
                     PurchaseLine.CalcFields("Reserved Qty. (Base)");

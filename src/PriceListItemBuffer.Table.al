@@ -326,7 +326,7 @@ table 53120 "TFB Price List Item Buffer"
         Item.SetRange("TFB Publishing Block", false);
         Item.SetAscending("Item Category Code", false);
 
-        If Item.FindSet(false, false) then
+        If Item.FindSet(false) then
             repeat
                 clear(Rec);
                 Rec.CustomerID := CustomerIdFilter;
@@ -357,7 +357,7 @@ table 53120 "TFB Price List Item Buffer"
                 Rec.LastPaidKgPrice := PriceCU.CalcPerKgFromUnit(Rec.LastPaidUnitPrice, Rec."Net Weight");
 
                 Rec."Country/Region of Origin Code" := Item."Country/Region of Origin Code";
-                Rec.SpecificationCDN := CommonCU.GetSpecificationURL(Item);
+                Rec.SpecificationCDN := Text.CopyStr(CommonCU.GetSpecificationURL(Item),1,100);
 
 
                 If Vendor.Get(Item."Vendor No.") then
@@ -684,7 +684,7 @@ table 53120 "TFB Price List Item Buffer"
 
     end;
 
-    local procedure IsRecentlySoldOut(Item: Record Item; ReservedQtyOnInventory: Integer; var LastSaleDateTime: DateTime): Boolean
+    local procedure IsRecentlySoldOut(Item: Record Item; ReservedQtyOnInventory: Integer; var newLastSaleDateTime: DateTime): Boolean
 
     var
         ItemLedger: Record "Item Ledger Entry";
@@ -708,7 +708,7 @@ table 53120 "TFB Price List Item Buffer"
             ItemLedger.SetLoadFields("Document No.", "Posting Date");
 
             If ItemLedger.FindFirst() then begin
-                LastSaleDateTime := ItemLedger.SystemCreatedAt;
+                newLastSaleDateTime := ItemLedger.SystemCreatedAt;
                 Exit(true);
             end
             else
@@ -729,7 +729,7 @@ table 53120 "TFB Price List Item Buffer"
                 If ReservationEntry2.FindFirst() then
                     If SalesHeader.Get(SalesHeader."Document Type"::Order, ReservationEntry2."Source ID") then
                         If SalesHeader."Order Date" > BeginPeriod then begin
-                            LastSaleDateTime := SalesHeader.SystemCreatedAt;
+                            newLastSaleDateTime := SalesHeader.SystemCreatedAt;
                             Exit(true);
                         end;
 
@@ -930,7 +930,7 @@ table 53120 "TFB Price List Item Buffer"
         PurchaseLine.SetFilter("Outstanding Qty. (Base)", '>0');
         PurchaseLine.SetCurrentKey("Expected Receipt Date");
 
-        If PurchaseLine.FindSet(false, false) then
+        If PurchaseLine.FindSet(false) then
             repeat
                 If (not TransferSupplyFound) or (TransferSupplyFound and (PurchaseLine."Expected Receipt Date" < TransferLine."Receipt Date")) then begin
                     PurchaseLine.CalcFields("Reserved Qty. (Base)");
