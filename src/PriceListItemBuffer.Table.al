@@ -567,6 +567,7 @@ table 53120 "TFB Price List Item Buffer"
     var
         ItemLedger: Record "Item Ledger Entry";
         Salesline: Record "Sales Line";
+        Purchasing: Record Purchasing;
 
     begin
 
@@ -577,7 +578,7 @@ table 53120 "TFB Price List Item Buffer"
         ItemLedger.SetRange("Item No.", Item."No.");
         ItemLedger.SetCurrentKey("Posting Date");
         ItemLedger.SetAscending("Posting Date", false);
-        ItemLedger.SetLoadFields("Remaining Quantity", Quantity, "Posting Date", "Entry No.");
+        ItemLedger.SetLoadFields("Remaining Quantity", Quantity, "Posting Date", "Entry No.", "Purchasing Code");
 
         If not ItemLedger.FindFirst() then exit;
 
@@ -596,7 +597,8 @@ table 53120 "TFB Price List Item Buffer"
         If salesline.FindFirst() then
             LastSaleDateTime := salesline.SystemCreatedAt;
 
-        MarketInsightType := MarketInsightType::NewStock;
+        If not (Purchasing.get(ItemLedger."Purchasing Code") and Purchasing."Special Order") then
+            MarketInsightType := MarketInsightType::NewStock;
 
 
     end;

@@ -4,7 +4,7 @@
   "publisher": "TFB Trading",
   "brief": "Contains additional reports not directly tied to other code logic",
   "description": "",
-  "version": "22.0.1.0",
+  "version": "22.0.1.1",
   "privacyStatement": "",
   "EULA": "",
   "help": "",
@@ -24,7 +24,7 @@
     {"id": "e4b4c5c6-109a-4977-8893-f1502da124f5",
     "name": "TFB Core Extension",
     "publisher": "TFB Trading",
-    "version": "22.0.1.0"},
+    "version": "22.0.1.1"},
       {
       "id": "6f0293d3-86fc-4ff8-9632-54a580be6546",
       "name": "ForNAV Core",
