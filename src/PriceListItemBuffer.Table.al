@@ -357,7 +357,7 @@ table 53120 "TFB Price List Item Buffer"
                 Rec.LastPaidKgPrice := PriceCU.CalcPerKgFromUnit(Rec.LastPaidUnitPrice, Rec."Net Weight");
 
                 Rec."Country/Region of Origin Code" := Item."Country/Region of Origin Code";
-                Rec.SpecificationCDN := Text.CopyStr(CommonCU.GetSpecificationURL(Item),1,100);
+                Rec.SpecificationCDN := Text.CopyStr(CommonCU.GetSpecificationURL(Item), 1, 100);
 
 
                 If Vendor.Get(Item."Vendor No.") then
@@ -395,7 +395,7 @@ table 53120 "TFB Price List Item Buffer"
         CalendarMgmt: CodeUnit "Calendar Management";
         NewDate: Date;
 
-
+        IntelligentLocationCode: Code[10];
         UseDropShipDateCalcs: Boolean;
 
 
@@ -431,10 +431,14 @@ table 53120 "TFB Price List Item Buffer"
 
             false:
                 begin
-                    If not Location.Get(SalesCU.GetIntelligentLocation(Customer."No.", Item."No.", 0)) then begin
+                    SalesCU.GetIntelligentLocation(Customer."No.", Customer."Ship-to Code", Item."No.", 0, IntelligentLocationCode);
+
+
+                    if not Location.Get(IntelligentLocationCode) then begin
                         Rec.NoEstimateAvailable := true;
                         exit;
                     end;
+
                     ShippingAgentServices := SalesCU.GetShippingAgentDetailsForLocation(Location.Code, Customer.County, Customer."Shipment Method Code");
                     Rec.AgentCode := ShippingAgentServices."Shipping Agent Code";
                     Rec.AgentServiceCode := ShippingAgentServices.Code;
