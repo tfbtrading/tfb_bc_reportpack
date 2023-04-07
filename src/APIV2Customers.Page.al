@@ -139,8 +139,8 @@ page 53001 "TFB APIV2 - Customers"
                 {
                     Caption = 'Customer Financial Details';
                     Multiplicity = ZeroOrOne;
-                    EntityName = 'customerFinancialDetail';
                     EntitySetName = 'customerFinancialDetails';
+                    EntityName = 'customerFinancialDetail';
                     SubPageLink = SystemId = Field(SystemId);
                 }
                 part(picture; "APIV2 - Pictures")

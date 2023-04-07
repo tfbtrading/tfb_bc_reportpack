@@ -319,7 +319,7 @@ Report 53030 "TFB Customer Stock Status"
         PurchaseLine.SetFilter("Outstanding Qty. (Base)", '>0');
         PurchaseLine.SetCurrentKey("Expected Receipt Date");
 
-        If PurchaseLine.FindSet(false, false) then
+        If PurchaseLine.FindSet(false) then
             repeat
                 If (not TransferSupplyFound) or (TransferSupplyFound and (PurchaseLine."Expected Receipt Date" < TransferLine."Receipt Date")) then begin
                     PurchaseLine.CalcFields("Reserved Qty. (Base)");

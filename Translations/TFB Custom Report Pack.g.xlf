@@ -958,6 +958,56 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Item Market Seg. - Control title - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1885976923 - Property 3446740159" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Lot Image</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Lot Image URLs - Property EntityCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 1885976923 - Property 631549417" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Lot Images</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Lot Image URLs - Property EntitySetCaption</note>
+        </trans-unit>
+        <trans-unit id="Page 1885976923 - Control 3239742871 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>bestbeforedate</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Lot Image URLs - Control bestBeforeDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1885976923 - Control 2766016693 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>gridurl</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Lot Image URLs - Control gridUrl - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1885976923 - Control 2686962215 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>id</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Lot Image URLs - Control id - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1885976923 - Control 3915309917 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>itemdescription</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Lot Image URLs - Control itemDescription - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1885976923 - Control 3423136354 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>lotno</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Lot Image URLs - Control lotNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1885976923 - Control 1570954664 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>modifiedat</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Lot Image URLs - Control modifiedAt - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1885976923 - Control 2757394829 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>number</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Lot Image URLs - Control number - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1885976923 - Control 1036595610 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>sequenceno</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Lot Image URLs - Control sequenceNo - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 1588792970 - Property 3446740159" size-unit="char" translate="yes" xml:space="preserve">
           <source>Market Segment</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -1407,6 +1457,11 @@
           <source>Last Sale TimeStamp</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control lastSaleTimeStamp - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1624067204 - Control 1058154212 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Lot Images</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Price List Items - Control lotImage - Property Caption</note>
         </trans-unit>
         <trans-unit id="Page 1624067204 - Control 70305259 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Marketing Copy</source>
