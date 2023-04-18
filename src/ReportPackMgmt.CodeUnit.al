@@ -196,4 +196,35 @@ codeunit 53030 "TFB Report Pack Mgmt"
 
         Exit(cu.GetHTMLTemplateActive(TitleText, SubTitleText))
     end;
+
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"TFB Customer Mgmt", OnBeforeGenerateOrderStatusContent, '', false, false)]
+    local procedure OnBeforeGenerateOrderStatusContent(Customer: Record Customer; var HTMLBuilder: TextBuilder; var Handled: Boolean);
+
+    var
+        CustomerOrderStatus: Report "TFB Customer Order Status";
+        TempBlob: CodeUnit "Temp Blob";
+        RecordRef: RecordRef;
+        OutStream: OutStream;
+        Instream: Instream;
+        HTMLText: Text;
+    begin
+
+        TempBlob.CreateOutStream(OutStream);
+        RecordRef.GetTable(Customer);
+        If CustomerOrderStatus.SaveAs('', ReportFormat::Html, OutStream, RecordRef) then begin
+            TempBlob.CreateInStream(Instream);
+            If Instream.ReadText(HTMLText) > 0 then begin
+                HTMLBuilder.Clear();
+                HTMLBuilder.Append(HTMLText);
+                Handled := true;
+            end
+            else
+                Handled := false;
+        end
+        else
+            Handled := false;
+
+    end;
+
 }
