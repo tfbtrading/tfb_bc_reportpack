@@ -212,9 +212,10 @@ codeunit 53030 "TFB Report Pack Mgmt"
 
         TempBlob.CreateOutStream(OutStream);
         RecordRef.GetTable(Customer);
-        If CustomerOrderStatus.SaveAs('', ReportFormat::Html, OutStream, RecordRef) then begin
+        if CustomerOrderStatus.SaveAs('', ReportFormat::Html, OutStream, RecordRef) then begin
             TempBlob.CreateInStream(Instream);
-            If Instream.ReadText(HTMLText) > 0 then begin
+            if Instream.Length > 0 then begin
+                Instream.ReadText(HTMLText);
                 HTMLBuilder.Clear();
                 HTMLBuilder.Append(HTMLText);
                 Handled := true;
@@ -224,6 +225,7 @@ codeunit 53030 "TFB Report Pack Mgmt"
         end
         else
             Handled := false;
+
 
     end;
 
