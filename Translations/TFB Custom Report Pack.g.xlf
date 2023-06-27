@@ -2503,6 +2503,11 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report TFB Inbound Shipment - Control ForNavOpenDesigner - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 3348879096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Trace - Mass Report</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Item Trace - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 3370446539 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Non-Conformance Report</source>
           <note from="Developer" annotates="general" priority="2"></note>
