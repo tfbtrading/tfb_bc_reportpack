@@ -2638,6 +2638,21 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report TFB Transport History - ReportDataItem WhseShipmentHeader - Property RequestFilterHeading</note>
         </trans-unit>
+        <trans-unit id="Report 3258781096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Vendor Payment Remittance</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Vendor Payment Remittance - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3258781096 - ReportDataItem 1949925967 - Property 1806354803" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Vendor Ledger Entries</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Vendor Payment Remittance - ReportDataItem PaymentLedgerEntries - Property RequestFilterHeading</note>
+        </trans-unit>
+        <trans-unit id="Report 3258781096 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Vendor Payment Remittance - Control Options - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 375353700 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Warehouse Shipment v2</source>
           <note from="Developer" annotates="general" priority="2"></note>

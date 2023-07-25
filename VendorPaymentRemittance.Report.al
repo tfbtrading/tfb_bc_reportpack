@@ -4,7 +4,9 @@ Report 53007 "TFB Vendor Payment Remittance"
     WordLayout = './Layouts/TFBVendorPaymentRemittance.docx';
     DefaultLayout = Word;
     Caption = 'Vendor Payment Remittance';
-
+    DataAccessIntent = ReadOnly;
+    Permissions = tabledata "Vendor Ledger Entry" = R, tabledata "Detailed Vendor Ledg. Entry" = R;
+    UsageCategory = ReportsAndAnalysis;
     dataset
     {
         dataitem(PaymentLedgerEntries; "Vendor Ledger Entry")
