@@ -439,7 +439,7 @@ table 53120 "TFB Price List Item Buffer"
                         exit;
                     end;
 
-                    ShippingAgentServices := SalesCU.GetShippingAgentDetailsForLocation(Location.Code, Customer.County, Customer."Shipment Method Code");
+                    ShippingAgentServices := SalesCU.GetShippingAgentDetailsForLocation(Location.Code, Customer.County, Customer."Shipment Method Code", Customer."TFB Override Location Shipping");
                     Rec.AgentCode := ShippingAgentServices."Shipping Agent Code";
                     Rec.AgentServiceCode := ShippingAgentServices.Code;
                     If Rec.MultiItemPalletOption = Rec.MultiItemPalletOption::Half then

@@ -204,28 +204,54 @@ codeunit 53030 "TFB Report Pack Mgmt"
     var
         CustomerOrderStatus: Report "TFB Customer Order Status";
         TempBlob: CodeUnit "Temp Blob";
-        RecordRef: RecordRef;
+        CustomerRecordRef: RecordRef;
         OutStream: OutStream;
         Instream: Instream;
         HTMLText: Text;
     begin
 
+        // TempBlob.CreateOutStream(OutStream);
+        // CustomerRecordRef.GetTable(Customer);
+        // if CustomerOrderStatus.SaveAs('', ReportFormat::Html, OutStream, CustomerRecordRef) then begin
+        //     TempBlob.CreateInStream(Instream);
+        //     if Instream.Length > 0 then begin
+        //         Instream.ReadText(HTMLText);
+        //         HTMLBuilder.Clear();
+        //         HTMLBuilder.Append(HTMLText);
+        //         Handled := true;
+        //     end
+        //     else
+        //         Handled := false;
+        // end
+        // else
+        //     Handled := false;
+
+
+    end;
+
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"TFB Customer Mgmt", OnBeforeAddOrderStatusAttachment, '', false, false)]
+    local procedure OnBeforeAddOrderStatusAttachment(Customer: Record Customer; var PDFInstream: InStream; var Handled: Boolean);
+    var
+        CustomerOrderStatus: Report "TFB Customer Order Status";
+        TempBlob: CodeUnit "Temp Blob";
+        CustomerRecordRef: RecordRef;
+        OutStream: OutStream;
+
+
+    begin
+
         TempBlob.CreateOutStream(OutStream);
-        RecordRef.GetTable(Customer);
-        if CustomerOrderStatus.SaveAs('', ReportFormat::Html, OutStream, RecordRef) then begin
-            TempBlob.CreateInStream(Instream);
-            if Instream.Length > 0 then begin
-                Instream.ReadText(HTMLText);
-                HTMLBuilder.Clear();
-                HTMLBuilder.Append(HTMLText);
-                Handled := true;
-            end
+        CustomerRecordRef.GetTable(Customer);
+        if CustomerOrderStatus.SaveAs('', ReportFormat::Pdf, OutStream, CustomerRecordRef) then begin
+            TempBlob.CreateInStream(PDFInstream);
+            if PDFInstream.Length > 0 then
+                Handled := true
             else
                 Handled := false;
         end
         else
             Handled := false;
-
 
     end;
 

@@ -2433,6 +2433,26 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report TFB Brokerage Shipment - Control ForNavOpenDesigner - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Report 393927970 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Customer Order Status</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Customer Order Status - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 393927970 - Method 2344662574 - NamedType 818521316" size-unit="char" translate="yes" xml:space="preserve">
+          <source>&lt;td valign="top" style="line-height:15px;"&gt;%1&lt;/td&gt;</source>
+          <note from="Developer" annotates="general" priority="2">%1 = html content for the content of the table data cell</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Customer Order Status - Method GetStockStatus - NamedType tdTxt</note>
+        </trans-unit>
+        <trans-unit id="Report 393927970 - Control 2346885236 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Options</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Customer Order Status - Control Options - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 393927970 - Control 1992870141 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Design</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Customer Order Status - Control ForNavOpenDesigner - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Report 4249107708 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>In Stock Status</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -2482,6 +2502,11 @@
           <source>Design</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report TFB Inbound Shipment - Control ForNavOpenDesigner - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Report 3348879096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item Trace - Mass Report</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Item Trace - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 3370446539 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Non-Conformance Report</source>
