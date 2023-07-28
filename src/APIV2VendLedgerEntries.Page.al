@@ -108,7 +108,7 @@ page 53013 "TFB APIV2 Vend. Ledger Entries"
         ReportSelectionInteger := DummyReportSelections.Usage.AsInteger();
 
         DocumentSendingProfile.SendVendorRecords(
-            ReportSelectionInteger, VendorLedgerEntry, RemittanceAdviceTxt, "Vendor No.", "Document No.",
+            ReportSelectionInteger, VendorLedgerEntry, RemittanceAdviceTxt, Rec."Vendor No.", Rec."Document No.",
             VendorLedgerEntry.FIELDNO("Vendor No."), VendorLedgerEntry.FIELDNO("Document No."));
     end;
 
