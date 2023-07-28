@@ -68,6 +68,14 @@ page 53013 "TFB APIV2 Vend. Ledger Entries"
                 {
                     Caption = 'Due Date';
                 }
+
+                part(appliedEntries; "TFB APIV2 Vend. Ledg. Appl.")
+                {
+                    Caption = 'Applied Entries';
+                    EntityName = 'vendorLedgerEntryApplication';
+                    EntitySetName = 'vendorLedgerEntryApplications';
+                    SubPageLink = "Entry No." = Field("Entry No.");
+                }
             }
         }
 
