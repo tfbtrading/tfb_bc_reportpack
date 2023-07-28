@@ -4,7 +4,7 @@
   "publisher": "TFB Trading",
   "brief": "Contains additional reports not directly tied to other code logic",
   "description": "",
-  "version": "22.0.1.16",
+  "version": "22.0.1.17",
   "privacyStatement": "",
   "EULA": "",
   "help": "",
@@ -41,7 +41,13 @@
     , {"id": "a3fda467-960f-48fd-ad2c-e388f5b1ce78",
       "name": "TFB Non Conformance Requests",
       "publisher": "TFB Trading",
-      "version": "22.0.0.0"}
+      "version": "22.0.0.0"},
+
+       {"id": "e97bbbc7-16b6-470b-9428-376baa778970",
+      "name": "Send remittance advice by email",
+      "publisher": "Microsoft",
+      "version": "22.3.58346.58585"}
+      
   ],
   "screenshots": [],
   "platform": "22.0.0.0",
