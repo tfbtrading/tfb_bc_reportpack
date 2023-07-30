@@ -2228,6 +2228,156 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 - Vendors - Control picture - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 1168939064 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>vendorLedgerEntryApplications</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledg. Appl. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1168939064 - NamedType 2396386738" size-unit="char" translate="yes" xml:space="preserve">
+          <source>id type not specified.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledg. Appl. - NamedType FiltersNotSpecifiedErrorLbl</note>
+        </trans-unit>
+        <trans-unit id="Page 1168939064 - Control 1121446808 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledg. Appl. - Control amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1168939064 - Control 778058367 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Çlosed By Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledg. Appl. - Control closedByAmount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1168939064 - Control 73228906 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledg. Appl. - Control documentNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1168939064 - Control 305869689 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledg. Appl. - Control documentType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1168939064 - Control 2763176388 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Due Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledg. Appl. - Control dueDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1168939064 - Control 2683860767 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledg. Appl. - Control entryNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1168939064 - Control 3947953933 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>External Document No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledg. Appl. - Control externalDocumentNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1168939064 - Control 3456634807 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Original Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledg. Appl. - Control originalAmount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1168939064 - Control 3528533692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Payment Method Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledg. Appl. - Control paymentMethodCode - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1168939064 - Control 1260828904 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledg. Appl. - Control postingDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1168939064 - Control 3092263724 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>SystemId</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledg. Appl. - Control systemId - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1168939064 - Control 2483398189 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Vendor Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledg. Appl. - Control vendorName - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 1168939064 - Control 1764391503 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Vendor No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledg. Appl. - Control vendorNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4278426736 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>vendorLedgerEntries</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledger Entries - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4278426736 - NamedType 438128090" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remittance Advice</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledger Entries - NamedType RemittanceAdviceTxt</note>
+        </trans-unit>
+        <trans-unit id="Page 4278426736 - Control 1121446808 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledger Entries - Control amount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4278426736 - Control 3380512321 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Applied Entries</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledger Entries - Control appliedEntries - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4278426736 - Control 73228906 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledger Entries - Control documentNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4278426736 - Control 305869689 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document Type</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledger Entries - Control documentType - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4278426736 - Control 2763176388 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Due Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledger Entries - Control dueDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4278426736 - Control 2683860767 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledger Entries - Control entryNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4278426736 - Control 3947953933 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>External Document No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledger Entries - Control externalDocumentNo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4278426736 - Control 3456634807 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Original Amount</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledger Entries - Control originalAmount - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4278426736 - Control 3528533692 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Payment Method Code</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledger Entries - Control paymentMethodCode - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4278426736 - Control 1260828904 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting Date</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledger Entries - Control postingDate - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4278426736 - Control 3092263724 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>SystemId</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledger Entries - Control systemId - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4278426736 - Control 2483398189 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Vendor Name</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledger Entries - Control vendorName - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4278426736 - Control 1764391503 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Vendor No.</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page TFB APIV2 Vend. Ledger Entries - Control vendorNo - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 2101413429 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Customer Price History</source>
           <note from="Developer" annotates="general" priority="2"></note>
@@ -2637,6 +2787,11 @@
           <source>Warehouse Transport Details</source>
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">Report TFB Transport History - ReportDataItem WhseShipmentHeader - Property RequestFilterHeading</note>
+        </trans-unit>
+        <trans-unit id="Report 1951054760 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remittance Advice - Journal</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">Report TFB Vend. Paym. Remit. - Jrnl. - Property Caption</note>
         </trans-unit>
         <trans-unit id="Report 3258781096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Vendor Payment Remittance</source>

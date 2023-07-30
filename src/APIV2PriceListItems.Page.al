@@ -8,9 +8,9 @@ page 53002 "TFB APIV2 - Price List Items"
     EntitySetName = 'priceListItems';
     ODataKeyFields = ItemID, "No.", "Item Category ID", "Vendor Id";
     DataAccessIntent = ReadOnly;
-
     PageType = API;
     SourceTable = "TFB Price List Item Buffer";
+    Permissions = tabledata "TFB Price History Buffer" = R;
     SourceTableTemporary = true;
     Extensible = false;
     InsertAllowed = false;

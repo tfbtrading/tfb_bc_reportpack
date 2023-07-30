@@ -6,17 +6,20 @@ page 53004 "TFB APIV2 - Market Segment"
     DelayedInsert = true;
     EntityName = 'marketSegment';
     EntitySetName = 'marketSegments';
+    APIPublisher = 'tfb';
+    APIGroup = 'inreach';
     ODataKeyFields = SystemId;
-
+    DataAccessIntent = ReadOnly;
+    Editable = false;
     PageType = API;
     SourceTable = "TFB Product Market Segment";
+    Permissions = tabledata "TFB Product Market Segment" = R;
 
     Extensible = false;
     InsertAllowed = false;
     ModifyAllowed = false;
     DeleteAllowed = false;
-    APIPublisher = 'tfb';
-    APIGroup = 'inreach';
+
     layout
     {
         area(Content)

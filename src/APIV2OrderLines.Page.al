@@ -6,19 +6,20 @@ page 53008 "TFB APIV2 - Order Lines"
     DelayedInsert = true;
     EntityName = 'orderLine';
     EntitySetName = 'orderLines';
+    APIPublisher = 'tfb';
+    APIGroup = 'inreach';
     ODataKeyFields = DocumentType, DocumentID, CustomerLineStatus, "No.";
     DataAccessIntent = ReadOnly;
-
+    Editable = false;
     PageType = API;
     SourceTable = "TFB Customer Lines Buffer";
+
     SourceTableTemporary = true;
     Extensible = false;
     InsertAllowed = false;
     ModifyAllowed = false;
-    Editable = false;
     DeleteAllowed = false;
-    APIPublisher = 'tfb';
-    APIGroup = 'inreach';
+
     layout
     {
         area(Content)
